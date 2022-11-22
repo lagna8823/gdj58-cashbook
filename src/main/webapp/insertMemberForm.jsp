@@ -8,8 +8,8 @@
 		<meta charset="UTF-8">
 		<title>insertCashForm.jsp</title>
 	</head>
-	<body> <!-- 폼작성 -->
-		
+	<body> 
+		<h1>회원가입</h1>	
 		<!-- msg 파라메타값이 있으면 출력 -->
 		<%
 			if(request.getParameter("msg") != null){
@@ -18,8 +18,8 @@
 		<%
 			}
 		%>
-	
-		<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp">
+		<!-- 폼작성 -->
+		<form action="<%=request.getContextPath()%>/cash/insertMemberAction.jsp">
 			<table>
 				<tr>
 					<td>

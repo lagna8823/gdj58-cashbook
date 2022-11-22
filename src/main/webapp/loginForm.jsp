@@ -18,10 +18,12 @@
 					<th><span>비밀번호</span></th>
 					<td><input type="password" name="memberPw"></td>
 				</tr>
-				
 			</table>	
 			<button type="submit">로그인</button>
 		</form>
+	</div>
+	<div>
+		<a href="<%=request.getContextPath()%>/insertMemberForm.jsp">회원가입</a>
 	</div>
 </body>
 </html>
