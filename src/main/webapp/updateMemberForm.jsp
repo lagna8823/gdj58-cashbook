@@ -16,7 +16,7 @@
 	}
 	
 	request.setCharacterEncoding("utf-8"); // 한글버전 패치 (값이 넘어오니까 인코딩)
-	System.out.print(request.getParameter("loginMember")); // 디버깅
+	//System.out.print(request.getParameter("loginMember")); // 디버깅
 	
 	// Model 호출 : Member id값으로 멤버의정보를 가져옴.
 	MemberDao memberDao = new MemberDao(); // CashDao 메서드를 이용하여 memberDao 새로 선언.
@@ -51,9 +51,8 @@
                for(HashMap<String, Object> m : updateMemberList) {
             	   String memberId = (String)(m.get("memberId"));
             	   String memberName = (String)(m.get("memberName"));
-            	   int memberNo = (int)(m.get("memberNo"));
            %>
-			<input type="hidden" name="memberNo" value="<%=memberNo%>">
+			<input type="hidden" name="memberNo" value="">
 			<table>
 			
 				<tr>

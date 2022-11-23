@@ -48,7 +48,6 @@ public class MemberDao {
 		// DB 연결
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
-		
 		// ID 중복검사
 		int resultRow = 0;
 		String sql1 = "SELECT member_id memberId FROM member WHERE member_id=?";
@@ -109,23 +108,47 @@ public class MemberDao {
 		// DB 연결
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
+		/*System.out.println(updateMember.getMemberName());
+		System.out.println(updateMember.getMemberId());
+		System.out.println(updateMember.getMemberPw());*/
+		int resultRow=0;
+		// 수정
+		String sql4 = "UPDATE member SET member_name=? WHERE member_id=? AND member_pw = PASSWORD(?)";
+		PreparedStatement stmt4 = conn.prepareStatement(sql4);
+		stmt4.setString(1, updateMember.getMemberName());
+		stmt4.setString(2, updateMember.getMemberId());
+		stmt4.setString(3, updateMember.getMemberPw());
+		resultRow = stmt4.executeUpdate();
+		if(resultRow==1)		
+				stmt4.close();
+				conn.close();
+				return resultRow;
 		
-		int resultRow = 0;
-		
-		// 입력
-		String sql5 = "UPDATE member SET member_name=? WHERE member_no=? AND member_pw=PASSWORD(?)";
-		PreparedStatement stmt5 = conn.prepareStatement(sql5);
-		stmt5.setString(1, updateMember.getMemberName());
-		stmt5.setInt(2, updateMember.getMemberNo());
-		stmt5.setString(3, updateMember.getMemberPw());
-		resultRow = stmt5.executeUpdate();
-				
-		stmt5.close();
-		conn.close();
-		return resultRow;
 		}
 		
-		
+		//updateMemberPwAction.jsp
+		public int updatePw(Member updatePwMember) throws Exception {
 			
+		// DB 연결
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		/*System.out.println(updatePwMember.getMemberPw());
+		System.out.println(updatePwMember.getMemberId());
+		System.out.println(updatePwMember.getMemberPw2());*/
+		int resultRow=0;
+		// 수정
+		String sql5 = "UPDATE member SET member_pw = PASSWORD(?) WHERE member_id=? AND member_pw = PASSWORD(?)";
+		PreparedStatement stmt5 = conn.prepareStatement(sql5);
+		stmt5.setString(1, updatePwMember.getMemberPw2());
+		stmt5.setString(2, updatePwMember.getMemberId());
+		stmt5.setString(3, updatePwMember.getMemberPw());
+		resultRow = stmt5.executeUpdate();
+		if(resultRow==1)		
+				stmt5.close();
+				conn.close();
+				return resultRow;
+		
+		}
+		
 		
 }
