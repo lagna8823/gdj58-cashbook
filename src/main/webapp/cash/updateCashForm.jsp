@@ -12,16 +12,7 @@
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	}
-	// 값세팅
-	int year = Integer.parseInt(request.getParameter("year"));
-	int month = Integer.parseInt(request.getParameter("month"));
-	int date = Integer.parseInt(request.getParameter("date"));
-	
-	
-	// Model 호출 : 카테고리 목록
-	
-	CategoryDao categoryDao = new CategoryDao();
-	ArrayList<Category> categoryList = categoryDao.selectCategoryList();
+
 	
 	// Model 호출 : 일별 cash 목록
 	CashDao cashDao = new CashDao(); 
@@ -34,7 +25,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>cashDateList</title>
+<title>updateCashForm</title>
 </head>
 <body>
 	<!-- cash 입력 폼 -->
@@ -98,20 +89,17 @@
 			<th>수정</th><!-- /cash/deleteCash.jsp?cashNo= -->
 			<th>삭제</th><!-- /cash/updateCashForm.jsp?cashNo= -->
 		</tr>
+		<tr>
 		<%
 			for(HashMap<String, Object> m : list) {
-		%>
-				<tr>
-					<td><%=(String)m.get("categoryKind")%></td>
-					<td><%=(String)m.get("categoryName")%></td>
-					<td><%=(Long)m.get("cashPrice")%></td>
-					<td><%=(String)m.get("cashMemo")%></td>
-					<td><a href="<%=request.getContextPath()%>/cash/UpdateCashForm.jsp">수정</a></td>
-					<td><a href="<%=request.getContextPath()%>/cash/DeleteCashForm.jsp">삭제</a></td>
-				</tr>
-		<%		
+					(String)m.get("categoryKind");
+					(String)m.get("categoryName");
+					(Long)m.get("cashPrice");
+					(String)m.get("cashMemo");
+			
 			}
 		%>
+		</tr>
 	</table>
 </body>
 </html>

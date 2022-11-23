@@ -25,7 +25,12 @@
 	System.out.println(memberPw+ "<---멤버기존");
 	System.out.println(memberPw2+ "<---멤버수정 여기까지");
 	
-	//if 비밀번호 확인 작성해야함
+	// 입력값 체크
+	 if(memberPw == null || memberPw2 == null || memberPw.equals("") || memberPw2.equals("")) {
+      String msg = URLEncoder.encode("공백을 입력할 수 없습니다.","utf-8"); // get방식 주소창에 문자열 인코딩
+      response.sendRedirect(request.getContextPath()+"/updateMemberPwForm.jsp?msg="+msg);
+      return;
+   }
 	
 	Member updatePwMember = new Member(); // 모델 호출시 매개값(vo.Member의 클래스를 이용하여 updatemMember를 새로 선언)
 	updatePwMember.setMemberId(memberId); // 새로 선언된 updatemMember에 넘겨받은 값 세팅.
