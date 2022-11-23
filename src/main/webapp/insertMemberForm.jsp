@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "vo.*" %>
+<%@ page import = "java.net.URLEncoder" %>
 <%@ page import = "java.sql.*" %>
 <%@ page import = "java.util.*" %>
+<%
+request.setCharacterEncoding("utf-8"); // 한글버전 패치 (값이 넘어오니까 인코딩)
+%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>insertCashForm.jsp</title>
+		<title>insertMemberForm.jsp</title>
 	</head>
 	<body> 
 		<h1>회원가입</h1>	
@@ -19,7 +23,7 @@
 			}
 		%>
 		<!-- 폼작성 -->
-		<form action="<%=request.getContextPath()%>/cash/insertMemberAction.jsp">
+		<form action="<%=request.getContextPath()%>/insertMemberAction.jsp">
 			<table>
 				<tr>
 					<td>
@@ -39,7 +43,7 @@
 				</tr>
 				<tr>
 					<td>
-						<span class="bg-warning">이름</span>
+						<span>이름</span>
 					</td>
 					<td>
 					<input type="text" name="memberName" value="">

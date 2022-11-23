@@ -38,6 +38,7 @@ public class CashDao {
 					+ "		, c.cash_memo cashMemo"
 					+ "		, ct.category_kind categoryKind"
 					+ "		, ct.category_name categoryName"
+					+ "		, c.member_id memberId"
 					+ "	FROM cash c INNER JOIN category ct"
 					+ "	ON c.category_no = ct.category_no"
 					+ "	WHERE c.member_id = ?"
@@ -59,6 +60,7 @@ public class CashDao {
 				m.put("cashMemo", rs.getString("cashMemo"));
 				m.put("categoryKind", rs.getString("categoryKind"));
 				m.put("categoryName", rs.getString("categoryName"));
+				m.put("memberId", rs.getString("memberId"));
 				list.add(m);
 			}
 			

@@ -3,6 +3,9 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import util.DBUtil;
 import vo.Member;
 
@@ -40,34 +43,89 @@ public class MemberDao {
 	}
 	
 	// 회원가입
-	public int insertMember(Member checkMember) throws Exception {
-		Member resultMember1 = null;
-	// DB 연결
-	DBUtil dbUtil = new DBUtil();
-	Connection conn = dbUtil.getConnection();
-	
-	String sql1 = "SELECT member_id memberId FROM member WHERE member_id=?";
-	PreparedStatement stmt1 = conn.prepareStatement(sql1);
-	stmt1.setString(1, checkMember.getMemberId());
-	ResultSet rs1 = stmt1.executeQuery();
-	if(rs1.next()) {
-		resultMember1 = "A";
+	public int insert(Member checkMember) throws Exception {
 		
-		rs1.close();
-		stmt1.close();
+		// DB 연결
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		// ID 중복검사
+		int resultRow = 0;
+		String sql1 = "SELECT member_id memberId FROM member WHERE member_id=?";
+		PreparedStatement stmt1 = conn.prepareStatement(sql1);
+		stmt1.setString(1, checkMember.getMemberId());
+		ResultSet rs1 = stmt1.executeQuery();
+		if(rs1.next()) {
+			resultRow=0;
+			rs1.close();
+			stmt1.close();
+			return resultRow;
+		}
+		
+		// 입력
+		
+		String sql2 = "INSERT INTO member(member_id, member_pw, member_name, updatedate, createdate) VALUES(?,PASSWORD(?),?,curdate(),curdate())";
+		PreparedStatement stmt2 = conn.prepareStatement(sql2);
+		stmt2.setString(1, checkMember.getMemberId());
+		stmt2.setString(2, checkMember.getMemberPw());
+		stmt2.setString(3, checkMember.getMemberName());
+		resultRow = stmt2.executeUpdate();
+		
+		stmt2.close();
 		conn.close();
-		return resultMember1;
-	} 
-	
-	int resultRow =0;
-	String sql2 = "INSERT INTO member(member_id, member_pw, member_name, updatedate, createdate) VALUES(?,?,?,curdate(),curdate())";
-	PreparedStatement stmt2 = conn.prepareStatement(sql2);
-	stmt2.setString(1, checkMember.getMemberId());
-	stmt2.setString(2, checkMember.getMemberPw());
-	stmt2.setString(3, checkMember.getMemberName());
-	resultRow = stmt2.executeUpdate();
-	
-	stmt2.close();
-	conn.close();
-	return resultRow;
+		return resultRow;
 	}
+	
+	
+	// 회원수정
+	
+		// updateForm.jsp
+		public ArrayList<HashMap<String, Object>> selectMemberListById(String memberId) throws Exception {
+			ArrayList<HashMap<String, Object>> updateMemberList = new ArrayList<HashMap<String,Object>>();
+			DBUtil dbUtil = new DBUtil();
+			Connection conn = dbUtil.getConnection();
+			String sql3 = "SELECT member_no memberNo, member_id memberId, member_name memberName FROM member WHERE member_id=? ";
+			PreparedStatement stmt3 = conn.prepareStatement(sql3);
+			stmt3.setString(1, memberId);
+			ResultSet rs3 = stmt3.executeQuery();
+			while(rs3.next()) {
+				HashMap<String, Object> m = new HashMap<String, Object>();
+				m.put("memberNo", rs3.getInt("memberNo"));
+				m.put("memberId", rs3.getString("memberId"));
+				m.put("memberName", rs3.getString("memberName"));
+				updateMemberList.add(m);
+			}
+			
+			rs3.close();
+			stmt3.close();
+			conn.close();
+			return updateMemberList;
+		}
+
+		
+		//updateMemberAction.jsp
+		public int update(Member updateMember) throws Exception {
+			
+		// DB 연결
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		int resultRow = 0;
+		
+		// 입력
+		String sql5 = "UPDATE member SET member_name=? WHERE member_no=? AND member_pw=PASSWORD(?)";
+		PreparedStatement stmt5 = conn.prepareStatement(sql5);
+		stmt5.setString(1, updateMember.getMemberName());
+		stmt5.setInt(2, updateMember.getMemberNo());
+		stmt5.setString(3, updateMember.getMemberPw());
+		resultRow = stmt5.executeUpdate();
+				
+		stmt5.close();
+		conn.close();
+		return resultRow;
+		}
+		
+		
+			
+		
+}

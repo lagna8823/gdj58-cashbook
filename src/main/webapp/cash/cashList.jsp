@@ -5,7 +5,9 @@
 <%
 	// Controller : seesion, request
 	
+	
 	// session에 저장된 멤버(현재 로그인 사용자)
+	request.setCharacterEncoding("utf-8"); // 한글버전 패치 (값이 넘어오니까 인코딩)
 	Member loginMember = (Member)session.getAttribute("loginMember");
    
 	// request 년 + 월
@@ -54,8 +56,14 @@
 	
 	
 	// Model 호출 : 일별 cash 목록
-	CashDao cashDao = new CashDao();
+	CashDao cashDao = new CashDao(); // CashDao 메서드를 이용하여 cashDao를 새로 선언.
 	ArrayList<HashMap<String, Object>> list  = cashDao.selectCashListByMonth(loginMember.getMemberId(), year, month+1);
+	/*
+	arrayList 형태로 저장되있는 cashDao.select~~Month 메서드로 (loginMeber.getMeberId(),year,month+1)을 보내고,
+	결과값 arrayList<해쉬맵> 형태로 list값에 세팅.
+	*/
+
+	
 	// View : 달력출력 + 일별 cash 목록 출력
 %>
 <!DOCTYPE html>
@@ -65,18 +73,26 @@
 <title>cashList</title>
 </head>
 <body>
+	<div>
+	<h1>
+	<%=loginMember %>님의 달력
+	</h1>
+	</div>
    <div>
       <!-- 로그인 정보(세션 loginMember 변수) 출력 -->
    </div>
-   
+   <div>
+   		<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp?">비밀번호 수정</a>
+   </div>
+   <div>
+   		<a href="<%=request.getContextPath()%>/updateMemberForm.jsp?">회원정보 수정</a>
+   </div>
+   <br>
    <div>
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
 		<%=year%>년 <%=month+1%> 월
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
-   </div>
-   <div>
-		<a href="<%=request.getContextPath()%>/cash/cashList.jsp">돌아가기</a>
-		<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
+		
    </div>
    <div>
       <!-- 달력 -->
@@ -98,8 +114,12 @@
                               <%=date%>
                            </a>
                         </div>
+                        
                         <div>
-                           <%
+                           <% /* 위 세팅된 arrayList<해쉬맵> list를 CashDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
+                           		ex)  for(HashMap<String, Object> m : list) {
+                           				String cashDate = (String)(m.get("cashDate")); 
+                           		}        (ps. m.get 앞에 String은 형변환을 해줌.)  */
                               for(HashMap<String, Object> m : list) {
                                  String cashDate = (String)(m.get("cashDate"));
                                  if(Integer.parseInt(cashDate.substring(8)) == date) {
@@ -130,6 +150,10 @@
             %>
          </tr>
       </table>
+   </div>
+   <div>
+		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?">돌아가기</a>
+		<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
    </div>
 </body>
 </html>

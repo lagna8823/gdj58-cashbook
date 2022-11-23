@@ -12,7 +12,7 @@
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	}
-	// 변수선언
+	// 값세팅
 	int year = Integer.parseInt(request.getParameter("year"));
 	int month = Integer.parseInt(request.getParameter("month"));
 	int date = Integer.parseInt(request.getParameter("date"));
@@ -76,10 +76,10 @@
 	<!-- cash 목록 출력 -->
 	<table border="1">
 		<tr>
-			<th>categoryKind</th>
-			<th>categoryName</th>
-			<th>cashPrice</th>
-			<th>cashMemo</th>
+			<th>구분</th>
+			<th>내역</th>
+			<th>금액</th>
+			<th>상세내역</th>
 			<th>수정</th><!-- /cash/deleteCash.jsp?cashNo= -->
 			<th>삭제</th><!-- /cash/updateCashForm.jsp?cashNo= -->
 		</tr>
