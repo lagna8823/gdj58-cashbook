@@ -22,6 +22,7 @@ import vo.*;
 				c.setCategoryNo(rs.getInt("categoryNo"));
 				c.setCategoryKind(rs.getString("categoryKind"));
 				c.setCategoryName(rs.getString("categoryName"));
+				categoryList.add(c);
 			}
 			rs.close();
 			stmt.close();
