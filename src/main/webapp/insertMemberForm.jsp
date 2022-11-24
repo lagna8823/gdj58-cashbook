@@ -23,7 +23,7 @@ request.setCharacterEncoding("utf-8"); // 한글버전 패치 (값이 넘어오�
 			}
 		%>
 		<!-- 폼작성 -->
-		<form action="<%=request.getContextPath()%>/insertMemberAction.jsp">
+		<form action="<%=request.getContextPath()%>/insertMemberAction.jsp" method="post">
 			<table>
 				<tr>
 					<td>

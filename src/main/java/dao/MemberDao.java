@@ -10,6 +10,7 @@ import util.DBUtil;
 import vo.Member;
 
 public class MemberDao {
+	
 	// 로그인
 	public Member login(Member paramMember) throws Exception {
 		Member resultMember = null;
@@ -42,11 +43,11 @@ public class MemberDao {
 		return resultMember;
 	}
 	
+	
 	// 회원가입
 	public int insert(Member checkMember) throws Exception {
 		
-		// DB 연결
-		DBUtil dbUtil = new DBUtil();
+		DBUtil dbUtil = new DBUtil(); // DB 연결
 		Connection conn = dbUtil.getConnection();
 		// ID 중복검사
 		int resultRow = 0;
@@ -62,7 +63,6 @@ public class MemberDao {
 		}
 		
 		// 입력
-		
 		String sql2 = "INSERT INTO member(member_id, member_pw, member_name, updatedate, createdate) VALUES(?,PASSWORD(?),?,curdate(),curdate())";
 		PreparedStatement stmt2 = conn.prepareStatement(sql2);
 		stmt2.setString(1, checkMember.getMemberId());
@@ -76,7 +76,7 @@ public class MemberDao {
 	}
 	
 	
-	// 회원수정
+	// 회원 정보 및 비밀번호 수정
 	
 		// updateForm.jsp
 		public ArrayList<HashMap<String, Object>> selectMemberListById(String memberId) throws Exception {
@@ -102,7 +102,7 @@ public class MemberDao {
 		}
 
 		
-		//updateMemberAction.jsp
+		// 회원정보 수정 updateMemberAction.jsp
 		public int update(Member updateMember) throws Exception {
 			
 		// DB 연결
@@ -112,7 +112,7 @@ public class MemberDao {
 		System.out.println(updateMember.getMemberId());
 		System.out.println(updateMember.getMemberPw());*/
 		int resultRow=0;
-		// 수정
+		// 회원정보 수정
 		String sql4 = "UPDATE member SET member_name=? WHERE member_id=? AND member_pw = PASSWORD(?)";
 		PreparedStatement stmt4 = conn.prepareStatement(sql4);
 		stmt4.setString(1, updateMember.getMemberName());
@@ -126,7 +126,8 @@ public class MemberDao {
 		
 		}
 		
-		//updateMemberPwAction.jsp
+		
+		//비밀번호 수정 updateMemberPwAction.jsp
 		public int updatePw(Member updatePwMember) throws Exception {
 			
 		// DB 연결
@@ -136,7 +137,7 @@ public class MemberDao {
 		System.out.println(updatePwMember.getMemberId());
 		System.out.println(updatePwMember.getMemberPw2());*/
 		int resultRow=0;
-		// 수정
+		// 비밀번호 수정
 		String sql5 = "UPDATE member SET member_pw = PASSWORD(?) WHERE member_id=? AND member_pw = PASSWORD(?)";
 		PreparedStatement stmt5 = conn.prepareStatement(sql5);
 		stmt5.setString(1, updatePwMember.getMemberPw2());
@@ -151,4 +152,26 @@ public class MemberDao {
 		}
 		
 		
+		//회원탈퇴 deleteMemberAction.jsp
+		public int delete(Member deleteMember) throws Exception {
+			
+		// DB 연결
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		/*System.out.println(updatePwMember.getMemberPw());
+		System.out.println(updatePwMember.getMemberId());
+		System.out.println(updatePwMember.getMemberPw2());*/
+		int resultRow=0;
+		// 비밀번호 수정
+		String sql6 = "DELETE FROM member WHERE member_id=? AND member_pw = PASSWORD(?)";
+		PreparedStatement stmt6 = conn.prepareStatement(sql6);
+		stmt6.setString(1, deleteMember.getMemberId());
+		stmt6.setString(2, deleteMember.getMemberPw());
+		resultRow = stmt6.executeUpdate();
+		if(resultRow==1)		
+				stmt6.close();
+				conn.close();
+				return resultRow;
+		
+		}
 }

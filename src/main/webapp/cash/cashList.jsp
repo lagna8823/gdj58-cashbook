@@ -68,92 +68,93 @@
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>cashList</title>
-</head>
-<body>
-	<div>
-	<h1>
-	<%=loginMember %>님의 달력
-	</h1>
-	</div>
-   <div>
-      <!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-   </div>
-   <div>
-   		<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp?">비밀번호 수정</a>
-   </div>
-   <div>
-   		<a href="<%=request.getContextPath()%>/updateMemberForm.jsp?">회원정보 수정</a>
-   </div>
-   <br>
-   <div>
-		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
-		<%=year%>년 <%=month+1%> 월
-		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
-		
-   </div>
-   <div>
-      <!-- 달력 -->
-      <table border="1" width="90%">
-         <tr>
-            <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
-         </tr>
-         <tr>
-            <%
-               for(int i=1; i<=totalTd; i++) {
-            %>
-                  <td>
-            <%
-                     int date = i-beginBlank;
-                     if(date > 0 && date <= lastDate) {
-            %>
-                        <div>
-                           <a href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
-                              <%=date%>
-                           </a>
-                        </div>
-                        
-                        <div>
-                           <% /* 위 세팅된 arrayList<해쉬맵> list를 CashDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
-                           		ex)  for(HashMap<String, Object> m : list) {
-                           				String cashDate = (String)(m.get("cashDate")); 
-                           		}        (ps. m.get 앞에 String은 형변환을 해줌.)  */
-                              for(HashMap<String, Object> m : list) {
-                                 String cashDate = (String)(m.get("cashDate"));
-                                 if(Integer.parseInt(cashDate.substring(8)) == date) {
-                           %>
-                                    [<%=(String)(m.get("categoryKind"))%>]
-                                    <%=(String)(m.get("categoryName"))%>
-                                    &nbsp;
-                                    <%=(Long)(m.get("cashPrice"))%>원
-                                    <br>
-                           <%
-                                 
-                                 }
-                              }
-                           %>
-                        </div>
-            <%            
-                     }
-            %>
-                  </td>
-            <%
-                  
-                  if(i%7 == 0 && i != totalTd) {
-            %>
-                     </tr><tr> <!-- td7개 만들고 테이블 줄바꿈 -->
-            <%         
-                  }
-               }
-            %>
-         </tr>
-      </table>
-   </div>
-   <div>
-		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?">돌아가기</a>
-		<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
-   </div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>cashList</title>
+	</head>
+	<body>
+		<div>
+		<h1>
+		<%=loginMember %>님의 달력
+		</h1>
+		</div>
+	   <div>
+	      <!-- 로그인 정보(세션 loginMember 변수) 출력 -->
+	   </div>
+	   <div>
+	   		<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp?">비밀번호 수정</a>
+	   </div>
+	   <div>
+	   		<a href="<%=request.getContextPath()%>/updateMemberForm.jsp?">회원정보 수정</a>
+	   		<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp?">회원탈퇴</a>
+	   </div>
+	   <br>
+	   <div>
+			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
+			<%=year%>년 <%=month+1%> 월
+			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
+			
+	   </div>
+	   <div>
+	      <!-- 달력 -->
+	      <table border="1" width="90%">
+	         <tr>
+	            <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
+	         </tr>
+	         <tr>
+	            <%
+	               for(int i=1; i<=totalTd; i++) {
+	            %>
+	                  <td>
+	            <%
+	                     int date = i-beginBlank;
+	                     if(date > 0 && date <= lastDate) {
+	            %>
+	                        <div>
+	                           <a href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
+	                              <%=date%>
+	                           </a>
+	                        </div>
+	                        
+	                        <div>
+	                           <% /* 위 세팅된 arrayList<해쉬맵> list를 CashDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
+	                           		ex)  for(HashMap<String, Object> m : list) {
+	                           				String cashDate = (String)(m.get("cashDate")); 
+	                           		}        (ps. m.get 앞에 String은 형변환을 해줌.)  */
+	                              for(HashMap<String, Object> m : list) {
+	                                 String cashDate = (String)(m.get("cashDate"));
+	                                 if(Integer.parseInt(cashDate.substring(8)) == date) {
+	                           %>
+	                                    [<%=(String)(m.get("categoryKind"))%>]
+	                                    <%=(String)(m.get("categoryName"))%>
+	                                    &nbsp;
+	                                    <%=(Long)(m.get("cashPrice"))%>원
+	                                    <br>
+	                           <%
+	                                 
+	                                 }
+	                              }
+	                           %>
+	                        </div>
+	            <%            
+	                     }
+	            %>
+	                  </td>
+	            <%
+	                  
+	                  if(i%7 == 0 && i != totalTd) {
+	            %>
+	                     </tr><tr> <!-- td7개 만들고 테이블 줄바꿈 -->
+	            <%         
+	                  }
+	               }
+	            %>
+	         </tr>
+	      </table>
+	   </div>
+	   <div>
+			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?">돌아가기</a>
+			<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
+	   </div>
+	</body>
 </html>

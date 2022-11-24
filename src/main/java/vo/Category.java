@@ -6,6 +6,7 @@ public class Category {
 	private String categoryName;
 	private String updatedate;
 	private String createdate;
+	
 	public int getCategoryNo() {
 		return categoryNo;
 	}

@@ -20,10 +20,10 @@
 	String memberPw = request.getParameter("memberPw");
 	String memberName = request.getParameter("memberName");
 	
-	System.out.println("");
+	/*  System.out.println("");
 	System.out.println(loginMember+ "<---아이디");
 	System.out.println(memberPw+ "<---멤버기존");
-	System.out.println(memberName+ "<---멤버이름 여기까지");
+	System.out.println(memberName+ "<---멤버이름 여기까지");*/
 	
 	// 입력값 체크
 		 if(memberPw == null || memberName == null || memberPw.equals("") || memberName.equals("")) {
