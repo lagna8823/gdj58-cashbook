@@ -63,12 +63,12 @@
 				<tr>
 					<td>항목</td>
 					<td>
-						<select name = "categoryKind">
+						<select name = "categoryNo">
 							<%
-								for(Category ct : categoryList) {
+								for(Category c : categoryList) {
 							%>
-									<option  value="<%=ct.getCategoryKind()%>">
-									<%=ct.getCategoryKind()%> <%=ct.getCategoryName()%>
+									<option  value="<%=c.getCategoryNo()%>">
+									<%=c.getCategoryKind()%> <%=c.getCategoryName()%>
 									</option>
 									
 							<%
