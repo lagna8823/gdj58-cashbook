@@ -25,10 +25,11 @@ public class MemberDao {
 		
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
-		String sql = "SELECT member_id memberId, member_name memberName FROM member WHERE member_id=? AND member_pw = PASSWORD(?)";
+		String sql = "SELECT member_id memberId, member_level memberLevel, member_name memberName FROM member WHERE member_id=? AND member_pw = PASSWORD(?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberId());
-		stmt.setString(2, paramMember.getMemberPw());
+		stmt.setInt(2, paramMember.getMemberLevel());
+		stmt.setString(3, paramMember.getMemberPw());
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
 			resultMember = new Member();

@@ -73,29 +73,37 @@
 		<title>cashList</title>
 	</head>
 	<body>
+		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
 		<div>
 		<h1>
 		<%=loginMember %>님의 달력
 		</h1>
 		</div>
-	   <div>
-	      <!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-	   </div>
-	   <div>
-	   		<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp?">비밀번호 수정</a>
-	   </div>
-	   <div>
-	   		<a href="<%=request.getContextPath()%>/updateMemberForm.jsp?">회원정보 수정</a>
-	   		<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp?">회원탈퇴</a>
-	   </div>
-	   <br>
-	   <div>
-			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
-			<%=year%>년 <%=month+1%> 월
-			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
-			
-	   </div>
-	   <div>
+		<div>
+			<%=loginMember.getMemberName()%>님 반갑습니다 
+		   	<%
+				if(loginMember.getMemberLevel() > 0){
+			%>
+			 	<a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자 페이지</a>
+			<%
+				}
+			%>		   
+		</div>
+		<div>
+				<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp?">비밀번호 수정</a>
+		</div>
+		<div>
+				<a href="<%=request.getContextPath()%>/updateMemberForm.jsp?">회원정보 수정</a>
+				<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp?">회원탈퇴</a>
+		 </div>
+		 <br>
+		 <div>
+		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
+		<%=year%>년 <%=month+1%> 월
+		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
+		
+		</div>
+		<div>
 	      <!-- 달력 -->
 	      <table border="1" width="90%">
 	         <tr>
