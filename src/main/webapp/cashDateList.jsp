@@ -68,7 +68,7 @@
 								for(Category c : categoryList) {
 							%>
 									<option  value="<%=c.getCategoryNo()%>">
-									<%=c.getCategoryKind()%> <%=c.getCategoryName()%>
+									<%=c.getCategoryKind()%>, <%=c.getCategoryName()%>
 									</option>
 									
 							<%
