@@ -9,7 +9,7 @@
 	// session에 저장된 멤버(현재 로그인 사용자)
 	request.setCharacterEncoding("utf-8"); // 한글버전 패치 (값이 넘어오니까 인코딩)
 	Member loginMember = (Member)session.getAttribute("loginMember");
-   
+	
 	// request 년 + 월
 	int year = 0;
 	int month = 0;
@@ -74,17 +74,15 @@
 	</head>
 	<body>
 		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-		<div>
-		<h1>
-		<%=loginMember %>님의 달력
-		</h1>
+		<div algin="center">
+		<h1>	<%=loginMember.getMemberName()%>님의 달력	</h1> 	
 		</div>
 		<div>
 			<%=loginMember.getMemberName()%>님 반갑습니다 
 		   	<%
-				if(loginMember.getMemberLevel() > 0){
-			%>
-			 	<a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자 페이지</a>
+				if(loginMember.getMemberLevel() > 0){ 
+			%>	
+			 		<a href="<%=request.getContextPath()%>/admin/adminMain.jsp?>">관리자 페이지</a>
 			<%
 				}
 			%>		   

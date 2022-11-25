@@ -8,9 +8,71 @@ import java.util.HashMap;
 
 import util.DBUtil;
 import vo.Member;
+import vo.Notice;
 
 public class MemberDao {
 	
+	// 관리자 : 멤버레벨수정
+		public int updateMemberLevel(Member member) {
+			return 0;
+		}
+		
+		// 관리자 : 멤버수
+		public int selectMemberCount() {
+			return 0;
+		}
+		// 관리자 : 멤버 리스트
+		public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) throws Exception{ 
+			ArrayList<Member> list = new ArrayList<Member>();
+			DBUtil dbUtil = new DBUtil();
+			Connection conn = dbUtil.getConnection();
+			String sql = "SELECT member_no memberNo, member_id memberId, member_level memberLevel, member_name memberName FROM member OREDER BY createdate DESC LIMIT ?, ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, beginRow);
+			stmt.setInt(2, rowPerPage);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Member m = new Member();
+				m.setMemberNo(rs.getInt("memberNo"));
+				m.setMemberId(rs.getString("memberId"));
+				m.setMemberName(rs.getString("memberName"));
+				list.add(m);
+			}
+			return list;
+			
+		}
+		// 관리자 : 멤버 강퇴
+		public int deleteMemberByAdmin(Member member) {
+			return 0;
+		}
+		
+		// 회원탈퇴
+		public int deleteMember(Member member) {
+			return 0;
+		}
+		// loginForm.jsp 공지목록
+		public ArrayList<Notice> selectNoticeListByPage(int beginRow, int rowPerPage) throws Exception {
+			ArrayList<Notice> list = new ArrayList<Notice>();
+			DBUtil dbUtil = new DBUtil();
+			Connection conn = dbUtil.getConnection();
+			String sql = "SELECT notice_no noticeNo, notice_memo noticeMemo, createdate"
+						+ " FROM notice ORDER BY createdate DESC"
+						+ " LIMIT ?, ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, beginRow);
+			stmt.setInt(2, rowPerPage);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Notice n = new Notice();
+				n.setNoticeNo(rs.getInt("noticeNo"));
+				n.setNoticeMemo(rs.getString("noticeMemo"));
+				n.setCreatedate(rs.getString("createdate"));
+				list.add(n);
+			}
+			return list;
+		}
+
+		
 	// 로그인
 	public Member login(Member paramMember) throws Exception {
 		Member resultMember = null;
@@ -35,6 +97,7 @@ public class MemberDao {
 			resultMember = new Member();
 			resultMember.setMemberId(rs.getString("memberId"));
 			resultMember.setMemberName(rs.getString("memberName"));
+			resultMember.setMemberLevel(rs.getInt("memberLevel"));
 		}
 		
 		rs.close();

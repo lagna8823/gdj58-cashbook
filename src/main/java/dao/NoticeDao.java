@@ -8,6 +8,34 @@ import vo.Member;
 import vo.Notice;
 
 public class NoticeDao {
+	
+	//
+	public int updateNotice(Notice notice) throws Exception{
+		String sql = "UPDATE notice SET notice_memo = ? WHERE notice_no = ?";
+		return 0;
+	}
+	
+	//
+	public int updateNotice(Notice notice) throws Exception {
+		String sql = "UPDATE notice SET notice_memo = ? WHERE notice_no = ?";
+		return 0;
+	}
+	
+	//
+	public int insertNotice(Notice notice) throws Exception {
+		String sql = "INSERT notice(notice_memo, updatedate, createdate)"
+					+" VALUES(?, NOW(), NOW())";
+		return 0;
+	}
+	
+	// 마지막 페이지를 구할려면 전체row수가 필요
+	public int selectNoitceCount() {
+		int count = 0;
+		//
+		return count;
+	}
+	
+	
 	// loginForm.jsp 공지목록
 	public ArrayList<Notice> selectNoticeListByPage(int beginRow, int rowPerPage) throws Exception {
 		ArrayList<Notice> list = new ArrayList<Notice>();
@@ -31,7 +59,7 @@ public class NoticeDao {
 	}
 	
 	
-	// 공지 마지막 페이지 관련
+	// 공지 라스트페이지 
 		public int count() throws Exception {
 			
 		DBUtil dbUtil = new DBUtil(); // DB 연결
