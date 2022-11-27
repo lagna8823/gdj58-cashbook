@@ -18,7 +18,7 @@
 	NoticeDao noticeDao = new NoticeDao(); // 최근공지 
 	ArrayList<Notice> list = noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
 	MemberDao memberDao = new MemberDao(); //최근멤버
-	ArrayList<Member> list = memberDao.selectMemberListByPage(beginRow, rowPerPage);
+	ArrayList<Member> list2 = memberDao.selectMemberListByPage(beginRow, rowPerPage);
 	
 	
 	// View

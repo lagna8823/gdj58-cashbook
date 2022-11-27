@@ -226,7 +226,7 @@ public class MemberDao {
 		System.out.println(updatePwMember.getMemberId());
 		System.out.println(updatePwMember.getMemberPw2());*/
 		int resultRow=0;
-		// 비밀번호 수정
+		// 비밀번호 삭제
 		String sql6 = "DELETE FROM member WHERE member_id=? AND member_pw = PASSWORD(?)";
 		PreparedStatement stmt6 = conn.prepareStatement(sql6);
 		stmt6.setString(1, deleteMember.getMemberId());
