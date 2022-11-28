@@ -11,18 +11,13 @@ import vo.Notice;
 
 public class NoticeDao {
 	
-	//
+	// admin -> updateNotice.jsp
 	public int updateNotice(Notice notice) throws Exception{
 		String sql = "UPDATE notice SET notice_memo = ? WHERE notice_no = ?";
 		return 0;
 	}
 	
-	//
-	public int updateNotice(Notice notice) throws Exception {
-		String sql = "UPDATE notice SET notice_memo = ? WHERE notice_no = ?";
-		return 0;
-		
-	}
+	
 	// admin -> deleteNotice.jsp
 			public int deleteNotice(int noticeNo) throws Exception {
 				int resultRow = 0;
