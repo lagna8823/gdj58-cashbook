@@ -18,7 +18,13 @@
 	}
 	
 	int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
+	int rowPerPage = 1;
+	int beginRow = 0;
 	
+	// Model 호출 공지사항 
+	NoticeDao noticeDao = new NoticeDao(); // NoticeDao 메서드를 이용해 noticeDao 새로 만듬
+	ArrayList<Notice> list = noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
+		
 	// Model 호출 : 카테고리 목록
 	CategoryDao categoryDao = new CategoryDao();
 	Category categoryList = categoryDao.selectCategoryList(categoryNo);

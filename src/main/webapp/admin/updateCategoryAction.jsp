@@ -8,7 +8,6 @@
 <%	
 	// 1.C
 	//session 유효성 검증 코드 필요시 redirect!
-	//session 유효성 검증 코드 필요시 redirect!
 	Member loginMember = (Member)session.getAttribute("loginMember");
 	if(loginMember == null || loginMember.getMemberLevel() < 1) {
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
@@ -45,11 +44,11 @@
 		session.setAttribute("loginMember", updateCategory); // session안에 로그인 아이디 & 이름을 저장
 		String msg =URLEncoder.encode("중복된 아이디가 있습니다.","utf-8");
 		response.sendRedirect(request.getContextPath() + "/updateCashForm.jsp?msg="+msg);
-		
+		return;
 	}
 	// CashDao에서 넘겨받은 결과 resultRow값이 0이 아니라면 입력성공!
-	response.sendRedirect(request.getContextPath() + "/admin/categoryList.jsp?");
-	return;
+	response.sendRedirect(request.getContextPath() + "/admin/categoryList.jsp");
+	
 	
 	
 	

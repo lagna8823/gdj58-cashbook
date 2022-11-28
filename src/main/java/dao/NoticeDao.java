@@ -11,10 +11,47 @@ import vo.Notice;
 
 public class NoticeDao {
 	
-	// admin -> updateNotice.jsp
-	public int updateNotice(Notice notice) throws Exception{
-		String sql = "UPDATE notice SET notice_memo = ? WHERE notice_no = ?";
-		return 0;
+	// admin -> updateNoticeForm.jsp
+		public ArrayList<Notice> selectNoticeListByMemo(int noticeNo) throws Exception {
+			ArrayList<Notice> list = new ArrayList<Notice>();
+			String sql = "SELECT notice_no noticeNo, notice_memo noticeMemo, createdate"
+					+ " FROM notice"
+					+ " WHERE notice_no=? ORDER BY createdate DESC";
+			
+			DBUtil dbUtil = new DBUtil();
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			conn = dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, noticeNo);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Notice n = new Notice();
+				n.setNoticeNo(rs.getInt("noticeNo"));
+				n.setNoticeMemo(rs.getString("noticeMemo"));
+				n.setCreatedate(rs.getString("createdate"));
+				list.add(n);
+			}
+			dbUtil.close(rs, stmt, conn);
+			return list;
+		}
+	
+	// admin -> updateNoticeAction.jsp
+	public int updateNotice(Notice updateNotice) throws Exception{
+		String sql = "UPDATE notice SET notice_memo = ?, updatedate = CURDATE() WHERE notice_no = ?";
+		int resultRow = 0;
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, updateNotice.getNoticeMemo());
+		stmt.setInt(2, updateNotice.getNoticeNo());
+		resultRow = stmt.executeUpdate();
+		
+		dbUtil.close(null, stmt, conn);
+		
+		return resultRow;
 	}
 	
 	

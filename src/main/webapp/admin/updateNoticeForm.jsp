@@ -15,13 +15,15 @@
 			response.sendRedirect(request.getContextPath()+"/admin/noticeList.jsp");
 			return;
 		}
-		
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		
-		// Model 호출 : 카테고리 목록
-		NoticeDao noticedao = new NoticeDao();
-		Notice NoticeList = noticeDao.selectCategoryList(noticeNo);
-		
+	
+	// 데이터 받아와 값세팅
+	int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+	
+	// Model 호출 공지사항 
+	NoticeDao noticeDao = new NoticeDao(); // NoticeDao 메서드를 이용해 noticeDao 새로 만듬
+	ArrayList<Notice> list = noticeDao.selectNoticeListByMemo(noticeNo);
+	// noticeDao클래스의 selectNoticeListByPage로 (beginRow, rowPerPage)보내 결과값 ArrayList<Notice> list을 받아옴
+	
 	// View
 %>
 <!DOCTYPE html>
@@ -42,14 +44,24 @@
 			<%
 				}
 			%>
-		<form action="<%=request.getContextPath()%>/admin/insertNoticeAction.jsp">
+		<form action="<%=request.getContextPath()%>/admin/updateNoticeAction.jsp">
 		<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
 		<table border="1"> 
 			<tr>
+				<th>공지번호</th>
 				<th>공지내용</th>
+				<th>생성날짜</th>
 			</tr>
 			<tr>
-				<td><textarea rows="3" cols="50" name="noticeMemo" ></textarea></td>
+				<%
+					for(Notice n : list){
+				%>
+					<td><input type="number" name="noticeNo" value="<%=n.getNoticeNo()%>" readonly="readonly"></td>
+					<td><textarea rows="3" cols="50" name="noticeMemo" value="<%=n.getNoticeMemo()%>"></textarea></td>
+					<td><input type="text" name="createdate" value="<%=n.getCreatedate()%>" readonly="readonly"></td>
+				<%
+					}
+				%>
 			</tr>
 		</table> 
 		<button type="submit">수정하기</button>

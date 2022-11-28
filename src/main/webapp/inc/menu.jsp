@@ -26,7 +26,7 @@
 			<a href="<%=request.getContextPath() %>/cash/cashList.jsp">홈으로</a>
 			<a href="<%=request.getContextPath() %>/admin/noticeList.jsp">공지사항관리</a>
 			<a href="<%=request.getContextPath() %>/admin/categoryList.jsp">카테고리관리</a>
-			<a href="<%=request.getContextPath() %>/">멤버관리</a>
+			<a href="<%=request.getContextPath() %>/admin/memberList.jsp">멤버관리</a>
 		   	<a href="<%=request.getContextPath() %>/admin/adminMain.jsp">관리자페이지</a>
 		   	   
 			
