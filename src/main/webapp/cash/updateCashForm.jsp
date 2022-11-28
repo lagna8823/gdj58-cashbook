@@ -35,6 +35,9 @@
 		<title>updateCashForm</title>
 	</head>
 	<body>
+	<div>
+	<jsp:include page="/inc/menu.jsp"></jsp:include>
+    </div>
 		<!-- cash 수정 폼 -->
 		<div align="center"><h1>내역 수정하기</h1></div>
 			<div><a href="<%=request.getContextPath()%>/cashDateList.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>"> 돌아가기 </a></div>

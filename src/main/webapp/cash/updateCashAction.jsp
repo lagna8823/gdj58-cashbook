@@ -7,10 +7,9 @@
 <%@ page import = "util.*" %>
 <%	
 	// 1.C
-	//session 유효성 검증 코드 필요시 redirect!
-	Member loginMember = (Member)session.getAttribute("loginMember");
-	if(session.getAttribute("loginMember") == null) {
-		// 로그인 되지 않은 상태
+	// Controller
+	Member loginMember = (Member)session.getAttribute("login");
+	if(loginMember == null || loginMember.getMemberLevel() < 1) {
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	}
@@ -28,7 +27,7 @@
 	
 	// 입력값 체크
 	if(request.getParameter("categoryNo") == null || request.getParameter("cashPrice") == null || request.getParameter("cashDate") == null || request.getParameter("cashMemo") == null || request.getParameter("cashNo") == null
-		|| request.getParameter("categoryNo") == "" || request.getParameter("cashPrice") == "" || request.getParameter("cashDate") == "" || request.getParameter("cashMemo") == "" || request.getParameter("cashNo") == "") {
+		|| request.getParameter("categoryNo").equals("") || request.getParameter("cashPrice").equals("") || request.getParameter("cashDate") == "" || request.getParameter("cashMemo").equals("") || request.getParameter("cashNo").equals("")) {
 		String msg = URLEncoder.encode("입력되지 않은 값이있습니다.", "utf-8"); 
 		response.sendRedirect(request.getContextPath()+"/cash/updateCashForm.jsp?cashNo="+cashNo+"&msg="+msg+"&year="+year+"&month="+month+"&date="+date);
 		return;

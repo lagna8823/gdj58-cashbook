@@ -32,6 +32,9 @@
 		<meta charset="UTF-8">
 		<title>updateMemberPwForm</title>
 	</head>
+	<div>
+	<jsp:include page="/inc/menu.jsp"></jsp:include>
+    </div>
 	<body> 
 		<h1>회원탈퇴</h1>	
 		<!-- msg 파라메타값이 있으면 출력 -->

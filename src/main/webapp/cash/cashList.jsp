@@ -73,6 +73,10 @@
 		<title>cashList</title>
 	</head>
 	<body>
+		<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+	    </div>
+	    
 		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
 		<div algin="center">
 		<h1>	<%=loginMember.getMemberName()%>님의 달력	</h1> 	
@@ -82,7 +86,7 @@
 		   	<%
 				if(loginMember.getMemberLevel() > 0){ 
 			%>	
-			 		<a href="<%=request.getContextPath()%>/admin/adminMain.jsp?>">관리자 페이지</a>
+			 		<a href="<%=request.getContextPath()%>/admin/adminMain.jsp?">관리자 페이지</a>
 			<%
 				}
 			%>		   

@@ -45,6 +45,9 @@
 		<title>cashDateList</title>
 	</head>
 	<body>
+	<div>
+	<jsp:include page="/inc/menu.jsp"></jsp:include>
+    </div>
 		<div align="center"><h1>상세내역</h1></div>
 		<div><a href="<%=request.getContextPath()%>/cash/cashList.jsp"> 돌아가기 </a></div>
 		<!-- cash 입력 폼 -->

@@ -2,8 +2,10 @@ package dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import util.DBUtil;
+import vo.Category;
 import vo.Member;
 import vo.Notice;
 
@@ -19,13 +21,41 @@ public class NoticeDao {
 	public int updateNotice(Notice notice) throws Exception {
 		String sql = "UPDATE notice SET notice_memo = ? WHERE notice_no = ?";
 		return 0;
+		
 	}
-	
-	//
+	// admin -> deleteNotice.jsp
+			public int deleteNotice(int noticeNo) throws Exception {
+				int resultRow = 0;
+				
+				String sql = "DELETE FROM notice WHERE notice_no = ?";
+				
+				DBUtil dbUtil = new DBUtil();
+				Connection conn = null;
+				PreparedStatement stmt = null;
+				conn = dbUtil.getConnection();
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, noticeNo);
+				resultRow = stmt.executeUpdate();
+				
+				dbUtil.close(null, stmt, conn);
+				
+				return resultRow;
+			}
+			
+	// admin -> insertNoticeAction.jsp
 	public int insertNotice(Notice notice) throws Exception {
 		String sql = "INSERT notice(notice_memo, updatedate, createdate)"
 					+" VALUES(?, NOW(), NOW())";
-		return 0;
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = null;
+		ResultSet rs = null;
+		
+		conn = dbUtil.getConnection();
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, notice.getNoticeMemo());
+		int resultRow = stmt.executeUpdate();
+		dbUtil.close(null, stmt, conn);
+		return resultRow;
 	}
 	
 	// 마지막 페이지를 구할려면 전체row수가 필요
@@ -36,7 +66,7 @@ public class NoticeDao {
 	}
 	
 	
-	// loginForm.jsp 공지목록
+	// noticeList.jsp <select> + loginForm.jsp 메인공지목록 
 	public ArrayList<Notice> selectNoticeListByPage(int beginRow, int rowPerPage) throws Exception {
 		ArrayList<Notice> list = new ArrayList<Notice>();
 		DBUtil dbUtil = new DBUtil();

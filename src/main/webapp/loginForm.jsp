@@ -14,8 +14,9 @@
 	NoticeDao noticeDao = new NoticeDao(); // NoticeDao 메서드를 이용해 noticeDao 새로 만듬
 	ArrayList<Notice> list = noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
 	// noticeDao클래스의 selectNoticeListByPage로 (beginRow, rowPerPage)보내 결과값 ArrayList<Notice> list을 받아옴
+	
 	int cnt = noticeDao.count(); 
-	//위에서 내려온 cnt 값을 noticeDao.count() 클래스에로 보내고 결과값으로 cnt값을 받음.
+	//cnt 값을 noticeDao.count() 클래스에로 보내고 결과값으로 cnt값을 받음.
 	
 	//마지막 페이지 
 	int lastPage = (int)(Math.ceil((double)cnt / (double)rowPerPage));
@@ -29,6 +30,9 @@
 		<title>loginForm</title>
 	</head>
 	<body>
+	<div>
+	<jsp:include page="/inc/menu.jsp"></jsp:include>
+    </div>
 		<div align=center><h1>WELCOME</h1></div>
 		<div align= right>
 			<form action="<%=request.getContextPath()%>/loginAction.jsp" method="post">
