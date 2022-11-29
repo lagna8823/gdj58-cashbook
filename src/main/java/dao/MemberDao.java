@@ -7,35 +7,59 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import util.DBUtil;
+import vo.Category;
 import vo.Member;
 import vo.Notice;
 
 public class MemberDao {
 	
-	// 관리자 : 멤버레벨수정
-		public int updateMemberLevel(Member member) {
-			return 0;
+		//  updatememberLvForm.jsp 관리자 : 멤버레벨수정 
+		public ArrayList<HashMap<String, Object>> selectMemberListByLv(Member updateMember) throws Exception {
+			ArrayList<HashMap<String, Object>> updateMemberList = new ArrayList<HashMap<String,Object>>();
+			DBUtil dbUtil = new DBUtil();
+			Connection conn = dbUtil.getConnection();
+			String sql3 = "SELECT member_no memberNo, member_id memberId, member_name memberName, member_level memberLevel FROM member WHERE member_no =?";
+			PreparedStatement stmt3 = conn.prepareStatement(sql3);
+			stmt3.setInt(1, updateMember.getMemberNo());
+			ResultSet rs3 = stmt3.executeQuery();
+			while(rs3.next()) {
+				HashMap<String, Object> m = new HashMap<String, Object>();
+				m.put("memberNo", rs3.getInt("memberNo"));
+				m.put("memberId", rs3.getString("memberId"));
+				m.put("memberName", rs3.getString("memberName"));
+				m.put("memberLevel", rs3.getString("memberLevel"));
+				updateMemberList.add(m);
+			}
+			rs3.close();
+			stmt3.close();
+			conn.close();
+			return updateMemberList;
 		}
 		
-		// 관리자 : 멤버수
-		public int selectMemberCount() throws Exception {
+		// updateAction.jsp 관리자 : 멤버레벨수정
 		
-		DBUtil dbUtil = new DBUtil(); // DB 연결
-		Connection conn = dbUtil.getConnection();
-		int cnt = 0; // 전체 행의 수
-		String sql = "SELECT COUNT(*) cnt FROM member createdate DESC LIMIT ?, ?";
-		PreparedStatement stmt = conn.prepareStatement(sql); 
-		stmt.setInt(1, beginRow);
-		stmt.setInt(2, rowPerPage);
-		ResultSet rs = stmt.executeQuery();
-		    if(rs.next()) {
-		    cnt = rs.getInt("cnt");
-		    }
-		    return cnt;	
+		public int updateMemberlv(Member updateMemberlv) throws Exception {
+			int resultRow = 0;
+			
+			String sql = "UPDATE member"
+						+" SET member_level = ?"
+						+" WHERE member_no = ?";
+			
+			DBUtil dbUtil = new DBUtil();
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			conn = dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, updateMemberlv.getMemberLevel());
+			stmt.setInt(2, updateMemberlv.getMemberNo());
+			resultRow = stmt.executeUpdate();
+			
+			dbUtil.close(null, stmt, conn);
+			return resultRow;
 		}
 		
-		
-		// memberList.jsp 라스트페이지 
+
+		// memberList.jsp : 라스트페이지 
 		public int count() throws Exception {
 			
 		DBUtil dbUtil = new DBUtil(); // DB 연결
@@ -50,7 +74,7 @@ public class MemberDao {
 		    return cnt;
 		}
 		
-		// 관리자 : 멤버 리스트
+		// memberList.jsp 관리자 : 멤버 리스트
 		public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) throws Exception{ 
 			ArrayList<Member> list = new ArrayList<Member>();
 			DBUtil dbUtil = new DBUtil();
@@ -73,12 +97,24 @@ public class MemberDao {
 			return list;
 			
 		}
-		// 관리자 : 멤버 강퇴
-		public int deleteMemberByAdmin(Member member) {
-			return 0;
-		}
 		
-
+	// deleteMemberLvAction.jsp 관리자 : 멤버 강퇴 
+			public int deleteMember(Member deleteMember) throws Exception {
+				
+			DBUtil dbUtil = new DBUtil();
+			Connection conn = dbUtil.getConnection();
+			int resultRow=0;
+			String sql6 = "DELETE FROM member WHERE member_no=?";
+			PreparedStatement stmt6 = conn.prepareStatement(sql6);
+			stmt6.setInt(1, deleteMember.getMemberNo());
+			resultRow = stmt6.executeUpdate();
+			if(resultRow==1)		
+					stmt6.close();
+					conn.close();
+					return resultRow;
+			
+			}
+				
 		
 	// 로그인
 	public Member login(Member paramMember) throws Exception {
@@ -149,7 +185,7 @@ public class MemberDao {
 	
 	// 회원 정보 및 비밀번호 수정
 	
-		// updateForm.jsp
+		// 회원정보수정 updateForm.jsp
 		public ArrayList<HashMap<String, Object>> selectMemberListById(String memberId) throws Exception {
 			ArrayList<HashMap<String, Object>> updateMemberList = new ArrayList<HashMap<String,Object>>();
 			DBUtil dbUtil = new DBUtil();
@@ -165,7 +201,6 @@ public class MemberDao {
 				m.put("memberName", rs3.getString("memberName"));
 				updateMemberList.add(m);
 			}
-			
 			rs3.close();
 			stmt3.close();
 			conn.close();
@@ -175,9 +210,8 @@ public class MemberDao {
 		
 		// 회원정보 수정 updateMemberAction.jsp
 		public int update(Member updateMember) throws Exception {
-			
-		// DB 연결
-		DBUtil dbUtil = new DBUtil();
+		
+		DBUtil dbUtil = new DBUtil(); // DB 연결
 		Connection conn = dbUtil.getConnection();
 		/*System.out.println(updateMember.getMemberName());
 		System.out.println(updateMember.getMemberId());
@@ -194,15 +228,13 @@ public class MemberDao {
 				stmt4.close();
 				conn.close();
 				return resultRow;
-		
 		}
 		
 		
-		//비밀번호 수정 updateMemberPwAction.jsp
+		// 회원비밀번호 수정 updateMemberPwAction.jsp
 		public int updatePw(Member updatePwMember) throws Exception {
 			
-		// DB 연결
-		DBUtil dbUtil = new DBUtil();
+		DBUtil dbUtil = new DBUtil(); // DB 연결
 		Connection conn = dbUtil.getConnection();
 		/*System.out.println(updatePwMember.getMemberPw());
 		System.out.println(updatePwMember.getMemberId());
@@ -219,15 +251,13 @@ public class MemberDao {
 				stmt5.close();
 				conn.close();
 				return resultRow;
-		
 		}
 		
 		
 		//회원탈퇴 deleteMemberAction.jsp
 		public int delete(Member deleteMember) throws Exception {
-			
-		// DB 연결
-		DBUtil dbUtil = new DBUtil();
+		
+		DBUtil dbUtil = new DBUtil(); // DB 연결
 		Connection conn = dbUtil.getConnection();
 		/*System.out.println(updatePwMember.getMemberPw());
 		System.out.println(updatePwMember.getMemberId());
@@ -243,7 +273,6 @@ public class MemberDao {
 				stmt6.close();
 				conn.close();
 				return resultRow;
-		
 		}
 		
 		

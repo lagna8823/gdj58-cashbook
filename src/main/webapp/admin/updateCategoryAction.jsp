@@ -35,10 +35,10 @@
 	// 분리된M(모델)을 호출
 	CategoryDao updateCategoryDao = new CategoryDao(); // CashDao 메서드를 이용해 cashDao 새로 선언
 	int resultRow = updateCategoryDao.updateCategory(updateCategory);
-	//위에서 내려온 updateCash cashDao.update() 클래스에로 보내고 결과값으로 resultRow 받음.
+	//위에서 내려온 updateCategory categoryDao.update() 클래스에로 보내고 결과값으로 resultRow 받음.
 	
 	// redirect
-	// CashDao 넘겨받은 결과 resultRow값이 '0'이 아니라면 수행
+	// CategoryDao 넘겨받은 결과 resultRow값이 '0'이 아니라면 수행
 	if(resultRow == 0) {
 		
 		session.setAttribute("loginMember", updateCategory); // session안에 로그인 아이디 & 이름을 저장
@@ -46,7 +46,7 @@
 		response.sendRedirect(request.getContextPath() + "/updateCashForm.jsp?msg="+msg);
 		return;
 	}
-	// CashDao에서 넘겨받은 결과 resultRow값이 0이 아니라면 입력성공!
+	// CategoryDao에서 넘겨받은 결과 resultRow값이 0이 아니라면 입력성공!
 	response.sendRedirect(request.getContextPath() + "/admin/categoryList.jsp");
 	
 	

@@ -39,6 +39,6 @@
 		response.sendRedirect(request.getContextPath() + "/admin/updateNoticeForm.jsp?msg="+msg);
 		return;
 	}
-	// CashDao에서 넘겨받은 결과 resultRow값이 0이 아니라면 입력성공!
+	// NoticeDao에서 넘겨받은 결과 resultRow값이 0이 아니라면 입력성공!
 	 response.sendRedirect(request.getContextPath() + "/admin/noticeList.jsp");
 %>

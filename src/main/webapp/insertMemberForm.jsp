@@ -13,9 +13,6 @@ request.setCharacterEncoding("utf-8"); // 한글버전 패치 (값이 넘어오�
 		<title>insertMemberForm.jsp</title>
 	</head>
 	<body> 
-	<div>
-	<jsp:include page="/inc/menu.jsp"></jsp:include>
-    </div>
 		<h1>회원가입</h1>	
 		<!-- msg 파라메타값이 있으면 출력 -->
 		<%

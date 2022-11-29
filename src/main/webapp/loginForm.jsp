@@ -31,7 +31,8 @@
 	</head>
 	<body>
 	<div>
-	<jsp:include page="/inc/menu.jsp"></jsp:include>
+		<a href="<%=request.getContextPath() %>/cash/cashList.jsp">홈으로</a>
+		<a href="<%=request.getContextPath() %>/helpList.jsp">고객센터</a>
     </div>
 		<div align=center><h1>WELCOME</h1></div>
 		<div align= right>

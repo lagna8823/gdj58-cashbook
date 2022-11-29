@@ -5,12 +5,9 @@
 <%@ page import = "java.sql.*" %>
 <%@ page import = "java.util.*" %>
 <%
-	//1. Controller 
-
-	//session 유효성 검증 코드 필요시 redirect!
+	// Controller
 	Member loginMember = (Member)session.getAttribute("loginMember");
-	if(session.getAttribute("loginMember") == null) {
-		// 로그인 되지 않은 상태
+	if(loginMember == null || loginMember.getMemberLevel() < 1) {
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	}
@@ -29,8 +26,8 @@
       return;
    }
 	
-	Member deleteMember = new Member(); // 모델 호출시 매개값(vo.Member의 클래스를 이용하여 updatemMember를 새로 선언)
-	deleteMember.setMemberId(memberId); // 새로 선언된 updatemMember에 넘겨받은 값 세팅.
+	Member deleteMember = new Member(); // 모델 호출시 매개값(vo.Member의 클래스를 이용하여 deleteMember를 새로 선언)
+	deleteMember.setMemberId(memberId); // 새로 선언된 deleteMember에 넘겨받은 값 세팅.
 	deleteMember.setMemberPw(memberPw);
 	
 	// 분리된M(모델)을 호출
@@ -43,10 +40,10 @@
 	// Memberdao에서 넘겨받은 결과 resultRow값이 '0'이라면 실행되지 않은 상황.
 	if(resultRow == 0) {
 		String msg =URLEncoder.encode("비밀번호가 틀렸습니다","utf-8");
-		response.sendRedirect(request.getContextPath() + "/updateMemberForm.jsp?msg="+msg);
+		response.sendRedirect(request.getContextPath() + "/deleteMemberForm.jsp?msg="+msg);
 		return;
 	}
-	// Memberdao에서 넘겨받은 결과 resultRow값이 '0'이 아니라면 수행
+	// Memberdao에서 넘겨받은 결과 resultRow값이 '0'이라면 수행
 	session.invalidate(); // 세션 초기화
 	response.sendRedirect(request.getContextPath()+redirectUrl);
 %>	

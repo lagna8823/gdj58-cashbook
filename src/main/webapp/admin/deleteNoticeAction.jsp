@@ -20,7 +20,7 @@
 	
 	
 	// 분리된M(모델)을 호출
-	NoticeDao deleteNoticeDao = new NoticeDao(); // NoticeDao 메서드를 이용해 ㅜoticeDao 새로 선언
+	NoticeDao deleteNoticeDao = new NoticeDao(); // NoticeDao 메서드를 이용해 NoticeDao 새로 선언
 	int resultRow = deleteNoticeDao.deleteNotice(noticeNo);
 	//위에서 내려온 deleteCategory categoryDao.delete() 클래스에로 보내고 결과값으로 resultRow 받음.
 	
@@ -34,9 +34,5 @@
 	}
 	// NoticeDao에서 넘겨받은 결과 resultRow값이 0이 아니라면 입력성공!
 	response.sendRedirect(request.getContextPath() + "/admin/noticeList.jsp");
-	
-	
-	
-	
-	
+
 %>

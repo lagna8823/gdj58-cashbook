@@ -32,11 +32,6 @@
 		response.sendRedirect(request.getContextPath() + "/categoryList.jsp?msg="+msg);
 		
 	}
-	// CashDao에서 넘겨받은 결과 resultRow값이 0이 아니라면 입력성공!
+	// CategoryDao에서 넘겨받은 결과 resultRow값이 0이 아니라면 입력성공!
 	response.sendRedirect(request.getContextPath() + "/admin/categoryList.jsp");
-	
-	
-	
-	
-	
 %>

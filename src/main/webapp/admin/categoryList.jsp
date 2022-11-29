@@ -24,7 +24,7 @@
 	ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 	
 	int cnt = categoryDao.count(); 
-	// cnt 값을 noticeDao.count() 클래스에로 보내고 결과값으로 cnt값을 받음.
+	// cnt 값을 categoryDao.count() 클래스에로 보내고 결과값으로 cnt값을 받음.
 	
 	//마지막 페이지 
 	int lastPage = (int)(Math.ceil((double)cnt / (double)rowPerPage));
@@ -42,11 +42,6 @@
 		<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	    </div>
-		<ul>
-			<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">공지관리</a></li>
-			<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리관리</a></li>
-			<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">멤버관리(목록, 레벨수정, 강제탈퇴)</a></li>
-		</ul>
 		<div>
 			<!-- adminMain contents -->
 			<h1>카테고리 목록</h1>

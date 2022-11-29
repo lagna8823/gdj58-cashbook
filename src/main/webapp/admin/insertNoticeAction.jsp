@@ -37,11 +37,6 @@
 		response.sendRedirect(request.getContextPath() + "/admin/insertNoticeForm.jsp?msg="+msg);
 		return;
 	}
-	// CategoryDao 넘겨받은 결과 resultRow값이 0이 아니라면 입력성공!
-	response.sendRedirect(request.getContextPath() + "/admin/noticeList.jsp?");
-	
-	
-	
-	
-	
+	// NoticeDao 넘겨받은 결과 resultRow값이 0이 아니라면 입력성공!
+	response.sendRedirect(request.getContextPath() + "/admin/noticeList.jsp?");	
 %>

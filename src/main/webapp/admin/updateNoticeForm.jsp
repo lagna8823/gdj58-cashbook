@@ -28,44 +28,44 @@
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>updateNoticeForm</title>
-</head>
-<body>
-	<div>
-		<!-- notice 입력폼 작성 -->
-		<h1>공지 수정 페이지</h1>
-		<!-- msg 파라메타값이 있으면 출력 -->
-			<%
-				if(request.getParameter("msg") != null){
-			%>
-				<div><%=request.getParameter("msg") %></div>
-			<%
-				}
-			%>
-		<form action="<%=request.getContextPath()%>/admin/updateNoticeAction.jsp">
-		<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
-		<table border="1"> 
-			<tr>
-				<th>공지번호</th>
-				<th>공지내용</th>
-				<th>생성날짜</th>
-			</tr>
-			<tr>
+	<head>
+		<meta charset="UTF-8">
+		<title>updateNoticeForm</title>
+	</head>
+	<body>
+		<div>
+			<!-- notice 입력폼 작성 -->
+			<h1>공지 수정 페이지</h1>
+			<!-- msg 파라메타값이 있으면 출력 -->
 				<%
-					for(Notice n : list){
+					if(request.getParameter("msg") != null){
 				%>
-					<td><input type="number" name="noticeNo" value="<%=n.getNoticeNo()%>" readonly="readonly"></td>
-					<td><textarea rows="3" cols="50" name="noticeMemo" value="<%=n.getNoticeMemo()%>"></textarea></td>
-					<td><input type="text" name="createdate" value="<%=n.getCreatedate()%>" readonly="readonly"></td>
+					<div><%=request.getParameter("msg") %></div>
 				<%
 					}
 				%>
-			</tr>
-		</table> 
-		<button type="submit">수정하기</button>
-		</form>
-	</div>
-</body>
+			<form action="<%=request.getContextPath()%>/admin/updateNoticeAction.jsp">
+			<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
+			<table border="1"> 
+				<tr>
+					<th>공지번호</th>
+					<th>공지내용</th>
+					<th>생성날짜</th>
+				</tr>
+				<tr>
+					<%
+						for(Notice n : list){
+					%>
+						<td><input type="number" name="noticeNo" value="<%=n.getNoticeNo()%>" readonly="readonly"></td>
+						<td><textarea rows="3" cols="50" name="noticeMemo" value="<%=n.getNoticeMemo()%>"></textarea></td>
+						<td><input type="text" name="createdate" value="<%=n.getCreatedate()%>" readonly="readonly"></td>
+					<%
+						}
+					%>
+				</tr>
+			</table> 
+			<button type="submit">수정하기</button>
+			</form>
+		</div>
+	</body>
 </html>

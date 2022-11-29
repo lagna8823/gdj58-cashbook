@@ -24,12 +24,18 @@
 	<!-- partial jsp 페이지 사용할 코드-->
 		<div ="bold" >
 			<a href="<%=request.getContextPath() %>/cash/cashList.jsp">홈으로</a>
-			<a href="<%=request.getContextPath() %>/admin/noticeList.jsp">공지사항관리</a>
-			<a href="<%=request.getContextPath() %>/admin/categoryList.jsp">카테고리관리</a>
-			<a href="<%=request.getContextPath() %>/admin/memberList.jsp">멤버관리</a>
-		   	<a href="<%=request.getContextPath() %>/admin/adminMain.jsp">관리자페이지</a>
-		   	   
-			
+			<%
+				if(loginMember.getMemberLevel() > 0) {
+						
+			%>
+				<a href="<%=request.getContextPath() %>/admin/noticeList.jsp">공지사항관리</a>
+				<a href="<%=request.getContextPath() %>/admin/categoryList.jsp">카테고리관리</a>
+				<a href="<%=request.getContextPath() %>/admin/memberList.jsp">멤버관리</a>
+	   			<a href="<%=request.getContextPath() %>/admin/adminMain.jsp">관리자페이지</a>
+   			<%
+				}
+			%>
+		   	<a href="<%=request.getContextPath() %>/helpList.jsp">고객센터</a>
 		</div>
 	</body>
 </html>
