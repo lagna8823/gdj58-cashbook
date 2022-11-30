@@ -66,30 +66,62 @@
 	
 	// View : 달력출력 + 일별 cash 목록 출력
 %>
-<!DOCTYPE html>
-<html>
+	<!DOCTYPE html>
+	
 	<head>
-		<meta charset="UTF-8">
-		<title>cashList</title>
-	</head>
-	<body>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>menu</title>
+	
+	<!-- 부트스트랩과의 약속! -->
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!--스타일 -->
+	<style>
+	
+	.table1 {
+	    width: 100%;
+	    height: 100px;
+	 }   
+	
+	.font1 {
+	   font-size : 20pt;
+	   line-height : 30px;
+	   text-algin: right;
+	}
+	<%-- .background{
+	   background-image: url(<%=request.getContextPath()%>/img/cat1.PNG);
+	   background-repeat: no-repeat;
+	   background-position: right;
+	   background-attachment: fixed;
+	   background-size: 28% 380px;
+	} --%>
+	</style>
+		
+	
+	
+   </head>
+	<body style="background-image: url(<%=request.getContextPath()%>/Resources/images/main_1.jpg); background-repeat : no-repeat; background-size : cover;">
 		<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	    </div>
 	    
 		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-		<div algin="center">
-		<h1>	<%=loginMember.getMemberName()%>님의 달력	</h1> 	
-		</div>
-		<div>
-			<%=loginMember.getMemberName()%>님 반갑습니다 
-		   	<%
-				if(loginMember.getMemberLevel() > 0){ 
-			%>	
-			 		<a href="<%=request.getContextPath()%>/admin/adminMain.jsp?">관리자 페이지</a>
-			<%
-				}
-			%>		   
+		<div align="left">
+		<h2><%=loginMember.getMemberName()%>님 반갑습니다 </h2>
+		<h4>
+		<%
+			if(loginMember.getMemberLevel() > 0){ 
+		%>	
+		 		<a href="<%=request.getContextPath()%>/admin/adminMain.jsp?">관리자 페이지</a>
+		<%
+			}
+		%>		
+		</h4>
+		<br><h1><%=loginMember.getMemberName()%>님의 달력	</h1> 	
 		</div>
 		<div>
 				<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp?">비밀번호 수정</a>
@@ -105,9 +137,9 @@
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
 		
 		</div>
-		<div>
+		<div class="container">
 	      <!-- 달력 -->
-	      <table border="1" width="90%">
+	      <table class="table1" border="1" margin="auto">
 	         <tr>
 	            <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
 	         </tr>
@@ -166,5 +198,6 @@
 			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?">돌아가기</a>
 			<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
 	   </div>
+	   
 	</body>
 </html>

@@ -20,7 +20,6 @@
 		<div>
 		<form action="<%=request.getContextPath()%>/insertHelpAction.jsp" method="post">
 			<table border="1">
-			<
 				<tr>
 					<th>작성자</th>
 					<th>문의내용</th>
@@ -32,6 +31,7 @@
 			</table>
 			<button type="submit">작성완료</button>
 		</form>
+		<a href="<%=request.getContextPath()%>/helpList.jsp">돌아가기</a>
 		</div>
 	</body>
 </html>

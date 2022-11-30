@@ -8,41 +8,87 @@
 	Member loginMember = (Member)session.getAttribute("loginMember");
 %>
 <!DOCTYPE html>
-<html>
-   <head>
-      <meta charset="UTF-8">
-      <title>menu.jsp</title>
-      
-      <!-- 부트스트랩과의 약속! -->
-      <!-- Latest compiled and minified CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-      <!-- Latest compiled JavaScript -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-      
-	</head>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>menu</title>
+	
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+   <link rel="shortcut icon" href="favicon.ico">
+
+   <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,700" rel="stylesheet">
+   
+   <!-- Animate.css -->
+   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/animate.css">
+   <!-- Icomoon Icon Fonts-->
+   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/icomoon.css">
+   <!-- Bootstrap  -->
+   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/bootstrap.css">
+   <!-- Flexslider  -->
+   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/flexslider.css">
+   <!-- Owl Carousel  -->
+   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.carousel.min.css">
+   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.theme.default.min.css">
+   <!-- Theme style  -->
+   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/style.css">
+
+   <!-- Modernizr JS -->
+   <script src="<%=request.getContextPath()%>/Resources/js/modernizr-2.6.2.min.js"></script>
+   <!-- FOR IE9 below -->
+   <!--[if lt IE 9]>
+   <script src="js/respond.min.js"></script>
+   <![endif]-->
+
+   </head>
 	<body>
-	<!-- partial jsp 페이지 사용할 코드-->
-		<div ="bold" >
-			<a href="<%=request.getContextPath() %>/cash/cashList.jsp">홈으로</a>
-			<%
-				if(loginMember.getMemberLevel() > 0) {
+	<div id="fh5co-page">
+	<header id="fh5co-header" role="banner">
+		<div class="container">
+			<div class="header-inner">
+				<h1><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Flow</a></h1>
+				<nav role="navigation">
+				<!-- partial jsp 페이지 사용할 코드-->
+					<ul>
+						<li><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Home</a></li>
+						<%
+							if(loginMember.getMemberLevel() > 0) {
 						
-			%>
-				<a href="<%=request.getContextPath() %>/admin/noticeList.jsp">공지사항관리</a>
-				<a href="<%=request.getContextPath() %>/admin/categoryList.jsp">카테고리관리</a>
-				<a href="<%=request.getContextPath() %>/admin/memberList.jsp">멤버관리</a>
-	   			<a href="<%=request.getContextPath() %>/admin/adminMain.jsp">관리자페이지</a>
-   			<%
-				}
-			%>
-		   	<a href="<%=request.getContextPath() %>/helpList.jsp">고객센터</a>
+						%>
+							<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지사항관리</a></li>
+							<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리관리</a></li>
+							<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">멤버관리</a></li>
+				   			<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자페이지</a></li>
+						<%
+							}
+						%>
+						<li class="cta"><a href="#">Get started</a></li>
+						<li><a href="<%=request.getContextPath() %>/helpList.jsp">고객센터</a></li>
+					</ul>
+				</nav>
+			</div>
 		</div>
+	</header>
+	</div>	
+		<!-- jQuery -->
+		<script src="<%=request.getContextPath()%>/Resources/js/jquery.min.js"></script>
+		<!-- jQuery Easing -->
+		<script src="<%=request.getContextPath()%>/Resources/js/jquery.easing.1.3.js"></script>
+		<!-- Bootstrap -->
+		<script src="<%=request.getContextPath()%>/Resources/js/bootstrap.min.js"></script>
+		<!-- Waypoints -->
+		<script src="<%=request.getContextPath()%>/Resources/js/jquery.waypoints.min.js"></script>
+		<!-- Owl Carousel -->
+		<script src="<%=request.getContextPath()%>/Resources/js/owl.carousel.min.js"></script>
+		<!-- Flexslider -->
+		<script src="<%=request.getContextPath()%>/Resources/js/jquery.flexslider-min.js"></script>
+		
+		<!-- MAIN JS -->
+		<script src="<%=request.getContextPath()%>/Resources/js/main.js"></script>
+		
 	</body>
 </html>
-	<%-- <%
-				if(loginMember.getMemberLevel() > 0){ 
-			%>	
-			 		
-			<%
-				}
-			%>	 --%>

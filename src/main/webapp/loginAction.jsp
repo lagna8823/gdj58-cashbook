@@ -1,6 +1,8 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "vo.*" %>
 <%@ page import = "dao.*" %>
+<%@ page import = "java.net.URLEncoder" %>
 <%
 	// 1. Controller 
 	String memberId = request.getParameter("memberId"); // loginForm에서 넘겨받음.
@@ -17,8 +19,8 @@
 	Member resultMember = memberDao.login(paramMember); 
 	//위에서 내려온 parpamMeber값을 Memberdao.login() 클래스에로 보내고 결과값으로 resultMeber값을 받음.
 	
-	String redirectUrl = "/loginForm.jsp"; // redirectUrl값에 필요시 돌아갈 주소값 세팅.
-	
+	String redirectUrl = "/loginForm.jsp#login"; // redirectUrl값에 필요시 돌아갈 주소값 세팅.
+	//String msg =URLEncoder.encode("아이디 또는 비밀번호를 확인하세요", "UTF-8");
 	if(resultMember != null) { // Memberdao에서 넘겨받은 결과 resultMember값이 null이 아니라면 수행.
 		session.setAttribute("loginMember", resultMember); // session안에 로그인 아이디 & 이름&레벨을 저장.
 		redirectUrl = "/cash/cashList.jsp"; // 로그인 후 cashList 화면으로 ...

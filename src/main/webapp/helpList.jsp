@@ -5,7 +5,7 @@
 <%
 	Member loginMember = (Member)session.getAttribute("loginMember");
 	if(loginMember == null) {
-		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+		response.sendRedirect(request.getContextPath()+"/loginForm.jsp#login");
 		return;
 	}
 	
@@ -21,6 +21,9 @@
 <title>고객센터</title>
 </head>
 <body>
+	<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+	    </div>
 	<h1>고객센터</h1>
 	<div>
 		<a href="<%=request.getContextPath()%>/insertHelpForm.jsp">문의추가</a>
