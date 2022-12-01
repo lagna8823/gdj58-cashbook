@@ -71,7 +71,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>menu</title>
+	<title>cashList</title>
 	
 	<!-- 부트스트랩과의 약속! -->
 	<!-- Latest compiled and minified CSS -->
@@ -82,56 +82,76 @@
 	<!--스타일 -->
 	<style>
 	
-	.table1 {
-	    width: 100%;
-	    height: 100px;
+	.table {
+	    width: 500px;
+	    height:600px;
+	    table-layout: fixed;
+	    margin:auto;
 	 }   
+	 
+	th {
+	padding: 10px;
+	width: 150px;
+    height:300px;
+	border: 1px solid #666666;
+	white-space: nowrap;
+	color : 
+	}
 	
-	.font1 {
+	td {
+	width: 150px;
+    height:200px;
+	padding: 10px;
+	border: 1px solid #666666;
+	white-space: nowrap;
+	}
+	
+	
+	.font {
 	   font-size : 20pt;
 	   line-height : 30px;
-	   text-algin: right;
+	   text-algin: center;
 	}
-	<%-- .background{
-	   background-image: url(<%=request.getContextPath()%>/img/cat1.PNG);
+	.background{
+	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
 	   background-repeat: no-repeat;
 	   background-position: right;
 	   background-attachment: fixed;
-	   background-size: 28% 380px;
-	} --%>
+	   background-size: cover; /* 28% 380px; */
+	} 
+	h1{
+		color : white;
+	}
+	<a>{
+	color : black;
+	}
 	</style>
 		
 	
 	
    </head>
-	<body style="background-image: url(<%=request.getContextPath()%>/Resources/images/main_1.jpg); background-repeat : no-repeat; background-size : cover;">
+	<body class="background">
 		<div>
-		<jsp:include page="/inc/menu.jsp"></jsp:include>
+			<jsp:include page="/inc/menu.jsp"></jsp:include>
 	    </div>
 	    
 		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-		<div align="left">
-		<h2><%=loginMember.getMemberName()%>님 반갑습니다 </h2>
-		<h4>
-		<%
-			if(loginMember.getMemberLevel() > 0){ 
-		%>	
-		 		<a href="<%=request.getContextPath()%>/admin/adminMain.jsp?">관리자 페이지</a>
-		<%
-			}
-		%>		
-		</h4>
-		<br><h1><%=loginMember.getMemberName()%>님의 달력	</h1> 	
+		
+		<br><h1 class="h1" align="center"><%=loginMember.getMemberName()%>님의 달력</h1> 	
+		<div align="right">
+				<a href="<%=request.getContextPath()%>/logout.jsp" style="text-decoration: none;">Logout&nbsp;&nbsp;</a>
 		</div>
-		<div>
-				<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp?">비밀번호 수정</a>
+		<div align="right">
+				<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp" style="text-decoration: none;">Edit password&nbsp;&nbsp;</a>
 		</div>
-		<div>
-				<a href="<%=request.getContextPath()%>/updateMemberForm.jsp?">회원정보 수정</a>
-				<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp?">회원탈퇴</a>
-		 </div>
+		<div align="right">
+				<a href="<%=request.getContextPath()%>/updateMemberForm.jsp" style="text-decoration: none;">Edit information&nbsp;&nbsp;</a>
+		<div align="right">
+		</div>
+				<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp" style="text-decoration: none;">membership withdrawal&nbsp;&nbsp;</a>
+		</div>
 		 <br>
-		 <div>
+		<div  align="center">
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
 		<%=year%>년 <%=month+1%> 월
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
@@ -139,7 +159,7 @@
 		</div>
 		<div class="container">
 	      <!-- 달력 -->
-	      <table class="table1" border="1" margin="auto">
+	      <table class="table">
 	         <tr>
 	            <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
 	         </tr>
@@ -193,11 +213,13 @@
 	            %>
 	         </tr>
 	      </table>
-	   </div>
-	   <div>
-			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?">돌아가기</a>
-			<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
-	   </div>
-	   
+ 		</div>
+		<div id="fh5co-header" role="banner" class="container">
+			<nav role="navigation">
+				<ul>
+					<li class="cta"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month%>">TopPage</a></li>
+				</ul>
+			</nav>
+		</div>
 	</body>
 </html>

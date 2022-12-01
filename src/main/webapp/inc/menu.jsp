@@ -7,11 +7,11 @@
 	request.setCharacterEncoding("utf-8"); // 한글버전 패치 (값이 넘어오니까 인코딩)
 	Member loginMember = (Member)session.getAttribute("loginMember");
 %>
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<!DOCTYPE html>
+	<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+	<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+	<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+	<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,18 +59,18 @@
 							if(loginMember.getMemberLevel() > 0) {
 						
 						%>
-							<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지사항관리</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리관리</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">멤버관리</a></li>
-				   			<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자페이지</a></li>
+							<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">Notice</a></li>
+							<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">Category</a></li>
+							<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">Member</a></li>
+				   			<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">AdminPage</a></li>
 						<%
 							}
 						%>
-						<li class="cta"><a href="#">Get started</a></li>
-						<li><a href="<%=request.getContextPath() %>/helpList.jsp">고객센터</a></li>
+						<li><a href="<%=request.getContextPath() %>/helpList.jsp">Center</a></li>
+						<li class="cta"><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Get started</a></li>
 					</ul>
 				</nav>
-			</div>
+			
 		</div>
 	</header>
 	</div>	
