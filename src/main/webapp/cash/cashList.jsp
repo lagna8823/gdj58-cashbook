@@ -83,19 +83,22 @@
 	<style>
 	
 	.table {
-	    width: 500px;
-	    height:600px;
-	    table-layout: fixed;
-	    margin:auto;
+    width: 500px;
+    height:600px;
+    table-layout: fixed;
+    margin:auto;
+    text-algin: right;
 	 }   
 	 
 	th {
 	padding: 10px;
 	width: 150px;
-    height:300px;
+    height:30px;
 	border: 1px solid #666666;
 	white-space: nowrap;
-	color : 
+	color : black;
+	text-align : center;
+	
 	}
 	
 	td {
@@ -107,10 +110,11 @@
 	}
 	
 	
-	.font {
+	font {
 	   font-size : 20pt;
 	   line-height : 30px;
 	   text-algin: center;
+	   color : black;
 	}
 	.background{
 	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
@@ -135,23 +139,21 @@
 			<jsp:include page="/inc/menu.jsp"></jsp:include>
 	    </div>
 	    
-		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-		
-		<br><h1 class="h1" align="center"><%=loginMember.getMemberName()%>님의 달력</h1> 	
-		<div align="right">
-				<a href="<%=request.getContextPath()%>/logout.jsp" style="text-decoration: none;">Logout&nbsp;&nbsp;</a>
+	    <!-- 로그인 정보(세션 loginMember 변수) 출력 -->
+		<br><p class="h1" align="center"><%=loginMember.getMemberName()%>님의 달력</p> 	
+	    
+	    <!-- 회원폼  -->
+		<div id="fh5co-header" role="banner" class="container" align="right" >
+			<nav role="navigation" align="right">
+				<ul align="right">
+					<li class="cta"><a href="<%=request.getContextPath()%>/logout.jsp">Logout</a></li>
+					<li class="cta"><a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a></li>
+					<li class="cta"><a href="<%=request.getContextPath()%>/updateMemberForm.jsp">information</a></li>
+					<li class="cta"><a href="<%=request.getContextPath()%>/deleteMemberForm.jsp">withdrawal</a></li>
+				</ul>
+			</nav>
 		</div>
-		<div align="right">
-				<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp" style="text-decoration: none;">Edit password&nbsp;&nbsp;</a>
-		</div>
-		<div align="right">
-				<a href="<%=request.getContextPath()%>/updateMemberForm.jsp" style="text-decoration: none;">Edit information&nbsp;&nbsp;</a>
-		<div align="right">
-		</div>
-				<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp" style="text-decoration: none;">membership withdrawal&nbsp;&nbsp;</a>
-		</div>
-		 <br>
-		<div  align="center">
+		<div  align="left">
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
 		<%=year%>년 <%=month+1%> 월
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
@@ -161,7 +163,7 @@
 	      <!-- 달력 -->
 	      <table class="table">
 	         <tr>
-	            <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
+	            <th>Sun</th><th>Mon</th><th>Tue</th><th>Wen</th><th>Thr</th><th>Fri</th><th>Sat</th>
 	         </tr>
 	         <tr>
 	            <%
