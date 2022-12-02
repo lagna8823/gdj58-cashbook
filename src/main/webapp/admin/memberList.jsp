@@ -73,5 +73,32 @@
 			%>
 		</table>
 	</div>
+	<!-- 페이징 -->
+			
+			<!-- 첫 페이지 -->
+			<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1">처음</a>
+			
+			<!-- 이전 페이지 -->
+			<%
+				if(currentPage>1){
+			%>
+			<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage-1%>">이전</a>
+			<%
+				}
+			%>
+			
+			<!-- 현재 페이지 -->
+			<%=currentPage%>
+			
+			<!-- 다음 페이지 -->
+			<%
+				if(currentPage<lastPage){
+			%>	
+				<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage+1%>">다음</a>
+			<%
+				}
+			%>	
+			<!-- 마지막 페이지 -->
+			<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>">마지막</a> 
 </body>
 </html>

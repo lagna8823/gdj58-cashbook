@@ -13,77 +13,129 @@ import vo.Notice;
 
 public class MemberDao {
 	
-		//  updatememberLvForm.jsp 관리자 : 멤버레벨수정 
-		public ArrayList<HashMap<String, Object>> selectMemberListByLv(Member updateMember) throws Exception {
-			ArrayList<HashMap<String, Object>> updateMemberList = new ArrayList<HashMap<String,Object>>();
-			DBUtil dbUtil = new DBUtil();
-			Connection conn = dbUtil.getConnection();
-			String sql3 = "SELECT member_no memberNo, member_id memberId, member_name memberName, member_level memberLevel FROM member WHERE member_no =?";
-			PreparedStatement stmt3 = conn.prepareStatement(sql3);
-			stmt3.setInt(1, updateMember.getMemberNo());
-			ResultSet rs3 = stmt3.executeQuery();
-			while(rs3.next()) {
-				HashMap<String, Object> m = new HashMap<String, Object>();
-				m.put("memberNo", rs3.getInt("memberNo"));
-				m.put("memberId", rs3.getString("memberId"));
-				m.put("memberName", rs3.getString("memberName"));
-				m.put("memberLevel", rs3.getString("memberLevel"));
-				updateMemberList.add(m);
-			}
-			rs3.close();
-			stmt3.close();
-			conn.close();
-			return updateMemberList;
+	//  updatememberLvForm.jsp 관리자 : 멤버레벨수정 
+	public ArrayList<HashMap<String, Object>> selectMemberListByLv(Member updateMember) throws Exception {
+		ArrayList<HashMap<String, Object>> updateMemberList = null;
+		DBUtil dbUtil = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		// 쿼리문
+		String sql = "SELECT member_no memberNo, member_id memberId, member_name memberName, member_level memberLevel FROM member WHERE member_no =?";
+		
+		try {
+			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+			conn = dbUtil.getConnection(); 
+			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+		// 쿼리 값 세팅, 실행 값 저장
+		stmt.setInt(1, updateMember.getMemberNo());
+		rs = stmt.executeQuery();
+		updateMemberList = 	new ArrayList<HashMap<String,Object>>();
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			m.put("memberNo", rs.getInt("memberNo"));
+			m.put("memberId", rs.getString("memberId"));
+			m.put("memberName", rs.getString("memberName"));
+			m.put("memberLevel", rs.getString("memberLevel"));
+			updateMemberList.add(m);
 		}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return updateMemberList;
+	}
 		
-		// updateAction.jsp 관리자 : 멤버레벨수정
 		
-		public int updateMemberlv(Member updateMemberlv) throws Exception {
-			int resultRow = 0;
-			
-			String sql = "UPDATE member"
-						+" SET member_level = ?"
-						+" WHERE member_no = ?";
-			
-			DBUtil dbUtil = new DBUtil();
-			Connection conn = null;
-			PreparedStatement stmt = null;
+	// updateMemberLvAction.jsp 관리자 : 멤버레벨수정
+	public int updateMemberlv(Member updateMemberlv) throws Exception {
+		int resultRow = 0;
+		DBUtil dbUtil = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		// 쿼리문
+		String sql = "UPDATE member SET member_level = ?  WHERE member_no = ?";
+		
+		try {
+			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
 			conn = dbUtil.getConnection();
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+			// 쿼리 값 세팅, 결과 값 저장
 			stmt.setInt(1, updateMemberlv.getMemberLevel());
 			stmt.setInt(2, updateMemberlv.getMemberNo());
 			resultRow = stmt.executeUpdate();
-			
-			dbUtil.close(null, stmt, conn);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 			return resultRow;
 		}
+	}
 		
 
-		// memberList.jsp : 라스트페이지 
-		public int count() throws Exception {
-			
-		DBUtil dbUtil = new DBUtil(); // DB 연결
-		Connection conn = dbUtil.getConnection();
+	// memberList.jsp : 라스트페이지 
+	public int count() throws Exception {
 		int cnt = 0; // 전체 행의 수
-		String Sql = "SELECT COUNT(*) cnt FROM member";
-		PreparedStatement stmt = conn.prepareStatement(Sql); 
-		ResultSet rs = stmt.executeQuery();
-		    if(rs.next()) {
-		    cnt = rs.getInt("cnt");
-		    }
-		    return cnt;
-		}
+		DBUtil dbUtil = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
-		// memberList.jsp 관리자 : 멤버 리스트
-		public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) throws Exception{ 
-			ArrayList<Member> list = new ArrayList<Member>();
-			DBUtil dbUtil = new DBUtil();
-			Connection conn = dbUtil.getConnection();
-			String sql = "SELECT member_no memberNo, member_id memberId, member_level memberLevel, member_name memberName, updatedate, createdate FROM member ORDER BY createdate DESC LIMIT ?, ?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
+		// 쿼리문
+		String sql = "SELECT COUNT(*) cnt FROM member";
+		
+		try {
+			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+			conn = dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+			// 쿼리 값 세팅, 결과 값 저장.
+			rs = stmt.executeQuery();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			if(rs.next()) {
+			    cnt = rs.getInt("cnt");
+			    }
+			    return cnt;
+		}
+	}
+		
+	// memberList.jsp 관리자 : 멤버 리스트
+	public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) throws Exception{ 
+		ArrayList<Member> list = null;
+		DBUtil dbUtil = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		// 쿼리문
+		String sql = "SELECT member_no memberNo, member_id memberId, member_level memberLevel, member_name memberName, updatedate, createdate FROM member ORDER BY createdate DESC LIMIT ?, ?";
+		
+		try {
+			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+			conn = dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+			// 쿼리 값 세팅, 결과 값 저장.
 			stmt.setInt(1, beginRow);
 			stmt.setInt(2, rowPerPage);
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
+			list = new ArrayList<Member>();
 			while(rs.next()) {
 				Member m = new Member();
 				m.setMemberNo(rs.getInt("memberNo"));
@@ -94,78 +146,133 @@ public class MemberDao {
 				m.setCreatedate(rs.getString("createdate"));
 				list.add(m);
 			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 			return list;
-			
 		}
+	}
+		
 		
 	// deleteMemberLvAction.jsp 관리자 : 멤버 강퇴 
-			public int deleteMember(Member deleteMember) throws Exception {
-				
-			DBUtil dbUtil = new DBUtil();
-			Connection conn = dbUtil.getConnection();
-			int resultRow=0;
-			String sql6 = "DELETE FROM member WHERE member_no=?";
-			PreparedStatement stmt6 = conn.prepareStatement(sql6);
-			stmt6.setInt(1, deleteMember.getMemberNo());
-			resultRow = stmt6.executeUpdate();
-			if(resultRow==1)		
-					stmt6.close();
-					conn.close();
-					return resultRow;
-			
+	public int deleteMember(Member deleteMember) throws Exception {
+		int resultRow=0;
+		DBUtil dbUtil = null; // 드라이버 로딩 및 연결
+		Connection conn = null;
+		PreparedStatement stmt = null;// 쿼리 객체 생성
+		
+		// 쿼리문
+		String sql = "DELETE FROM member WHERE member_no=?";
+		
+		try {
+			dbUtil = new DBUtil();
+			conn = dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			// 쿼리 값 세팅, 결과 값 저장.
+			stmt.setInt(1, deleteMember.getMemberNo());
+			resultRow = stmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch(Exception e){
+				e.printStackTrace();
 			}
-				
-		
-	// 로그인
-	public Member login(Member paramMember) throws Exception {
-		Member resultMember = null;
-		/*
-		Class.forName("org.mariadb.jdbc.Driver");
-		Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
-		--> DB를 연결하는 코드(명령들)가 Dao 메서드들 거의 공통으로 중복된다.
-		--> 중복되는 코드를 하나의 이름(메서드)으로 만들자
-		--> 입력값과 반환값 결정해야 한다
-		--> 입력값X, 반환값은 Connection타입의 결과값이 남아야 한다.
-		*/
-		
-		DBUtil dbUtil = new DBUtil();
-		Connection conn = dbUtil.getConnection();
-		String sql = "SELECT member_id memberId, member_level memberLevel, member_name memberName FROM member WHERE member_id=? AND member_pw = PASSWORD(?)";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setString(1, paramMember.getMemberId());
-		stmt.setString(2, paramMember.getMemberPw());
-		
-		ResultSet rs = stmt.executeQuery();
-		if(rs.next()) {
-			resultMember = new Member();
-			resultMember.setMemberId(rs.getString("memberId"));
-			resultMember.setMemberName(rs.getString("memberName"));
-			resultMember.setMemberLevel(rs.getInt("memberLevel"));
+			return resultRow;
 		}
-		
-		rs.close();
-		stmt.close();
-		conn.close();
-		
-		return resultMember;
 	}
 	
+	/*
+	--> DB를 연결하는 코드(명령들)가 Dao 메서드들 거의 공통으로 중복된다.
+	--> 중복되는 코드를 하나의 이름(메서드)으로 만들자
+	--> 입력값과 반환값 결정해야 한다
+	--> 입력값X, 반환값은 Connection타입의 결과값이 남아야 한다.
+	*/
 	
-	// 회원가입
-	public int insert(Member checkMember) throws Exception {
+	
+	// loginAction.jsp 로그인 
+	public Member login(Member paramMember) throws Exception {
+		Member resultMember = null;
+		DBUtil dbUtil = null;
+		Connection conn = null;
+		PreparedStatement stmt	= null;
+		ResultSet rs = null;
 		
-		DBUtil dbUtil = new DBUtil(); // DB 연결
-		Connection conn = dbUtil.getConnection();
-		// ID 중복검사
+		// 쿼리문
+		String sql = "SELECT member_id memberId, member_level memberLevel, member_name memberName FROM member WHERE member_id=? AND member_pw = PASSWORD(?)";
+		
+		try {
+			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+			conn = dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+			//쿼리 값 세팅 및 결과값 저장
+			stmt.setString(1, paramMember.getMemberId());
+			stmt.setString(2, paramMember.getMemberPw());
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				resultMember = new Member();
+				resultMember.setMemberId(rs.getString("memberId"));
+				resultMember.setMemberName(rs.getString("memberName"));
+				resultMember.setMemberLevel(rs.getInt("memberLevel"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return resultMember;
+		}
+	}
+	
+	// insertMemberaction.jsp 회원가입
+	public int insert(Member checkMember) throws Exception {
 		int resultRow = 0;
-		String sql1 = "SELECT member_id memberId FROM member WHERE member_id=?";
-		PreparedStatement stmt1 = conn.prepareStatement(sql1);
-		stmt1.setString(1, checkMember.getMemberId());
-		ResultSet rs1 = stmt1.executeQuery();
-		if(rs1.next()) {
+		DBUtil dbUtil = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;	
+		ResultSet rs = null;	
+		
+		// 쿼리문
+		String sql = "SELECT member_id memberId FROM member WHERE member_id=?";
+		
+		try {
+			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+			conn = dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			//쿼리 값 세팅 결과값 저장
+			stmt.setString(1, checkMember.getMemberId());
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return resultRow;
+		}
+		
+		
+		// ID 중복검사
+		
+		ResultSet 
+		if(rs.next()) {
 			resultRow=0;
-			rs1.close();
-			stmt1.close();
+			rs.close();
+			stmt.close();
 			return resultRow;
 		}
 		
