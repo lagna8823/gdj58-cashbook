@@ -3,7 +3,7 @@
 <%@ page import = "dao.*" %>
 <%@ page import = "java.util.*" %>
 <%
-	Member loginMember = (Member)session.getAttribute("login");
+	Member loginMember = (Member)session.getAttribute("loginMember");
 	if(loginMember == null || loginMember.getMemberLevel() < 1) {
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
@@ -15,6 +15,12 @@
 	int beginRow = (1-currentPage) * rowPerPage;
 	HelpDao helpDao = new HelpDao();
 	ArrayList<HashMap<String,Object>> list = helpDao.selectHelpList(beginRow, rowPerPage);
+	
+	String memberId = loginMember.getMemberId();
+	int helpNo= 0;
+	HelpDao helpDao2 = new HelpDao();
+	ArrayList<HashMap<String, Object>> list2 = helpDao.selectHelpList(memberId);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -39,11 +45,28 @@
 			for(HashMap<String, Object> m : list) {
 		%>
 				<tr>
+					<input type="hidden" name="commentNo" value="<%=m.get("commentNo")%>">
 					<td><%=m.get("helpMemo")%></td>
 					<td><%=m.get("memberId")%></td>
 					<td><%=m.get("helpCreatedate")%></td>
-					<td><%=m.get("commentMemo")%></td>
-					<td><%=m.get("commentCreatedate")%></td>
+					<td>
+						<%
+							if(m.get("commentMemo") == null) {
+						%>
+							<span> 답변대기</span>
+						<%
+							}
+						%>
+					</td>
+					<td>
+						<%
+							if(m.get("commentCreatedate") == null) {
+						%>
+							<span> 미정</span>
+						<%
+							}
+						%>
+					</td>
 					<td>
 						<%
 							if(m.get("commentMemo") == null) {
@@ -65,6 +88,5 @@
 			}
 		%>
 	</table>
-	<!-- footer include -->
 </body>
 </html>

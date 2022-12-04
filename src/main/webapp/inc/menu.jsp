@@ -59,10 +59,11 @@
 							if(loginMember.getMemberLevel() > 0) {
 						
 						%>
+							<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">AdminPage</a></li>
 							<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">Notice</a></li>
 							<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">Category</a></li>
 							<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">Member</a></li>
-				   			<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">AdminPage</a></li>
+				   			<li><a href="<%=request.getContextPath()%>/admin/helpListAll.jsp">Comment</a></li>
 						<%
 							}
 						%>

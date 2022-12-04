@@ -27,11 +27,15 @@ public class CashDao {
 	해쉬맵을 쓰는 이유 : 소규모프로젝트에서 조인때문에 매번 만들기는 비효율적
 	 */
 	
-	// cashDateList.jsp(검색)
+	// 가계부 리스트 cashDateList.jsp(검색)
 	public ArrayList<HashMap<String, Object>> selectCashListByDay(String memberId, int year, int month, int date) throws Exception {
-		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
-		DBUtil dbUtil = new DBUtil();
-		Connection conn = dbUtil.getConnection();
+		ArrayList<HashMap<String, Object>> list = null;
+		DBUtil dbUtil = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		// 쿼리문
 		String sql = "SELECT"
 				+ "		c.cash_no cashNo"
 				+ "		, c.cash_date cashDate"
@@ -47,53 +51,81 @@ public class CashDao {
 				+ " AND MONTH(c.cash_date) = ?"
 				+ " AND DAY(c.cash_date) = ?"
 				+ "	ORDER BY c.cash_date ASC, ct.category_kind ASC"; 
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setString(1, memberId);
-		stmt.setInt(2, year);
-		stmt.setInt(3, month);
-		stmt.setInt(4, date);
-		ResultSet rs = stmt.executeQuery();
-		while(rs.next()) {
-			HashMap<String, Object> m = new HashMap<String, Object>();
-			m.put("cashNo", rs.getInt("cashNo"));
-			m.put("cashDate", rs.getString("cashDate"));
-			m.put("cashPrice", rs.getLong("cashPrice"));
-			m.put("cashMemo", rs.getString("cashMemo"));
-			m.put("categoryKind", rs.getString("categoryKind"));
-			m.put("categoryName", rs.getString("categoryName"));
-			m.put("memberId", rs.getString("memberId"));
-			list.add(m);
+		try {
+			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+			conn = dbUtil.getConnection(); 
+			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+			// 쿼리 값 세팅, 실행 값 저장
+			stmt.setString(1, memberId);
+			stmt.setInt(2, year);
+			stmt.setInt(3, month);
+			stmt.setInt(4, date);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				HashMap<String, Object> m = new HashMap<String, Object>();
+				m.put("cashNo", rs.getInt("cashNo"));
+				m.put("cashDate", rs.getString("cashDate"));
+				m.put("cashPrice", rs.getLong("cashPrice"));
+				m.put("cashMemo", rs.getString("cashMemo"));
+				m.put("categoryKind", rs.getString("categoryKind"));
+				m.put("categoryName", rs.getString("categoryName"));
+				m.put("memberId", rs.getString("memberId"));
+				list.add(m);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
-		rs.close();
-		stmt.close();
-		conn.close();
 		return list;
 	}
-	// cashDateList.jsp (cash 추가,삽입)
-		public int insert(Cash insertCash) throws Exception {
-		DBUtil dbUtil = new DBUtil(); // DB 연결
-		Connection conn = dbUtil.getConnection();
+	
+	// 가계부상세페이지 cashDateList.jsp (cash 추가,삽입)
+	public int insert(Cash insertCash) throws Exception {
+		int resultRow = 0;
+		DBUtil dbUtil = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		// 쿼리문
 		String sql = "INSERT INTO cash(category_no, member_id, cash_date, cash_price, cash_memo, updatedate, createdate) values(?, ?, ?, ?, ?, curdate(), curdate())";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, insertCash.getCategoryNo());
-		stmt.setString(2, insertCash.getMemberId());
-		stmt.setString(3, insertCash.getCashDate());
-		stmt.setLong(4, insertCash.getCashPrice());
-		stmt.setString(5, insertCash.getCashMemo());
-		int resultRow = stmt.executeUpdate();
 		
-		stmt.close();
-		conn.close();
-		return resultRow;
+		try {
+			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+			conn = dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+			// 쿼리 값 세팅, 결과 값 저장
+			stmt.setInt(1, insertCash.getCategoryNo());
+			stmt.setString(2, insertCash.getMemberId());
+			stmt.setString(3, insertCash.getCashDate());
+			stmt.setLong(4, insertCash.getCashPrice());
+			stmt.setString(5, insertCash.getCashMemo());
+			resultRow = stmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return resultRow;
+		}
 	}
-		
-		
+	
 		// 호출 : cashList.jsp
 		public ArrayList<HashMap<String, Object>> selectCashListByMonth(String memberId, int year, int month) throws Exception {
-			ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
-			DBUtil dbUtil = new DBUtil();
-			Connection conn = dbUtil.getConnection();
+			ArrayList<HashMap<String, Object>> list = null;
+			DBUtil dbUtil = null;
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			
+			//쿼리문
 			String sql = "SELECT"
 					+ "		c.cash_no cashNo"
 					+ "		, c.cash_date cashDate"
@@ -105,58 +137,99 @@ public class CashDao {
 					+ "	ON c.category_no = ct.category_no"
 					+ "	WHERE c.member_id = ? AND YEAR(c.cash_date) = ? AND MONTH(c.cash_date) = ?"
 					+ "	ORDER BY c.cash_date ASC, ct.category_kind ASC"; 
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, memberId);
-			stmt.setInt(2, year);
-			stmt.setInt(3, month);
-			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
-				HashMap<String, Object> m = new HashMap<String, Object>();
-				m.put("cashNo", rs.getInt("cashNo"));
-				m.put("cashDate", rs.getString("cashDate"));
-				m.put("cashPrice", rs.getLong("cashPrice"));
-				m.put("categoryNo", rs.getInt("categoryNo"));
-				m.put("categoryKind", rs.getString("categoryKind"));
-				m.put("categoryName", rs.getString("categoryName"));
-				list.add(m);
+			try {
+				dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+				conn = dbUtil.getConnection(); 
+				stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+				// 쿼리 값 세팅, 실행 값 저장
+				stmt.setString(1, memberId);
+				stmt.setInt(2, year);
+				stmt.setInt(3, month);
+				rs = stmt.executeQuery();
+				list = new ArrayList<HashMap<String,Object>>();
+				while(rs.next()) {
+					HashMap<String, Object> m = new HashMap<String, Object>();
+					m.put("cashNo", rs.getInt("cashNo"));
+					m.put("cashDate", rs.getString("cashDate"));
+					m.put("cashPrice", rs.getLong("cashPrice"));
+					m.put("categoryNo", rs.getInt("categoryNo"));
+					m.put("categoryKind", rs.getString("categoryKind"));
+					m.put("categoryName", rs.getString("categoryName"));
+					list.add(m);
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					dbUtil.close(rs, stmt, conn);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 			}
-			
-			rs.close();
-			stmt.close();
-			conn.close();
 			return list;
 		}
 		
-	// updateCahAction.jsp (cash 내역수정)
+		
+		// 가계부 수정 updateCahAction.jsp (cash 내역수정)
 		public int update(Cash updateCash) throws Exception {
-			DBUtil dbUtil = new DBUtil(); // DB 연결
-			Connection conn = dbUtil.getConnection();
-			String sql = "UPDATE cash SET category_no=?, cash_date=?, cash_price=?, cash_memo=? WHERE cash_no=? ";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, updateCash.getCategoryNo());
-			stmt.setString(2, updateCash.getCashDate());
-			stmt.setLong(3, updateCash.getCashPrice());
-			stmt.setString(4, updateCash.getCashMemo());
-			stmt.setInt(5, updateCash.getCashNo());
+			int resultRow = 0;
+			DBUtil dbUtil = null;
+			Connection conn = null;
+			PreparedStatement stmt = null;
 			
-			int resultRow = stmt.executeUpdate();
-			stmt.close();
-			conn.close();
-			return resultRow;
+			// 쿼리문
+			String sql = "UPDATE cash SET category_no=?, cash_date=?, cash_price=?, cash_memo=? WHERE cash_no=? ";
+			
+			try {
+				dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+				conn = dbUtil.getConnection();
+				stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+				// 쿼리 값 세팅, 결과 값 저장
+				stmt.setInt(1, updateCash.getCategoryNo());
+				stmt.setString(2, updateCash.getCashDate());
+				stmt.setLong(3, updateCash.getCashPrice());
+				stmt.setString(4, updateCash.getCashMemo());
+				stmt.setInt(5, updateCash.getCashNo());
+				resultRow = stmt.executeUpdate();
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					dbUtil.close(null, stmt, conn);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+				return resultRow;
+			}
 		}
 	
-	// deleteCahAction.jsp (cash 내역삭제)
-			public int delete(Cash deteteCash) throws Exception {
-				DBUtil dbUtil = new DBUtil(); // DB 연결
-				Connection conn = dbUtil.getConnection();
-				String sql = "DELETE FROM cash WHERE cash_no=?";
-				PreparedStatement stmt = conn.prepareStatement(sql);
-				stmt.setInt(1, deteteCash.getCashNo());
-				int resultRow = stmt.executeUpdate();
-				stmt.close();
-				conn.close();
-				return resultRow;
-			}	
+	// 가계부 삭제 deleteCahAction.jsp (cash 내역삭제)
+	public int delete(Cash deteteCash) throws Exception {
+		int resultRow = 0;
+		DBUtil dbUtil = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		
+		// 쿼리문
+		String sql = "DELETE FROM cash WHERE cash_no=?";
+		
+		try {
+			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+			conn = dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+			// 쿼리 값 세팅, 결과 값 저장
+			stmt.setInt(1, deteteCash.getCashNo());
+			resultRow = stmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return resultRow;
+		}
+	}
 }
 
