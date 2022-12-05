@@ -10,6 +10,47 @@ import util.DBUtil;
 
 	public class HelpDao {
 		
+		// help 수정 insertcomment.jsp / HELP : helpNo 
+		public ArrayList<HashMap<String, Object>> selectHelpNoComment(int helpNo) throws Exception {
+			ArrayList<HashMap<String, Object>> list = null;
+			DBUtil dbUtil = null;
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			
+			// 쿼리문 
+			String sql = "SELECT help_no h.helpNo, help_memo h.helpMemo, createdate h.createdate, member_id h.memberId"
+					+" FROM help h INNER JOIN member m ON h.member_id = m.member_id "
+					+" WHERE h.help_no = ?";
+			
+			try {
+				dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+				conn = dbUtil.getConnection(); 
+				stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+				// 쿼리 값 세팅, 실행 값 저장
+				stmt.setInt(1, helpNo);
+				rs = stmt.executeQuery();
+				list = new ArrayList<HashMap<String, Object>>();
+				while(rs.next()) {
+					HashMap<String, Object> h = new HashMap<String, Object>();
+					h.put("helpNo", rs.getInt("helpNo"));
+					h.put("helpMemo", rs.getString("helpMemo"));
+					h.put("createdate", rs.getString("createdate"));
+					h.put("member_id", rs.getString("memberId"));
+					list.add(h);
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					dbUtil.close(rs, stmt, conn);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return list;
+		}
+				
 		// 관리자 : selectHelpList 오버로딩
 		public ArrayList<HashMap<String, Object>> selectHelpList(int beginRow, int rowPerPage) throws Exception {
 			ArrayList<HashMap<String, Object>> list = null;
@@ -159,7 +200,7 @@ import util.DBUtil;
 			ResultSet rs = null;
 			
 			// 쿼리문 
-			String sql = "SELECT help_no helpNo, help_memo helpMemo"
+			String sql = "SELECT help_no helpNo, help_memo helpMemo, createdate createdate, member_id memberId"
 					+" FROM help "
 					+" WHERE help_no = ?";
 			
@@ -175,6 +216,8 @@ import util.DBUtil;
 					HashMap<String, Object> h = new HashMap<String, Object>();
 					h.put("helpNo", rs.getInt("helpNo"));
 					h.put("helpMemo", rs.getString("helpMemo"));
+					h.put("createdate", rs.getString("createdate"));
+					h.put("member_id", rs.getString("memberId"));
 					list.add(h);
 				}
 			} catch(Exception e) {

@@ -62,7 +62,7 @@
 						<%
 							if(m.get("commentCreatedate") == null) {
 						%>
-							<span> 미정</span>
+							<span>날짜미정</span>
 						<%
 							}
 						%>

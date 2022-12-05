@@ -78,7 +78,7 @@
 			<%
 				if(currentPage>1){
 			%>
-			<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage-1%>">이전</a>
+				<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage-1%>">이전</a>
 			<%
 				}
 			%>
