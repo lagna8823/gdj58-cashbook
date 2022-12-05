@@ -19,7 +19,7 @@ import util.DBUtil;
 			ResultSet rs = null;
 			
 			// 쿼리문 
-			String sql = "SELECT help_no h.helpNo, help_memo h.helpMemo, createdate h.createdate, member_id h.memberId"
+			String sql = "SELECT h.help_no helpNo, h.help_memo helpMemo, h.createdate createdate, h.member_id memberId"
 					+" FROM help h INNER JOIN member m ON h.member_id = m.member_id "
 					+" WHERE h.help_no = ?";
 			
@@ -34,8 +34,8 @@ import util.DBUtil;
 					HashMap<String, Object> h = new HashMap<String, Object>();
 					h.put("helpNo", rs.getInt("helpNo"));
 					h.put("helpMemo", rs.getString("helpMemo"));
+					h.put("memberId", rs.getString("memberId"));
 					h.put("createdate", rs.getString("createdate"));
-					h.put("member_id", rs.getString("memberId"));
 					list.add(h);
 				}
 			} catch(Exception e) {
@@ -61,7 +61,7 @@ import util.DBUtil;
 			// 쿼리문
 			String sql = "SELECT h.help_no helpNo"
 					+"		, h.help_memo helpMemo"
-					+ "		, h.member_id memberId"
+					+"		, h.member_id memberId"
 					+"		, h.createdate helpCreatedate"
 					+"		, c.comment_memo commentMemo"
 					+"		, c.createdate commentCreatedate"

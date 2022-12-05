@@ -1,37 +1,37 @@
 package vo;
 
 public class Comment {
-	private int comment_no;
-	private int help_no;
+	private int commentNo;
+	private int helpNo;
 	// private HelpNo helpNo; // FK -> INNER JOIN -> Map타입
-	private String help_memo;
-	private String member_id;
+	private String commentMemo;
+	private String memberId;
 	// private MemberId memberId; // FK -> INNER JOIN -> Map타입
 	private String updatedate;
 	private String createdate;
-	public int getComment_no() {
-		return comment_no;
+	public int getCommentNo() {
+		return commentNo;
 	}
-	public void setComment_no(int comment_no) {
-		this.comment_no = comment_no;
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
 	}
-	public int getHelp_no() {
-		return help_no;
+	public int getHelpNo() {
+		return helpNo;
 	}
-	public void setHelp_no(int help_no) {
-		this.help_no = help_no;
+	public void setHelpNo(int helpNo) {
+		this.helpNo = helpNo;
 	}
-	public String getHelp_memo() {
-		return help_memo;
+	public String getCommentMemo() {
+		return commentMemo;
 	}
-	public void setHelp_memo(String help_memo) {
-		this.help_memo = help_memo;
+	public void setCommentMemo(String commentMemo) {
+		this.commentMemo = commentMemo;
 	}
-	public String getMember_id() {
-		return member_id;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getUpdatedate() {
 		return updatedate;
@@ -45,5 +45,6 @@ public class Comment {
 	public void setCreatedate(String createdate) {
 		this.createdate = createdate;
 	}
+	
 	
 }
