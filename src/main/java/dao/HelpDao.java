@@ -12,7 +12,7 @@ import util.DBUtil;
 		
 		// help 수정 insertcomment.jsp / HELP : helpNo 
 		public ArrayList<HashMap<String, Object>> selectHelpNoComment(int helpNo) throws Exception {
-			ArrayList<HashMap<String, Object>> list = null;
+			ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 			DBUtil dbUtil = null;
 			Connection conn = null;
 			PreparedStatement stmt = null;
@@ -30,7 +30,6 @@ import util.DBUtil;
 				// 쿼리 값 세팅, 실행 값 저장
 				stmt.setInt(1, helpNo);
 				rs = stmt.executeQuery();
-				list = new ArrayList<HashMap<String, Object>>();
 				while(rs.next()) {
 					HashMap<String, Object> h = new HashMap<String, Object>();
 					h.put("helpNo", rs.getInt("helpNo"));
