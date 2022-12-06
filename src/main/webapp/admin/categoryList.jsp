@@ -21,7 +21,7 @@
 	
 	// Model 호출
 	CategoryDao categoryDao = new CategoryDao();
-	ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
+	ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin(beginRow, rowPerPage);
 	
 	int cnt = categoryDao.count(); 
 	// cnt 값을 categoryDao.count() 클래스에로 보내고 결과값으로 cnt값을 받음.

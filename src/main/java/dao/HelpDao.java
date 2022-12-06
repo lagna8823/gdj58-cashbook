@@ -67,8 +67,9 @@ import util.DBUtil;
 					+"		, c.comment_memo commentMemo"
 					+"		, c.createdate commentCreatedate"
 					+"		, c.comment_no commentNo"
-					+" FROM help h LEFT JOIN comment c"
+					+" FROM help h LEFT OUTER JOIN comment c"
 					+" ON h.help_no = c.help_no"
+					+ " ORDER BY h.help_no DESC"
 					+" LIMIT ?, ?";
 			
 			try {
@@ -236,7 +237,7 @@ import util.DBUtil;
 		
 		
 		// help목록 helpList.jsp  / HELP : member_id는 세션데이터
-		public ArrayList<HashMap<String, Object>> selectHelpList(String memberId) {
+		public ArrayList<HashMap<String, Object>> selectHelpList(String memberId, int beginRow, int rowPerPage ) {
 			ArrayList<HashMap<String, Object>> list = null;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -251,13 +252,16 @@ import util.DBUtil;
 						+"		, c.createdate commentCreatedate"
 						+" FROM help h LEFT JOIN comment c"
 						+" ON h.help_no = c.help_no"
-						+" WHERE h.member_id = ?";
+						+" WHERE h.member_id = ?"
+						+ "LIMIT ?,?";
 			try {
 				dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
 				conn = dbUtil.getConnection(); 
 				stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
 				// 쿼리 값 세팅, 실행 값 저장
 				stmt.setString(1, memberId);
+				stmt.setInt(2, beginRow);
+				stmt.setInt(3, rowPerPage);
 				rs = stmt.executeQuery();
 				list = new ArrayList<HashMap<String,Object>>();
 				while(rs.next()) {
@@ -281,13 +285,8 @@ import util.DBUtil;
 			return list;
 		}
 		
-	// 마지막 페이지를 구할려면 전체row수가 필요
-	public int selectNoitceCount() {
-		int count = 0;
-		//
-		return count;
-	}
-	
+		
+				
 	// help 라스트페이지 
 		public int count() {
 			int cnt = 0; // 전체 행의 수

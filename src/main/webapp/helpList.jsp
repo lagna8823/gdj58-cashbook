@@ -8,11 +8,23 @@
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp#login");
 		return;
 	}
+	int currentPage = 1;
+	if(request.getParameter("currentPage") != null) {
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	}
+	int rowPerPage = 10;
+	int beginRow = (currentPage-1) * rowPerPage;
 	
 	String memberId = loginMember.getMemberId();
 	int helpNo= 0;
 	HelpDao helpDao = new HelpDao();
-	ArrayList<HashMap<String, Object>> list = helpDao.selectHelpList(memberId);
+	ArrayList<HashMap<String, Object>> list = helpDao.selectHelpList(memberId,beginRow,rowPerPage);
+	
+	int cnt = helpDao.count();
+	//CommentDao.count() 호출하여 결과값으로 cnt값을 받음.
+	System.out.println(cnt);
+	//마지막 페이지 
+	int lastPage = (int)(Math.ceil((double)cnt / (double)rowPerPage));
 %>
 <!DOCTYPE html>
 <html>
@@ -100,5 +112,32 @@
 			}
 		%>
 	</table>
+	<!-- 페이징 -->
+			
+			<!-- 첫 페이지 -->
+			<a href="<%=request.getContextPath()%>/helpList.jsp?currentPage=1">처음</a>
+			
+			<!-- 이전 페이지 -->
+			<%
+				if(currentPage>1){
+			%>
+			<a href="<%=request.getContextPath()%>/helpList.jsp?currentPage=<%=currentPage-1%>">이전</a>
+			<%
+				}
+			%>
+			
+			<!-- 현재 페이지 -->
+			<%=currentPage%>
+			
+			<!-- 다음 페이지 -->
+			<%
+				if(currentPage<lastPage){
+			%>
+				<a href="<%=request.getContextPath()%>/helpList.jsp?currentPage=<%=currentPage+1%>">다음</a>
+			<%
+				}
+			%>	
+			<!-- 마지막 페이지 -->
+			<a href="<%=request.getContextPath()%>/helpList.jsp?currentPage=<%=lastPage%>">마지막</a> 
 </body>
 </html>

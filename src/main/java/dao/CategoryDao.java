@@ -146,7 +146,7 @@ import vo.*;
 		}
 		
 		// 관리자: 카테고리목록 admin -> 카테고리관리 ->카테고리 목록
-		public ArrayList<Category> selectCategoryListByAdmin() throws Exception {
+		public ArrayList<Category> selectCategoryListByAdmin(int beginRow, int rowPerPage) throws Exception {
 			ArrayList<Category> list = null; //참조타입들은 null로 받고나서 받는게 좋다.
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -154,7 +154,7 @@ import vo.*;
 			ResultSet rs = null;
 			
 			// 쿼리문
-			String sql = "SELECT category_no categoryNo, category_kind categoryKind, category_name categoryName, updatedate, createdate FROM category";
+			String sql = "SELECT category_no categoryNo, category_kind categoryKind, category_name categoryName, updatedate, createdate FROM category LIMIT ?,?";
 			
 			list = new ArrayList<Category>();
 			
@@ -162,6 +162,8 @@ import vo.*;
 				dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
 				conn = dbUtil.getConnection(); 
 				stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+				stmt.setInt(1, beginRow);
+				stmt.setInt(2, rowPerPage);
 				// 쿼리 값 세팅, 실행 값 저장
 				rs = stmt.executeQuery();
 				while(rs.next()) {
