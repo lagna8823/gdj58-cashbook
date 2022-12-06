@@ -30,6 +30,7 @@ public class NoticeDao {
 			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
 			// 쿼리 값 세팅, 실행 값 저장
 			rs = stmt.executeQuery();
+			list = new ArrayList<Notice>();
 			while(rs.next()) {
 				Notice n = new Notice();
 				n.setNoticeNo(rs.getInt("noticeNo"));

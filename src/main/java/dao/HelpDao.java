@@ -11,8 +11,8 @@ import util.DBUtil;
 	public class HelpDao {
 		
 		// help 수정 insertcomment.jsp / HELP : helpNo 
-		public ArrayList<HashMap<String, Object>> selectHelpNoComment(int helpNo) throws Exception {
-			ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		public ArrayList<HashMap<String, Object>> selectHelpNoComment(int helpNo)  {
+			ArrayList<HashMap<String, Object>> list = null;
 			DBUtil dbUtil = null;
 			Connection conn = null;
 			PreparedStatement stmt = null;
@@ -30,6 +30,7 @@ import util.DBUtil;
 				// 쿼리 값 세팅, 실행 값 저장
 				stmt.setInt(1, helpNo);
 				rs = stmt.executeQuery();
+				list = new ArrayList<HashMap<String, Object>>();
 				while(rs.next()) {
 					HashMap<String, Object> h = new HashMap<String, Object>();
 					h.put("helpNo", rs.getInt("helpNo"));
@@ -50,8 +51,8 @@ import util.DBUtil;
 			return list;
 		}
 				
-		// 관리자 : selectHelpList 오버로딩
-		public ArrayList<HashMap<String, Object>> selectHelpList(int beginRow, int rowPerPage) throws Exception {
+		// 관리자 : selectHelpList 오버로딩 helpListAll.jsp
+		public ArrayList<HashMap<String, Object>> selectHelpList(int beginRow, int rowPerPage) {
 			ArrayList<HashMap<String, Object>> list = null;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -65,6 +66,7 @@ import util.DBUtil;
 					+"		, h.createdate helpCreatedate"
 					+"		, c.comment_memo commentMemo"
 					+"		, c.createdate commentCreatedate"
+					+"		, c.comment_no commentNo"
 					+" FROM help h LEFT JOIN comment c"
 					+" ON h.help_no = c.help_no"
 					+" LIMIT ?, ?";
@@ -86,6 +88,7 @@ import util.DBUtil;
 					m.put("helpCreatedate", rs.getString("helpCreatedate"));
 					m.put("commentMemo", rs.getString("commentMemo"));
 					m.put("commentCreatedate", rs.getString("commentCreatedate"));
+					m.put("commentNo", rs.getString("commentNo"));
 					list.add(m);
 				}
 			} catch(Exception e) {
@@ -101,7 +104,7 @@ import util.DBUtil;
 		}
 		
 		// help 수정 updateHelpAction.jsp
-		public int updateHelp(Help help) throws Exception{
+		public int updateHelp(Help help) {
 			int resultRow = 0;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -132,7 +135,7 @@ import util.DBUtil;
 		
 		
 		// help 삭제 deleteHelpAction.jsp 
-		public int deleteHelp(Help help) throws Exception{
+		public int deleteHelp(Help help) {
 			int resultRow = 0;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -161,7 +164,7 @@ import util.DBUtil;
 		}
 		
 		// help 추가(입력) insertHelpAction.jsp / member_id는 세션데이터
-		public int insertHelp(Help help) throws Exception{
+		public int insertHelp(Help help) {
 			int resultRow = 0;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -191,7 +194,7 @@ import util.DBUtil;
 		}
 		
 		// help 수정 updateHelpForm.jsp / HELP : helpNo 
-		public ArrayList<HashMap<String, Object>> selectHelpNo(int helpNo) throws Exception {
+		public ArrayList<HashMap<String, Object>> selectHelpNo(int helpNo) {
 			ArrayList<HashMap<String, Object>> list = null;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -233,7 +236,7 @@ import util.DBUtil;
 		
 		
 		// help목록 helpList.jsp  / HELP : member_id는 세션데이터
-		public ArrayList<HashMap<String, Object>> selectHelpList(String memberId) throws Exception {
+		public ArrayList<HashMap<String, Object>> selectHelpList(String memberId) {
 			ArrayList<HashMap<String, Object>> list = null;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -286,7 +289,7 @@ import util.DBUtil;
 	}
 	
 	// help 라스트페이지 
-		public int count() throws Exception {
+		public int count() {
 			int cnt = 0; // 전체 행의 수
 			DBUtil dbUtil = null;
 			Connection conn = null;

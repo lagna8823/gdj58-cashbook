@@ -15,16 +15,12 @@
 	int beginRow = (1-currentPage) * rowPerPage;
 	
 	
-	
+	String memberId = loginMember.getMemberId();
 	HelpDao helpDao = new HelpDao();
 	ArrayList<HashMap<String,Object>> list = helpDao.selectHelpList(beginRow, rowPerPage);
 	
-	String memberId = loginMember.getMemberId();
-	int helpNo= 0;
-	HelpDao helpDao2 = new HelpDao();
-	ArrayList<HashMap<String, Object>> list2 = helpDao.selectHelpList(memberId);
-	
-	int cnt = CommentDao.count();
+	CommentDao commentDao = new CommentDao(); // CommentDao 메서드를 이용해 commentDao 새로 만듬
+	int cnt = commentDao.count();
 	//CommentDao.count() 호출하여 결과값으로 cnt값을 받음.
 	
 	//마지막 페이지 
@@ -42,6 +38,7 @@
 	<!-- 고객센터 문의 목록 -->
 	<table>
 		<tr>
+			<th>문의번호</th>
 			<th>문의내용</th>
 			<th>회원ID</th>
 			<th>문의날짜</th>
@@ -53,7 +50,7 @@
 			for(HashMap<String, Object> m : list) {
 		%>
 				<tr>
-					<input type="hidden" name="commentNo" value="<%=m.get("commentNo")%>">
+					<td><%=m.get("helpNo")%></td>
 					<td><%=m.get("helpMemo")%></td>
 					<td><%=m.get("memberId")%></td>
 					<td><%=m.get("helpCreatedate")%></td>
@@ -64,7 +61,9 @@
 							<span> 답변대기</span>
 						<%
 							} else {
-								m.get("commentMemo");
+						%>
+							<%=m.get("commentMemo")%>
+						<%		
 							}
 						%>
 					</td>
@@ -75,7 +74,9 @@
 							<span>날짜미정</span>
 						<%
 							} else {
-								m.get("commentCreatedate");
+						%>
+							<%=m.get("commentCreatedate") %>
+						<%		
 							}
 						%>
 					</td>
@@ -89,8 +90,8 @@
 						<%		
 							} else {
 						%>
-								<a href="<%=request.getContextPath()%>/admin/insertCommentForm.jsp?commentNo=<%=m.get("commentNo")%>">답변수정</a>
-								<a href="<%=request.getContextPath()%>/admin/deleteComment.jsp?commentNo=<%=m.get("commentNo")%>">답변삭제</a>
+								<a href="<%=request.getContextPath()%>/admin/updateCommentForm.jsp?commentNo=<%=m.get("commentNo")%>">답변수정</a>
+								<a href="<%=request.getContextPath()%>/admin/deleteCommentAction.jsp?commentNo=<%=m.get("commentNo")%>">답변삭제</a>
 						<%		
 							}
 						%>

@@ -18,8 +18,8 @@
 	int rowPerPage = 10;
 	int beginRow = (currentPage-1)*rowPerPage;
 	
-	// Model 호출 공지사항 
-	NoticeDao noticeDao = new NoticeDao(); // NoticeDao 메서드를 이용해 noticeDao 새로 만듬
+	// Model 호출 공지사항 NoticeDao noticeDao = new NoticeDao(); // NoticeDao 메서드를 이용해 noticeDao 새로 만듬
+	NoticeDao noticeDao = new NoticeDao();
 	ArrayList<Notice> list = noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
 	// noticeDao클래스의 selectNoticeListByPage로 (beginRow, rowPerPage)보내 결과값 ArrayList<Notice> list을 받아옴
 	
