@@ -90,7 +90,7 @@
     text-algin: right;
 	 }   
 	 
-	th {
+	.th {
 	padding: 10px;
 	width: 150px;
     height:30px;
@@ -123,8 +123,8 @@
 	   background-attachment: fixed;
 	   background-size: cover; /* 28% 380px; */
 	} 
-	h1{
-		color : white;
+	.h1{
+		color : black;
 	}
 	<a>{
 	color : black;
@@ -139,30 +139,25 @@
 			<jsp:include page="/inc/menu.jsp"></jsp:include>
 	    </div>
 	    
-	    <!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-		<br><p class="h1" align="center"><%=loginMember.getMemberName()%>님의 달력</p> 	
-	    
 	    <!-- 회원폼  -->
-		<div id="fh5co-header" role="banner" class="container" align="right" >
 			<nav role="navigation" align="right">
-				<ul align="right">
-					<li class="cta"><a href="<%=request.getContextPath()%>/logout.jsp">Logout</a></li>
-					<li class="cta"><a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a></li>
-					<li class="cta"><a href="<%=request.getContextPath()%>/updateMemberForm.jsp">information</a></li>
-					<li class="cta"><a href="<%=request.getContextPath()%>/deleteMemberForm.jsp">withdrawal</a></li>
-				</ul>
+				<a href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
+				<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a>
+				<a href="<%=request.getContextPath()%>/updateMemberForm.jsp">information</a>
+				<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp">withdrawal</a>
 			</nav>
-		</div>
-		<div  align="left">
+		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
+		<br><p style="color:black;" align="center"><%=loginMember.getMemberName()%>님의 달력</p> 
+		<div  align="center">
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
 		<%=year%>년 <%=month+1%> 월
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
 		
 		</div>
 		<div class="container">
-	      <!-- 달력 -->
-	      <table class="table">
-	         <tr>
+	      <!-- 달력 --> 
+	      <table class="table table-hover">
+	         <tr style="background-color: #DADADA;">
 	            <th>Sun</th><th>Mon</th><th>Tue</th><th>Wen</th><th>Thr</th><th>Fri</th><th>Sat</th>
 	         </tr>
 	         <tr>

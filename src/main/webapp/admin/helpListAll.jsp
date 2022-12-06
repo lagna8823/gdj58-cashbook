@@ -35,7 +35,9 @@
 	<title>helpListAll.jsp</title>
 	</head>
 	<body>
-		<!-- header include -->
+		<div>
+			<jsp:include page="/inc/menu.jsp"></jsp:include>
+	    </div>
 		
 		<!-- 고객센터 문의 목록 -->
 		<table>
