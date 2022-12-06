@@ -15,6 +15,7 @@
 	int helpNo = Integer.parseInt(request.getParameter("helpNo"));
 	String memberId = request.getParameter("memberId");
 	String commentMemo = request.getParameter("commentMemo");
+	
 	System.out.println(Integer.parseInt(request.getParameter("helpNo")));
 	System.out.println(request.getParameter("memberId"));
 	System.out.println(request.getParameter("commentMemo"));

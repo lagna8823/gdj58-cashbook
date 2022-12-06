@@ -11,13 +11,9 @@
 	
 	String memberId = loginMember.getMemberId();
 	int commentNo = Integer.parseInt(request.getParameter("commentNo"));
-	
-	Comment comment = new Comment();
-	comment.setCommentNo(commentNo);
-	comment.setMemberId(memberId);
-	
-	HelpDao helpDao = new HelpDao();
-	ArrayList<HashMap<String,Object>> list = helpDao.selectHelpList();
+	System.out.println( memberId);
+	CommentDao commentDao = new CommentDao();
+	ArrayList<Comment> list = commentDao.selectCommentList(commentNo);
 	
 %>
 <!DOCTYPE html>
@@ -42,29 +38,27 @@
 		<input type="hidden" name="commentNo" value="<%=commentNo%>">
 		<table border="1">
 			<%
-				for(HashMap<String, Object> h : list ){
+				for(Comment c : list ){
 			%>
 				<tr>
 					<th>관리자ID</th>
-					<td><input type="text" name="memberId" value="<%=h.get("memberId")%>" readonly="readonly"></td>
+					<td><%=c.getMemberId()%></td>
 					
 				</tr>
 				<tr>
 					<th>작성일</th>
-					<td><%=h.get("createdate")%></td>
+					<td><%=c.getCreatedate()%></td>
 				</tr>
 				<tr>
 					<th>답변내용</th>
-					<td><textarea rows="3" cols="50" name="noticeMemo" value="<%=h.get("helpMemo")%>"></textarea></td>
+					<td><textarea rows="6" cols="80" name="commentMemo"><%=c.getCommentMemo()%></textarea></td>
 				</tr>
 			<%		
 				}
 			%>
-				<th>답변내용</th>
-				<td><textarea rows="6" cols="80" name="commentMemo"></textarea></td>
-				</tr>
+		
 		</table>
-		<button type="submit">답변 작성</button>
+		<button type="submit">답변 수정</button>
 		</form>
 		</div>
 	</body>

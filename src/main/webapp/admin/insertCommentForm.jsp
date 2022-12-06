@@ -10,7 +10,7 @@
 	}
 	
 	int helpNo = Integer.parseInt(request.getParameter("helpNo"));
-	
+	String memberId = loginMember.getMemberId();
 	HelpDao helpDao = new HelpDao();
 	ArrayList<HashMap<String, Object>> list = helpDao.selectHelpNoComment(helpNo);
 	
@@ -35,13 +35,14 @@
 		<h1>답변 작성 페이지</h1>
 		<form action="<%=request.getContextPath()%>/admin/insertCommentAction.jsp" method="post">
 		<input type="hidden" name="helpNo" value="<%=helpNo%>">
+		<input type="hidden" name="memberId" value="<%=memberId%>">
 		<table border="1">
 			<%
 				for(HashMap<String, Object> h : list ){
 			%>
 				<tr>
 					<th>회원ID</th>
-					<td><input type="text" name="memberId" value="<%=h.get("memberId")%>" readonly="readonly"></td>
+					<td><%=h.get("memberId")%></td>
 					
 				</tr>
 				<tr>

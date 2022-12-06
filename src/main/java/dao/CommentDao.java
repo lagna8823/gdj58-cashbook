@@ -13,42 +13,70 @@ import vo.Help;
 
 public class CommentDao {
 	
-	//수정
-	public Comment updateComment(int commentNo) {
-		return null;
-	}
+	// Comment 수정 updateCommentAction.jsp / Comment : commentNo 
 	public int updateComment(Comment comment) {
-		return 0;
+		int resultRow = 0;
+		DBUtil dbUtil = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		// 쿼리문 
+		String sql = "UPDATE comment SET comment_memo=?, member_id=?, updatedate=now() WHERE comment_no=?";
+		
+		try {
+			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
+			conn = dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
+			// 쿼리 값 세팅, 결과 값 저장
+			stmt.setString(1, comment.getCommentMemo());
+			stmt.setString(2, comment.getMemberId());
+			stmt.setInt(3, comment.getCommentNo());
+			
+			System.out.println("테스트2"+ comment.getMemberId());
+			System.out.println("테스트2"+ comment.getCommentNo());
+			System.out.println("테스트2"+ comment.getCommentMemo());
+			resultRow = stmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return resultRow;
+		}
 	}
 	
+
+	
 	// Comment 수정 updateCommentForm.jsp / Comment : commentNo 
-	public ArrayList<HashMap<String, Object>> selectHelpNo(int helpNo) {
-		ArrayList<HashMap<String, Object>> list = null;
+	public ArrayList<Comment> selectCommentList(int commentNo) {
+		ArrayList<Comment> list = null;
 		DBUtil dbUtil = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
 		// 쿼리문 
-		String sql = "SELECT help_no helpNo, help_memo helpMemo, createdate createdate, member_id memberId"
-				+" FROM help "
-				+" WHERE help_no = ?";
+		String sql = "SELECT comment_memo commentMemo, createdate createdate, member_id memberId"
+				+" FROM comment "
+				+" WHERE comment_no = ?";
 		
 		try {
 			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
 			conn = dbUtil.getConnection(); 
 			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
 			// 쿼리 값 세팅, 실행 값 저장
-			stmt.setInt(1, helpNo);
+			stmt.setInt(1, commentNo);
 			rs = stmt.executeQuery();
-			list = new ArrayList<HashMap<String,Object>>();
+			list = new ArrayList<Comment>();
 			while(rs.next()) {
-				HashMap<String, Object> h = new HashMap<String, Object>();
-				h.put("helpNo", rs.getInt("helpNo"));
-				h.put("helpMemo", rs.getString("helpMemo"));
-				h.put("createdate", rs.getString("createdate"));
-				h.put("member_id", rs.getString("memberId"));
-				list.add(h);
+				Comment c = new Comment();
+				c.setCommentMemo(rs.getString("commentMemo"));
+				c.setCreatedate(rs.getString("createdate"));
+				c.setMemberId(rs.getString("memberId"));
+				list.add(c);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -68,7 +96,7 @@ public class CommentDao {
 		DBUtil dbUtil = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		
+		// System.out.print(comment.getMemberId()+"멤버아이디");
 		// 쿼리문
 		String sql = "INSERT INTO comment(help_no, comment_memo , member_id, updatedate,  createdate) VALUES(?, ?, ?, NOW(), NOW())";
 		
