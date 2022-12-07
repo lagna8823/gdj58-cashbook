@@ -28,7 +28,7 @@ public class CashDao {
 	 */
 	
 	// 가계부 리스트 cashDateList.jsp(검색)
-	public ArrayList<HashMap<String, Object>> selectCashListByDay(String memberId, int year, int month, int date) throws Exception {
+	public ArrayList<HashMap<String, Object>> selectCashListByDay(String memberId, int year, int month, int date){
 		ArrayList<HashMap<String, Object>> list = null;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -52,6 +52,7 @@ public class CashDao {
 				+ " AND DAY(c.cash_date) = ?"
 				+ "	ORDER BY c.cash_date ASC, ct.category_kind ASC"; 
 		try {
+			
 			dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
 			conn = dbUtil.getConnection(); 
 			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
@@ -61,6 +62,7 @@ public class CashDao {
 			stmt.setInt(3, month);
 			stmt.setInt(4, date);
 			rs = stmt.executeQuery();
+			list = new ArrayList<HashMap<String,Object>>();
 			while(rs.next()) {
 				HashMap<String, Object> m = new HashMap<String, Object>();
 				m.put("cashNo", rs.getInt("cashNo"));
@@ -85,7 +87,7 @@ public class CashDao {
 	}
 	
 	// 가계부상세페이지 cashDateList.jsp (cash 추가,삽입)
-	public int insert(Cash insertCash) throws Exception {
+	public int insert(Cash insertCash) {
 		int resultRow = 0;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -118,7 +120,7 @@ public class CashDao {
 	}
 	
 		// 호출 : cashList.jsp
-		public ArrayList<HashMap<String, Object>> selectCashListByMonth(String memberId, int year, int month) throws Exception {
+		public ArrayList<HashMap<String, Object>> selectCashListByMonth(String memberId, int year, int month) {
 			ArrayList<HashMap<String, Object>> list = null;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -170,15 +172,15 @@ public class CashDao {
 		}
 		
 		
-		// 가계부 수정 updateCahAction.jsp (cash 내역수정)
-		public int update(Cash updateCash) throws Exception {
+		// 가계부 수정 updateCashAction.jsp (cash 내역수정)
+		public int update(Cash updateCash) {
 			int resultRow = 0;
 			DBUtil dbUtil = null;
 			Connection conn = null;
 			PreparedStatement stmt = null;
 			
 			// 쿼리문
-			String sql = "UPDATE cash SET category_no=?, cash_date=?, cash_price=?, cash_memo=? WHERE cash_no=? ";
+			String sql = "UPDATE cash SET category_no=?, cash_date=?, cash_price=?, cash_memo=?, updatedate=now() WHERE cash_no=? ";
 			
 			try {
 				dbUtil = new DBUtil(); // 드라이버 로딩 및 연결

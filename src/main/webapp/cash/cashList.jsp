@@ -82,31 +82,35 @@
 	<!--스타일 -->
 	<style>
 	
-	/* .table {
-    width: 500px;
-    height:600px;
+	.table {
+    width: 300px;
+    height: 400px;
     table-layout: fixed;
-    margin:auto;
-    text-algin: center;
-	 }    */
+    algin: left;
+	 }   
 	 
 	.th {
 	padding: 10px;
-	width: 150px;
-    height:30px;
+	width: 90px;
+    height:15px;
 	border: 1px solid #666666;
 	white-space: nowrap;
 	color : black;
+	th-layout: fixed;
 	text-align : center;
 	
 	}
 	
 	td {
-	width: 150px;
-    height:200px;
+	width: 75px;
+    height:150px;
 	padding: 10px;
 	border: 1px solid #666666;
-	white-space: nowrap;
+	td-layout: fixed;
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 	}
 	
 	
@@ -123,10 +127,32 @@
 	   background-attachment: fixed;
 	   background-size: cover; /* 28% 380px; */
 	} 
+	
+	.word {
+        margin:0.2px;
+        /* outline: 1px solid black; */
+        display: block;
+        color: black;
+        width: 150px;
+        font-size: 15px;
+        font-weight: bolder !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        line-height: 1.2;
+        height: 8.4em;
+        text-align: left;
+        word-wrap: break-word;
+        display: -webkit-box;
+		-webkit-line-clamp:  7;
+        -webkit-box-orient: vertical;
+    }
+    
 	.h1{
 		color : black;
 	}
-	<a>{
+	
+	.<a>{
 	color : black;
 	}
 	</style>
@@ -141,23 +167,23 @@
 	    
 	    <!-- 회원폼  -->
 		<nav role="navigation" align="right">
-			<a style="width:70%; height: 100px; border: 1px solid #DADADA;; border-radius: 2em;" href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
-			<a style="width:70%; height: 100px; border: 1px solid #DADADA; border-radius: 2em;" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a>
-			<a style="width:70%; height: 100px; border: 1px solid #DADADA; border-radius: 2em;" href="<%=request.getContextPath()%>/updateMemberForm.jsp">information</a>
-			<a style="width:70%; height: 100px; border: 1px solid #DADADA; border-radius: 2em;" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">withdrawal</a>
+			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2);" href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
+			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2);" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a>
+			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2);" href="<%=request.getContextPath()%>/updateMemberForm.jsp">information</a>
+			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2);" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">withdrawal</a>
 		</nav>
 		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-		<h1 style = "background-color: rgba(242, 242, 242, 0.5);"  align="center" ><%=loginMember.getMemberName()%>님의 달력</h1> 
+		<h1 style = "background-color: rgba(242, 242, 242, 0.2);"  align="center" ><%=loginMember.getMemberName()%>님의 달력</h1> 
 		<div align="center">
 		<a style= "color:black;"href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
 		<span style= "color:black;"><%=year%>년 <%=month+1%> 월</span>
 		<a style= "color:black;" href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
 		
 		</div>
-		<div class="container">
+		<div class="container" algin="center">
 	      <!-- 달력 --> 
 	      <table class="table"> <!--border="1" width="90%"  -->
-	         <tr style= "background-color: rgba(242, 242, 242, 0.5);">
+	         <tr style= "background-color: rgba(242, 242, 242, 0.3);">
 	            <th  class="th" style="color:red;">Sun</th>
 	            <th  class="th" style="color:black;">Mon</th>
 	            <th  class="th" style="color:black;">Tue</th>
@@ -177,26 +203,12 @@
 	            %>
 	                        <div>
 	                           <a href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
-	                             <%
-	                             	if(i%7 == 0){
-								%>
-									<span class="text-primary"><%=date%></span>
-								<%
-										} else if(i%7 == 1){
-								%>
-									<span class="text-danger"><%=date%></span>
-								<%
-										} else {
-								%>
-									<span class="text-warning"><%=date%>
-								<%
-										}
-	                            %> 
+	                             <%=date%>
+								
 	                             
 	                           </a>
-         </div>
-	                        
-	                        <div>
+         					</div>
+	                        <div class="word">
 	                           <% /* 위 세팅된 arrayList<해쉬맵> list를 CashDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
 	                           		ex)  for(HashMap<String, Object> m : list) {
 	                           				String cashDate = (String)(m.get("cashDate")); 

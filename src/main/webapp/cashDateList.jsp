@@ -16,6 +16,8 @@
 	int year = Integer.parseInt(request.getParameter("year"));
 	int month = Integer.parseInt(request.getParameter("month"));
 	int date = Integer.parseInt(request.getParameter("date"));
+	String memberId = loginMember.getMemberId();
+	
 	
 	
 	// Model 호출 : 카테고리 목록
@@ -29,9 +31,9 @@
 	// Model 호출 : 일별 cash 목록
 	CashDao cashDao = new CashDao(); 
 	ArrayList<HashMap<String, Object>> list 
-		= cashDao.selectCashListByDay(loginMember.getMemberId(), year, month, date);
+		= cashDao.selectCashListByDay(memberId, year, month, date);
 	/*
-	arrayList 형태로 저장되있는 cashDao.select~~ByDay 메서드로 (loginMember.getMemberId(), year, month, date)을 보내고,
+	arrayList 형태로 저장되있는 cashDao.select~~ByDay 메서드로 (memberId, year, month, date)을 보내고,
 	결과값 arrayList<해쉬맵> 형태로 list값에 세팅.
 	*/
 
