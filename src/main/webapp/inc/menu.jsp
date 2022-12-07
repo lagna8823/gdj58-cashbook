@@ -35,7 +35,7 @@
    <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.carousel.min.css">
    <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.theme.default.min.css">
    <!-- Theme style  -->
-   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/style.css">
+   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/style2.css">
 
    <!-- Modernizr JS -->
    <script src="<%=request.getContextPath()%>/Resources/js/modernizr-2.6.2.min.js"></script>

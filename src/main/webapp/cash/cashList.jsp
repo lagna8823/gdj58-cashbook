@@ -82,13 +82,13 @@
 	<!--스타일 -->
 	<style>
 	
-	.table {
+	/* .table {
     width: 500px;
     height:600px;
     table-layout: fixed;
     margin:auto;
-    text-algin: right;
-	 }   
+    text-algin: center;
+	 }    */
 	 
 	.th {
 	padding: 10px;
@@ -140,25 +140,31 @@
 	    </div>
 	    
 	    <!-- 회원폼  -->
-			<nav role="navigation" align="right">
-				<a href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
-				<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a>
-				<a href="<%=request.getContextPath()%>/updateMemberForm.jsp">information</a>
-				<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp">withdrawal</a>
-			</nav>
+		<nav role="navigation" align="right">
+			<a style="width:70%; height: 100px; border: 1px solid #DADADA;; border-radius: 2em;" href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
+			<a style="width:70%; height: 100px; border: 1px solid #DADADA; border-radius: 2em;" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a>
+			<a style="width:70%; height: 100px; border: 1px solid #DADADA; border-radius: 2em;" href="<%=request.getContextPath()%>/updateMemberForm.jsp">information</a>
+			<a style="width:70%; height: 100px; border: 1px solid #DADADA; border-radius: 2em;" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">withdrawal</a>
+		</nav>
 		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-		<br><p style="color:black;" align="center"><%=loginMember.getMemberName()%>님의 달력</p> 
-		<div  align="center">
-		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
-		<%=year%>년 <%=month+1%> 월
-		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
+		<h1 style = "background-color: rgba(242, 242, 242, 0.5);"  align="center" ><%=loginMember.getMemberName()%>님의 달력</h1> 
+		<div align="center">
+		<a style= "color:black;"href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
+		<span style= "color:black;"><%=year%>년 <%=month+1%> 월</span>
+		<a style= "color:black;" href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
 		
 		</div>
 		<div class="container">
 	      <!-- 달력 --> 
-	      <table class="table table-hover">
-	         <tr style="background-color: #DADADA;">
-	            <th>Sun</th><th>Mon</th><th>Tue</th><th>Wen</th><th>Thr</th><th>Fri</th><th>Sat</th>
+	      <table class="table"> <!--border="1" width="90%"  -->
+	         <tr style= "background-color: rgba(242, 242, 242, 0.5);">
+	            <th  class="th" style="color:red;">Sun</th>
+	            <th  class="th" style="color:black;">Mon</th>
+	            <th  class="th" style="color:black;">Tue</th>
+	            <th  class="th" style="color:black;">Wen</th>
+	            <th  class="th" style="color:black;">Thr</th>
+	            <th  class="th" style="color:black;">Fri</th>
+	            <th  class="th" style="color:black;">Sat</th>
 	         </tr>
 	         <tr>
 	            <%
@@ -171,9 +177,24 @@
 	            %>
 	                        <div>
 	                           <a href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
-	                              <%=date%>
+	                             <%
+	                             	if(i%7 == 0){
+								%>
+									<span class="text-primary"><%=date%></span>
+								<%
+										} else if(i%7 == 1){
+								%>
+									<span class="text-danger"><%=date%></span>
+								<%
+										} else {
+								%>
+									<span class="text-warning"><%=date%>
+								<%
+										}
+	                            %> 
+	                             
 	                           </a>
-	                        </div>
+         </div>
 	                        
 	                        <div>
 	                           <% /* 위 세팅된 arrayList<해쉬맵> list를 CashDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 

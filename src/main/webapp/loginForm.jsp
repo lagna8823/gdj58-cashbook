@@ -81,7 +81,7 @@
    <link rel="stylesheet" href="./Resources/css/owl.carousel.min.css">
    <link rel="stylesheet" href="./Resources/css/owl.theme.default.min.css">
    <!-- Theme style  -->
-   <link rel="stylesheet" href="./Resources/css/style.css">
+   <link rel="stylesheet" href="./Resources/css/style2.css">
 
    <!-- Modernizr JS -->
    <script src="./Resources/js/modernizr-2.6.2.min.js"></script>
