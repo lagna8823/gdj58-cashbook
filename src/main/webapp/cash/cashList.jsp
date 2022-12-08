@@ -190,23 +190,40 @@
 	            <th  class="th" style="color:black;">Wen</th>
 	            <th  class="th" style="color:black;">Thr</th>
 	            <th  class="th" style="color:black;">Fri</th>
-	            <th  class="th" style="color:black;">Sat</th>
+	            <th  class="th" style="color:blue;">Sat</th>
 	         </tr>
 	         <tr>
 	            <%
 	               for(int i=1; i<=totalTd; i++) {
 	            %>
 	                  <td>
-	            <%
+	            	<%
 	                     int date = i-beginBlank;
 	                     if(date > 0 && date <= lastDate) {
-	            %>
+	           		%>
 	                        <div>
-	                           <a href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
-	                             <%=date%>
-								
-	                             
-	                           </a>
+						<%
+                       		   if(i%7 == 0){
+						%>
+									<a href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
+									<span class="text-primary"><%=date%></span> 
+									</a>
+   						<%
+	   							} else if(i%7 == 1){
+						%>
+							<a href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
+									<span class="text-danger"><%=date%></span> 
+									</a>
+						<%
+   							} else {
+ 						%>
+ 							<a href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
+									<span class="text-warning"><%=date%></span> 
+									</a>
+  						<%
+   							}
+           				%>
+	                           
          					</div>
 	                        <div class="word">
 	                           <% /* 위 세팅된 arrayList<해쉬맵> list를 CashDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
