@@ -14,7 +14,7 @@ import vo.Notice;
 public class MemberDao {
 	
 	// 관리자 : 멤버레벨수정  updatememberLvForm.jsp 
-	public ArrayList<HashMap<String, Object>> selectMemberListByLv(Member updateMember) throws Exception {
+	public ArrayList<HashMap<String, Object>> selectMemberListByLv(Member updateMember)  {
 		ArrayList<HashMap<String, Object>> updateMemberList = null;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -54,7 +54,7 @@ public class MemberDao {
 		
 		
 	// 관리자 : 멤버레벨수정 updateMemberLvAction.jsp 
-	public int updateMemberlv(Member updateMemberlv) throws Exception {
+	public int updateMemberlv(Member updateMemberlv)  {
 		int resultRow = 0;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -85,7 +85,7 @@ public class MemberDao {
 		
 
 	// 멤버리스트 : 라스트페이지 memberList.jsp  
-	public int count() throws Exception {
+	public int count()  {
 		int cnt = 0; // 전체 행의 수
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -101,6 +101,9 @@ public class MemberDao {
 			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
 			// 쿼리 값 세팅, 결과 값 저장.
 			rs = stmt.executeQuery();
+			if(rs.next()) {
+			    cnt = rs.getInt("cnt");
+			    }
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -109,15 +112,12 @@ public class MemberDao {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			if(rs.next()) {
-			    cnt = rs.getInt("cnt");
-			    }
 			    return cnt;
 		}
 	}
 		
 	// 관리자 : 멤버 리스트 memberList.jsp 
-	public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) throws Exception{ 
+	public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) { 
 		ArrayList<Member> list = null;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -160,7 +160,7 @@ public class MemberDao {
 		
 		
 	// 관리자 : 멤버 강퇴  deleteMemberLvAction.jsp 
-	public int deleteMember(Member deleteMember) throws Exception {
+	public int deleteMember(Member deleteMember)  {
 		int resultRow=0;
 		DBUtil dbUtil = null; // 드라이버 로딩 및 연결
 		Connection conn = null;
@@ -197,7 +197,7 @@ public class MemberDao {
 	
 	
 	// 로그인 loginAction.jsp 
-	public Member login(Member paramMember) throws Exception {
+	public Member login(Member paramMember)  {
 		Member resultMember = null;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -234,7 +234,7 @@ public class MemberDao {
 	}
 	
 	// 회원가입 insertMemberaction.jsp 
-	public int insert(Member checkMember) throws Exception {
+	public int insert(Member checkMember)  {
 		int resultRow = 0;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -279,7 +279,7 @@ public class MemberDao {
 	// 회원 정보 및 비밀번호 수정
 	
 		// 회원정보수정 updateForm.jsp 
-		public ArrayList<HashMap<String, Object>> selectMemberListById(String memberId) throws Exception {
+		public ArrayList<HashMap<String, Object>> selectMemberListById(String memberId)  {
 			ArrayList<HashMap<String, Object>> updateMemberList = null;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -321,7 +321,7 @@ public class MemberDao {
 
 		
 		// 회원정보 수정 updateMemberAction.jsp
-		public int update(Member updateMember) throws Exception {
+		public int update(Member updateMember)  {
 			int resultRow=0;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -354,7 +354,7 @@ public class MemberDao {
 		
 		
 		// 회원비밀번호 수정  updateMemberPwAction.jsp 
-		public int updatePw(Member updatePwMember) throws Exception {
+		public int updatePw(Member updatePwMember)  {
 			int resultRow=0;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -388,7 +388,7 @@ public class MemberDao {
 		
 		
 		// 회원탈퇴 deleteMemberAction.jsp
-		public int delete(Member deleteMember) throws Exception {
+		public int delete(Member deleteMember)  {
 			int resultRow=0;
 			DBUtil dbUtil = null;
 			Connection conn = null;

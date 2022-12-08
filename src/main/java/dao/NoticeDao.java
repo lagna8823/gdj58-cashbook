@@ -12,7 +12,7 @@ import vo.Notice;
 public class NoticeDao {
 	
 	// 관리자 : 공지수정폼 admin -> updateNoticeForm.jsp
-	public ArrayList<Notice> selectNoticeListByMemo(int noticeNo) throws Exception {
+	public ArrayList<Notice> selectNoticeListByMemo(int noticeNo)  {
 		ArrayList<Notice> list = null;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -29,6 +29,7 @@ public class NoticeDao {
 			conn = dbUtil.getConnection(); 
 			stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
 			// 쿼리 값 세팅, 실행 값 저장
+			stmt.setInt(1, noticeNo);
 			rs = stmt.executeQuery();
 			list = new ArrayList<Notice>();
 			while(rs.next()) {
@@ -51,7 +52,7 @@ public class NoticeDao {
 	}
 	
 	// 관리자: 공지수정 admin ->updateNoticeAction.jsp
-	public int updateNotice(Notice updateNotice) throws Exception{
+	public int updateNotice(Notice updateNotice) {
 		int resultRow = 0;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -83,7 +84,7 @@ public class NoticeDao {
 	
 	
 	// 관리자 공지삭제 admin ->deleteNotice.jsp
-	public int deleteNotice(int noticeNo) throws Exception {
+	public int deleteNotice(int noticeNo)  {
 		int resultRow = 0;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -113,7 +114,7 @@ public class NoticeDao {
 	}
 			
 	// 관리자 공지 삽입 admin ->insertNoticeAction.jsp
-	public int insertNotice(Notice notice) throws Exception {
+	public int insertNotice(Notice notice)  {
 		int resultRow = 0;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -150,7 +151,7 @@ public class NoticeDao {
 	
 	
 	// 관리자 공지목록 admin ->noticeList.jsp <select> + 일반멤버 loginForm.jsp에도 참조
-	public ArrayList<Notice> selectNoticeListByPage(int beginRow, int rowPerPage) throws Exception {
+	public ArrayList<Notice> selectNoticeListByPage(int beginRow, int rowPerPage)  {
 		ArrayList<Notice> list = null;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -191,7 +192,7 @@ public class NoticeDao {
 	}
 	
 	// 공지사항 cnt 라스트페이지 
-		public int count() throws Exception {
+		public int count()  {
 			int cnt = 0; // 전체 행의 수
 			DBUtil dbUtil = null;
 			Connection conn = null;

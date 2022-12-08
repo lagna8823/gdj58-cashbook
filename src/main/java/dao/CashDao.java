@@ -206,7 +206,7 @@ public class CashDao {
 		}
 	
 	// 가계부 삭제 deleteCahAction.jsp (cash 내역삭제)
-	public int delete(Cash deteteCash) throws Exception {
+	public int delete(Cash deteteCash) {
 		int resultRow = 0;
 		DBUtil dbUtil = null;
 		Connection conn = null;

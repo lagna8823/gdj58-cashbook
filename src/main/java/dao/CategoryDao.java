@@ -10,7 +10,7 @@ import vo.*;
 	public class CategoryDao {
 		// 수정 : 수정폼(select)과 수정액션(update)으로 구성 
 		// 관리자: 카테고리 수정 admin -> updateCategoryAction.jsp
-		public int updateCategory(Category updateCategory) throws Exception {
+		public int updateCategory(Category updateCategory) {
 			int resultRow = 0;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -44,7 +44,7 @@ import vo.*;
 		
 		
 		// 관리자: 카테고리 수정폼 admin -> updateCategoryForm.jsp(검색)
-		public Category selectCategoryList(int categoryNo) throws Exception {
+		public Category selectCategoryList(int categoryNo)  {
 			Category categoryList = null;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -81,7 +81,7 @@ import vo.*;
 		}
 			
 		// 관리자: 카테고리 삭제 admin -> deleteCategory.jsp
-		public int deleteCategory(int categoryNo) throws Exception {
+		public int deleteCategory(int categoryNo)  {
 			int resultRow = 0;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -112,7 +112,7 @@ import vo.*;
 	
 
 		// 관리자: 카테고리 삽입 admin -> insertCategoryAction.jsp
-		public int insertCategory(Category category) throws Exception{
+		public int insertCategory(Category category) {
 			int resultRow = 0;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -146,7 +146,7 @@ import vo.*;
 		}
 		
 		// 관리자: 카테고리목록 admin -> 카테고리관리 ->카테고리 목록
-		public ArrayList<Category> selectCategoryListByAdmin(int beginRow, int rowPerPage) throws Exception {
+		public ArrayList<Category> selectCategoryListByAdmin(int beginRow, int rowPerPage)  {
 			ArrayList<Category> list = null; //참조타입들은 null로 받고나서 받는게 좋다.
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -188,7 +188,7 @@ import vo.*;
 		}
 			
 		// cash 입력시 <select> 목록 출력
-		public ArrayList<Category> selectCategoryList() throws Exception {
+		public ArrayList<Category> selectCategoryList()  {
 			ArrayList<Category> categoryList = null;
 			DBUtil dbUtil = null;
 			Connection conn = null;
@@ -232,7 +232,7 @@ import vo.*;
 		}
 		
 		// 카테고리 cnt 라스트페이지 
-		public int count() throws Exception {
+		public int count()  {
 			int cnt = 0; // 전체 행의 수
 			DBUtil dbUtil = null;
 			Connection conn = null;

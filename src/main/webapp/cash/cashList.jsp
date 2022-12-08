@@ -147,19 +147,9 @@
 		-webkit-line-clamp:  7;
         -webkit-box-orient: vertical;
     }
-    
-	.h1{
-		color : black;
-	}
-	
-	.<a>{
-	color : black;
-	}
+   
 	</style>
-		
-	
-	
-   </head>
+    </head>
 	<body class="background">
 		<div>
 			<jsp:include page="/inc/menu.jsp"></jsp:include>
@@ -167,11 +157,12 @@
 	    
 	    <!-- 회원폼  -->
 		<nav role="navigation" align="right">
-			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2);" href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
-			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2);" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a>
-			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2);" href="<%=request.getContextPath()%>/updateMemberForm.jsp">information</a>
-			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2);" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">withdrawal</a>
+			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2); color:yellow;" href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
+			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2); color:yellow;" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a>
+			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2); color:yellow;" href="<%=request.getContextPath()%>/updateMemberForm.jsp">information</a>
+			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2); color:yellow;" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">withdrawal</a>
 		</nav>
+		
 		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
 		<h1 style = "background-color: rgba(242, 242, 242, 0.2);"  align="center" ><%=loginMember.getMemberName()%>님의 달력</h1> 
 		<div align="center">
@@ -234,7 +225,19 @@
 	                                 String cashDate = (String)(m.get("cashDate"));
 	                                 if(Integer.parseInt(cashDate.substring(8)) == date) {
 	                           %>
-	                                    [<%=(String)(m.get("categoryKind"))%>]
+	                                    
+	                                    <%
+	                                    	if(m.get("categoryKind").equals("수입")){
+	                                    %>
+	                                    	💸
+	                                    <%		
+	                                    	} else {
+	                                    %>
+	                                    	&#128204;
+	                                    	
+	                                    <%
+	                                    	}
+	                                    %>
 	                                    <%=(String)(m.get("categoryName"))%>
 	                                    &nbsp;
 	                                    <%=(Long)(m.get("cashPrice"))%>원

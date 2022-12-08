@@ -45,67 +45,176 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>cashDateList</title>
+		
+		
+		<!-- 부트스트랩과의 약속! -->
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Latest compiled JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+		
+		<!--스타일 -->
+		<style>
+		
+		.table1 {
+	    
+	    height: 200px;
+	    table-layout: fixed;
+		 }  
+		 .table2 {
+	    width: 1000px;
+	    height: 600px;
+	    table-layout: fixed;
+		 }   
+		 
+		.th1 {
+		padding: 10px;
+		width: 90px;
+	    height:15px;
+		border: 1px solid #666666;
+		font-weight: bolder !important;
+		white-space: nowrap;
+		color : black;
+		th-layout: fixed;
+		text-align : center;
+		}
+		
+		.th2 {
+		padding: 10px;
+		width: 90px;
+	    height:15px;
+		border: 1px solid #666666;
+		font-weight: bolder !important;
+		white-space: nowrap;
+		color : black;
+		th2-layout: fixed;
+		text-align : center;
+		}
+		
+		.td2 {
+		width: 75px;
+	    height:15px;
+		padding: 10px;
+		border: 1px solid #666666;
+		td-layout: fixed;
+		overflow:hidden;
+		white-space : nowrap;
+		color : black;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		text-align : center;
+		}
+		
+		
+		font {
+		   font-size : 20pt;
+		   line-height : 30px;
+		   text-algin: center;
+		   color : black;
+		}
+		.background{
+		   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
+		   background-repeat: no-repeat;
+		   background-position: right;
+		   background-attachment: fixed;
+		   background-size: cover; /* 28% 380px; */
+		} 
+		
+		.word {
+	        margin:0.2px;
+	        /* outline: 1px solid black; */
+	        display: block;
+	        color: black;
+	        width: 150px;
+	        font-size: 15px;
+	        font-weight: bolder !important;
+	        overflow: hidden;
+	        text-overflow: ellipsis;
+	        white-space: normal;
+	        line-height: 1.2;
+	        height: 8.4em;
+	        text-align: left;
+	        word-wrap: break-word;
+	        display: -webkit-box;
+			-webkit-line-clamp:  7;
+	        -webkit-box-orient: vertical;
+	    }
+	    
+	    div.indent{ padding-left: 10em }
+	    
+		</style>
 	</head>
-	<body>
-	<div>
-	<jsp:include page="/inc/menu.jsp"></jsp:include>
-    </div>
-		<div align="center"><h1>상세내역</h1></div>
-		<div><a href="<%=request.getContextPath()%>/cash/cashList.jsp"> 돌아가기 </a></div>
-		<!-- cash 입력 폼 -->
+	<body class="background">
+		<!-- 메뉴 partial jsp 구성 -->
+		<div>
+			<jsp:include page="/inc/menu.jsp"></jsp:include>
+	    </div>
+	    <br> 
+    	<div><h1 style = "background-color: rgba(242, 242, 242, 0.2);"  align="center" >가계부 상세내역</h1></div>
+		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">이전</a>
+		<!-- cash(가계부) 입력 폼 -->
 		<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
 			<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
 			<input type="hidden" name="year" value="<%=year%>">
 			<input type="hidden" name="month" value="<%=month%>">
 			<input type="hidden" name="date" value="<%=date%>">
-			<table border="1">
-				<tr>
-					<td>날짜</td>
-					<td>
-						<input type="text" name="cashDate" value="<%=year%>-<%=month%>-<%=date%>" readonly="readonly">
-					</td>
-				</tr>
-				<tr>
-					<td>항목</td>
-					<td>
-						<select name = "categoryNo">
-						<%
-							for(Category c : categoryList) {
-						%>
-								<option  value="<%=c.getCategoryNo()%>">
-									<%=c.getCategoryKind()%>, <%=c.getCategoryName()%>
-								</option>
-						<%
-							}
-						%>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>금액</td>
-					<td>
-						<input tpye="number" name="cashPrice">
-					</td>
-				</tr>
-				<tr>
-					<td>메모</td>
-					<td>
-						<textarea rows="3" cols="50" name="cashMemo"></textarea>
-					</td>
-				</tr>
-			</table>
-			<button type="submit">입력</button>
+			
+			<div style="width:25%; float : left;">
+				<div class="indent">
+					<span style="font-size:1.4em;  color: black; background-color:rgba(242, 242, 242, 0.2); font-weight: bolder !important;"> < 가계부 입력 > </span>
+				</div><br>
+				<div>	
+				<table class="table1" style= "background-color: rgba(242, 242, 242, 0.3);">
+					<tr>
+						<th class="th1">날짜</th>
+						<td>
+							<input type="text" name="cashDate" value="<%=year%>-<%=month%>-<%=date%>" readonly="readonly">
+						</td>
+					</tr>
+					<tr>
+						<th class="th1">항목</th>
+						<td>
+							<select name = "categoryNo">
+							<%
+								for(Category c : categoryList) {
+							%>
+									<option  value="<%=c.getCategoryNo()%>">
+										<%=c.getCategoryKind()%>, <%=c.getCategoryName()%>
+									</option>
+							<%
+								}
+							%>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th class="th1">금액</th>
+						<td>
+							<input tpye="number" name="cashPrice">
+						</td>
+					</tr>
+					<tr>
+						<th class="th1">메모</th>
+						<td>
+							<textarea rows="3" cols="40" name="cashMemo"></textarea>
+						</td>
+					</tr>
+				</table>
+				</div>
+			<button type="submit">추가하기</button>
+			</div>
 		</form>
 		
-		<!-- cash 목록 출력 -->
-		<table border="1">
-			<tr>
-				<th>구분</th>
-				<th>항목</th>
-				<th>금액</th>
-				<th>메모</th>
-				<th>수정</th><!-- /cash/deleteCash.jsp?cashNo= -->
-				<th>삭제</th><!-- /cash/updateCashForm.jsp?cashNo= -->
+		<!-- cash(가계부) 목록 출력 -->
+		<div class="container" style="width:70%; float : right;">
+		<table class="table2">
+			<tr style= "background-color: rgba(242, 242, 242, 0.6);"> 
+				<th class="th2" style="width:10%;">구분</th>
+				<th class="th2" style="width:10%;">항목</th>
+				<th class="th2" style="width:20%;">금액</th>
+				<th class="th2" style="width:40%;">메모</th>
+				<th class="th2" style="width:10%;">수정</th><!-- /cash/deleteCash.jsp?cashNo= -->
+				<th class="th2" style="width:10%;">삭제</th><!-- /cash/updateCashForm.jsp?cashNo= -->
 			</tr>
 			<%
 				for(HashMap<String, Object> m : list) {
@@ -114,13 +223,26 @@
 						System.out.println(cashDate+"cashDate");
 						int cashNo = (Integer)m.get("cashNo");
 			%>
-					<tr>
-						<td><%=(String)m.get("categoryKind")%></td>
-						<td><%=(String)m.get("categoryName")%></td>
-						<td><%=(Long)m.get("cashPrice")%></td>
-						<td><%=(String)m.get("cashMemo")%></td>
-						<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">수정</a></td>
-						<td><a href="<%=request.getContextPath()%>/cash/deleteCashAction.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">삭제</a></td>
+					<tr style= "background-color: rgba(242, 242, 242, 1); height:20px;">
+						<td class="td2">
+							<%
+                             	if(m.get("categoryKind").equals("수입")){
+                             %>
+                             	<span class="text-primary"><%=(String)m.get("categoryKind")%></span>
+                             <%		
+                             	} else {
+                             %>
+                             	<span class="text-danger"><%=(String)m.get("categoryKind")%></span>
+                             	
+                             <%
+                             	}
+                             %>
+						</td>
+						<td class="td2"><%=(String)m.get("categoryName")%></td>
+						<td class="td2"><%=(Long)m.get("cashPrice")%></td>
+						<td class="td2"><%=(String)m.get("cashMemo")%></td>
+						<td class="td2"><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">수정</a></td>
+						<td class="td2"><a href="<%=request.getContextPath()%>/cash/deleteCashAction.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">삭제</a></td>
 					</tr>
 			<%		
 					}
@@ -128,6 +250,7 @@
 						
 			%>
 		</table>
+		</div>
 	</body>
 </html>
 

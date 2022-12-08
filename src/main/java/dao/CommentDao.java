@@ -91,7 +91,7 @@ public class CommentDao {
 	}
 		
 	// comment 추가(입력) insertCommentAction.jsp 
-	public int insertComment(Comment comment) throws Exception{
+	public int insertComment(Comment comment) {
 		int resultRow = 0;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -122,7 +122,7 @@ public class CommentDao {
 	}
 	
 	// comment 삭제 deleteCommentAction.jsp
-	public int deleteComment(Comment comment) throws Exception {
+	public int deleteComment(Comment comment)  {
 		int resultRow = 0;
 		DBUtil dbUtil = null;
 		Connection conn = null;
@@ -151,7 +151,7 @@ public class CommentDao {
 	}
 	
 	// 공지사항 cnt 라스트페이지 
-	public int count() throws Exception {
+	public int count()  {
 		int cnt = 0; // 전체 행의 수
 		DBUtil dbUtil = null;
 		Connection conn = null;
