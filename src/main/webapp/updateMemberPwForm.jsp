@@ -29,63 +29,127 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>updateMemberPwForm</title>
+	<meta charset="UTF-8">
+	<title>updateMemberPwForm</title>
+	
+	<!-- 부트스트랩과의 약속! -->
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!--스타일 -->
+	<style>
+	
+	
+		
+	.table {
+	width: 40%;
+    height: 80%;
+    table-layout: fixed;
+    margin : auto; 
+    vertical-align: middle
+	 }   
+	 
+	 .background{
+	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
+	   background-repeat: no-repeat;
+	   background-position: right;
+	   background-attachment: fixed;
+	   background-size: cover; 
+	} 
+	
+	.th {
+	padding: 10px;
+	width: 250px;
+    height:50px;
+	border: 1px solid #666666;
+	font-weight: bolder !important;
+	white-space: nowrap;
+	color : black;
+	th-layout: fixed;
+	text-align : center;
+	}
+	
+	.td {
+	width: 250px;
+	height:50px;
+	padding: 10px;
+	border: 1px solid #666666;
+	td-layout: fixed;
+	overflow:hidden;
+	white-space : nowrap;
+	color : black;
+	text-overflow: ellipsis;
+	text-align : center;
+	}
+	
+	p.indent{ padding-right: 9em }  
+	  
+	</style>
 	</head>
-	<body> 
-		<h1>회원정보 수정</h1>	
-		<!-- msg 파라메타값이 있으면 출력 -->
-		<%
-			if(request.getParameter("msg") != null){
-		%>
-			<div><%=request.getParameter("msg") %></div>
-		<%
-			}
-		%>
-		<!-- 폼작성 -->
-		<form action="<%=request.getContextPath()%>/updateMemberPwAction.jsp" method="post">
-			<% /* 위 세팅된 arrayList<해쉬맵> list를 MemberDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
-                           		ex)  for(HashMap<String, Object> m : list) {
-                           				String memberId = (String)(m.get("memberId")); 
-                           		}        (ps. m.get 앞에 String은 형변환을 해줌.)  */
-               for(HashMap<String, Object> m : updateMemberList) {
-            	   String memberId = (String)(m.get("memberId"));
-           %>
-			<input type="hidden" name="memberNo" value="">
-			<table>
+	<body class="background">
+	
+	<!-- 회원정보 수정 상단 제목 및 이전페이지-->
+	<br>
+	<h1 style = "background-color: rgba(242, 242, 242, 0.5);"  align="center" >비밀번호 수정</h1>	
+	<p class="indent" align="right">
+		<input type="button" value="돌아가기" onclick="history.back()">
+	</p>
+	
+	<!-- msg 파라메타값이 있으면 출력 -->
+	<%
+		if(request.getParameter("msg") != null){
+	%>
+		<div><%=request.getParameter("msg") %></div>
+	<%
+		}
+	%>
+	
+	<!-- 회원 비밀번호 수정 폼작성 -->
+	<form action="<%=request.getContextPath()%>/updateMemberPwAction.jsp" method="post">
+		<% /* 위 세팅된 arrayList<해쉬맵> list를 MemberDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
+                          		ex)  for(HashMap<String, Object> m : list) {
+                          				String memberId = (String)(m.get("memberId")); 
+                          		}        (ps. m.get 앞에 String은 형변환을 해줌.)  */
+              for(HashMap<String, Object> m : updateMemberList) {
+           	   String memberId = (String)(m.get("memberId"));
+          %>
+		<input type="hidden" name="memberNo" value="">
+			<table class="table" style= "background-color: rgba(242, 242, 242, 0.3);">
 			
 				<tr>
-					<td>
+					<th class="th">
 						<span>아이디</span>
-					</td>
-					<td>
+					</th>
+					<td class="td">
 						<input type="text" name="memberId" value="<%=memberId%>" readonly="readonly">
 					</td>				
 				</tr>
 				<tr>
-					<td>
+					<th class="th">
 						<span>기존 비밀번호</span>
-					</td>
-					<td>
+					</th>
+					<td class="td">
 						<input type="password" name="memberPw" value="">
 					</td>				
 				</tr>
 				<tr>
-					<td>
+					<th class="th">
 						<span>수정 비밀번호</span>
-					</td>
-					<td>
+					</th>
+					<td class="td">
 						<input type="password" name="memberPw2" value="">
 					</td>				
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td class="td" colspan="2">
 					<button type="submit">수정</button>
 					</td>				
 				</tr>
 			</table>
 			<%
-               }
+	              }
 			%>
 		</form>		
 	</body>

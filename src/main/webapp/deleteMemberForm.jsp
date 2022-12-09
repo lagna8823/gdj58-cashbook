@@ -29,13 +29,68 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>updateMemberPwForm</title>
+	<meta charset="UTF-8">
+	<title>updateMemberPwForm</title>
+	
+	<!-- 부트스트랩과의 약속! -->
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!--스타일 -->
+	<style>
+	
+	.table {
+	width: 40%;
+    height: 80%;
+    table-layout: fixed;
+    margin : auto; 
+    vertical-align: middle
+	 }   
+	 
+	 .background{
+	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
+	   background-repeat: no-repeat;
+	   background-position: right;
+	   background-attachment: fixed;
+	   background-size: cover; 
+	} 
+	
+	.th {
+	padding: 10px;
+	width: 250px;
+    height:50px;
+	border: 1px solid #666666;
+	font-weight: bolder !important;
+	white-space: nowrap;
+	color : black;
+	th-layout: fixed;
+	text-align : center;
+	}
+	
+	.td {
+	width: 250px;
+	height:50px;
+	padding: 10px;
+	border: 1px solid #666666;
+	td-layout: fixed;
+	overflow:hidden;
+	white-space : nowrap;
+	color : black;
+	text-overflow: ellipsis;
+	text-align : center;
+	}
+	
+	p.indent{ padding-right: 9em }  
+	
+	</style>	
+	
 	</head>
 	<div>
 	<jsp:include page="/inc/menu.jsp"></jsp:include>
     </div>
-	<body> 
+	<body class="background">
 		<h1>회원탈퇴</h1>	
 		<!-- msg 파라메타값이 있으면 출력 -->
 		<%

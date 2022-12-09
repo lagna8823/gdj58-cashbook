@@ -21,7 +21,6 @@
 	
 	//마지막 페이지 
 	int lastPage = (int)(Math.ceil((double)cnt / (double)rowPerPage));
-	
 %>
 
 
@@ -289,7 +288,6 @@
 		</div>
 	</footer>
 	</div>
-	
 	
 	<!-- jQuery -->
 	<script src="./Resources/js/jquery.min.js"></script>

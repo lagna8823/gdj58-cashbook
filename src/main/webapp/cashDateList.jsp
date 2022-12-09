@@ -4,7 +4,6 @@
 <%@ page import = "vo.*" %>
 <%
 	// 1. Controller 
-	
 	//session 유효성 검증 코드 필요시 redirect!
 	Member loginMember = (Member)session.getAttribute("loginMember");
 	if(session.getAttribute("loginMember") == null) {
@@ -17,8 +16,6 @@
 	int month = Integer.parseInt(request.getParameter("month"));
 	int date = Integer.parseInt(request.getParameter("date"));
 	String memberId = loginMember.getMemberId();
-	
-	
 	
 	// Model 호출 : 카테고리 목록
 	CategoryDao categoryDao = new CategoryDao();
@@ -36,113 +33,83 @@
 	arrayList 형태로 저장되있는 cashDao.select~~ByDay 메서드로 (memberId, year, month, date)을 보내고,
 	결과값 arrayList<해쉬맵> 형태로 list값에 세팅.
 	*/
-
 	
 	// view
 %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>cashDateList</title>
+	<meta charset="UTF-8">
+	<title>cashDateList</title>
+	
+	
+	<!-- 부트스트랩과의 약속! -->
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!--스타일 -->
+	<style>
+	
+	.table1 {
+    
+    height: 200px;
+    table-layout: fixed;
+	 }  
+	 .table2 {
+    width: 1000px;
+    table-layout: fixed;
+	 }   
+	 
+	.th1 {
+	padding: 10px;
+	width: 90px;
+    height:15px;
+	border: 1px solid #666666;
+	font-weight: bolder !important;
+	white-space: nowrap; 
+	color : black;
+	th-layout: fixed;
+	text-align : center;
+	}
+	
+	.th2 {
+	padding: 10px;
+	width: 90px;
+	border: 1px solid #666666;
+	font-weight: bolder !important;
+	white-space: nowrap;
+	color : black;
+	th2-layout: fixed;
+	text-align : center;
+	}
+	
+	.td2 {
+	width: 75px;
+	padding: 10px;
+	border: 1px solid #666666;
+	td-layout: fixed;
+	overflow:hidden;
+	white-space : nowrap;
+	color : black;
+	text-overflow: ellipsis;
+	text-align : center;
+	}
+	
+	.background{
+	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
+	   background-repeat: no-repeat;
+	   background-position: right;
+	   background-attachment: fixed;
+	   background-size: cover; 
+	} 
+    
+    div.indent{ padding-left: 10em }
+    p.indent{ padding-right: 13em }
+    
+	</style>
 		
-		
-		<!-- 부트스트랩과의 약속! -->
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-		
-		<!--스타일 -->
-		<style>
-		
-		.table1 {
-	    
-	    height: 200px;
-	    table-layout: fixed;
-		 }  
-		 .table2 {
-	    width: 1000px;
-	    height: 600px;
-	    table-layout: fixed;
-		 }   
-		 
-		.th1 {
-		padding: 10px;
-		width: 90px;
-	    height:15px;
-		border: 1px solid #666666;
-		font-weight: bolder !important;
-		white-space: nowrap;
-		color : black;
-		th-layout: fixed;
-		text-align : center;
-		}
-		
-		.th2 {
-		padding: 10px;
-		width: 90px;
-	    height:15px;
-		border: 1px solid #666666;
-		font-weight: bolder !important;
-		white-space: nowrap;
-		color : black;
-		th2-layout: fixed;
-		text-align : center;
-		}
-		
-		.td2 {
-		width: 75px;
-	    height:15px;
-		padding: 10px;
-		border: 1px solid #666666;
-		td-layout: fixed;
-		overflow:hidden;
-		white-space : nowrap;
-		color : black;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		text-align : center;
-		}
-		
-		
-		font {
-		   font-size : 20pt;
-		   line-height : 30px;
-		   text-algin: center;
-		   color : black;
-		}
-		.background{
-		   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
-		   background-repeat: no-repeat;
-		   background-position: right;
-		   background-attachment: fixed;
-		   background-size: cover; /* 28% 380px; */
-		} 
-		
-		.word {
-	        margin:0.2px;
-	        /* outline: 1px solid black; */
-	        display: block;
-	        color: black;
-	        width: 150px;
-	        font-size: 15px;
-	        font-weight: bolder !important;
-	        overflow: hidden;
-	        text-overflow: ellipsis;
-	        white-space: normal;
-	        line-height: 1.2;
-	        height: 8.4em;
-	        text-align: left;
-	        word-wrap: break-word;
-	        display: -webkit-box;
-			-webkit-line-clamp:  7;
-	        -webkit-box-orient: vertical;
-	    }
-	    
-	    div.indent{ padding-left: 10em }
-	    
-		</style>
 	</head>
 	<body class="background">
 		<!-- 메뉴 partial jsp 구성 -->
@@ -150,8 +117,13 @@
 			<jsp:include page="/inc/menu.jsp"></jsp:include>
 	    </div>
 	    <br> 
-    	<div><h1 style = "background-color: rgba(242, 242, 242, 0.2);"  align="center" >가계부 상세내역</h1></div>
-		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">이전</a>
+	    
+	    <!-- cash(가계부) 상단 제목 및 이전 페이지-->
+    	<h1 style = "background-color: rgba(242, 242, 242, 0.5);"  align="center" >가계부 상세내역</h1>
+    	<p class="indent" align="right">
+			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>&date=<%=date%>">돌아가기</a>
+		</p>
+		
 		<!-- cash(가계부) 입력 폼 -->
 		<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
 			<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
@@ -159,49 +131,57 @@
 			<input type="hidden" name="month" value="<%=month%>">
 			<input type="hidden" name="date" value="<%=date%>">
 			
+			<!-- 가계부입력 부제목 -->
 			<div style="width:25%; float : left;">
 				<div class="indent">
-					<span style="font-size:1.4em;  color: black; background-color:rgba(242, 242, 242, 0.2); font-weight: bolder !important;"> < 가계부 입력 > </span>
-				</div><br>
-				<div>	
-				<table class="table1" style= "background-color: rgba(242, 242, 242, 0.3);">
-					<tr>
-						<th class="th1">날짜</th>
-						<td>
-							<input type="text" name="cashDate" value="<%=year%>-<%=month%>-<%=date%>" readonly="readonly">
-						</td>
-					</tr>
-					<tr>
-						<th class="th1">항목</th>
-						<td>
-							<select name = "categoryNo">
-							<%
-								for(Category c : categoryList) {
-							%>
-									<option  value="<%=c.getCategoryNo()%>">
-										<%=c.getCategoryKind()%>, <%=c.getCategoryName()%>
-									</option>
-							<%
-								}
-							%>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<th class="th1">금액</th>
-						<td>
-							<input tpye="number" name="cashPrice">
-						</td>
-					</tr>
-					<tr>
-						<th class="th1">메모</th>
-						<td>
-							<textarea rows="3" cols="40" name="cashMemo"></textarea>
-						</td>
-					</tr>
-				</table>
+					<span style="font-size:1.4em;  color: black; background-color:rgba(242, 242, 242, 0.4); font-weight: bolder !important;"> < 가계부 입력 > </span>
 				</div>
-			<button type="submit">추가하기</button>
+			<br>
+			<table class="table1" style= "background-color: rgba(242, 242, 242, 0.3);">
+				<tr>
+					<th class="th1">날짜</th>
+					<td>
+						<input type="text" name="cashDate" value="<%=year%>-<%=month%>-<%=date%>" readonly="readonly">
+					</td>
+				</tr>
+				<tr>
+					<th class="th1">항목</th>
+					<td>
+						<select name = "categoryNo">
+						<%
+							for(Category c : categoryList) {
+						%>
+								<option  value="<%=c.getCategoryNo()%>">
+									<%=c.getCategoryKind()%>, <%=c.getCategoryName()%>
+								</option>
+						<%
+							}
+						%>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th class="th1">금액</th>
+					<td>
+						<input tpye="number" name="cashPrice">
+					</td>
+				</tr>
+				<tr>
+					<th class="th1">메모</th>
+					<td>
+						<textarea rows="3" cols="40" name="cashMemo"></textarea>
+					</td>
+				</tr>
+			</table>
+			<button type="submit">추가하기</button> 
+			<!-- msg 파라메타값이 있으면 출력 -->
+		<%
+			if(request.getParameter("msg") != null){
+		%>
+			<div><%=request.getParameter("msg") %></div>
+		<%
+			}
+		%>
 			</div>
 		</form>
 		

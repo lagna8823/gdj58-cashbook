@@ -29,20 +29,78 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>updateMemberForm</title>
+	<meta charset="UTF-8">
+	<title>updateMemberForm</title>
+	
+	<!-- 부트스트랩과의 약속! -->
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!--스타일 -->
+	<style>
+	
+	.background{
+	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
+	   background-repeat: no-repeat;
+	   background-position: right;
+	   background-attachment: fixed;
+	   background-size: cover; 
+	} 
+	
+	.table {
+	width: 20%;
+    vertical-align: middle
+	 }   
+	
+	.th {
+	padding: 10px;
+	width: 10px;
+    height:50px;
+	border: 1px solid #666666;
+	font-weight: bolder !important;
+	white-space: nowrap;
+	color : black;
+	
+	text-align : center;
+	}
+	
+	.td {
+	width: 5px;
+	height:10px;
+	padding: 10px;
+	border: 1px solid #666666;
+	
+	overflow:hidden;
+	white-space : nowrap;
+	color : black;
+	text-overflow: ellipsis;
+	text-align : center;
+	}
+	
+	p.indent{ padding-right: 13em }  
+	div.indent{ padding-left: 10em }
+	  
+	</style>
+	 
 	</head>
-	<body> 
-		<h1>회원정보 수정</h1>	
-		<!-- msg 파라메타값이 있으면 출력 -->
-		<%
-			if(request.getParameter("msg") != null){
-		%>
-			<div><%=request.getParameter("msg") %></div>
-		<%
-			}
-		%>
-		<!-- 폼작성 -->
+	<body class="background">
+		<!-- 메뉴 partial jsp 구성 -->
+		<div>
+			<jsp:include page="/inc/menu.jsp"></jsp:include>
+	    </div>
+	    
+		<!-- 회원정보 수정 상단 제목 및 이전페이지-->
+		<br><br>
+		<div>&nbsp;</div>
+		<p class="indent" align="right">
+			<span style="font-size:3em;  color: black; background-color:rgba(242, 242, 242, 0.4); font-weight: bolder !important;"> 회원정보 수정 </span>
+			<span style="padding-right: 500px"></span>
+			
+		</p>
+		
+		<!-- 회원정보수정 폼작성 -->
 		<form action="<%=request.getContextPath()%>/updateMemberAction.jsp" method="post">
 			<% /* 위 세팅된 arrayList<해쉬맵> list를 MemberDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
                            		ex)  for(HashMap<String, Object> m : list) {
@@ -53,38 +111,48 @@
             	   String memberName = (String)(m.get("memberName"));
            %>
 			<input type="hidden" name="memberNo" value="">
-			<table>
-			
+			<div>
+			<table class="table" style= "background-color: rgba(242, 242, 242, 0.3);">
 				<tr>
-					<td>
+					<th class="th" style= "background-color: rgba(242, 242, 242, 0.6);">
 						<span>아이디</span>
-					</td>
-					<td>
+					</th>
+					<td class="td">
 						<input type="text" name="memberId" value="<%=memberId%>" readonly="readonly">
 					</td>				
 				</tr>
 				<tr>
-					<td>
+					<th class="th" style= "background-color: rgba(242, 242, 242, 0.6);">
 						<span>기존 비밀번호</span>
-					</td>
-					<td>
+					</th>
+					<td class="td">
 						<input type="password" name="memberPw" value="">
 					</td>				
 				</tr>
 				<tr>
-					<td>
+					<th class="th" style= "background-color: rgba(242, 242, 242, 0.6);">
 						<span>이름</span>
-					</td>
-					<td>
+					</th>
+					<td class="td">
 					<input type="text" name="memberName" value="<%=memberName%>">
 					</td>				
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td class="td"colspan="2">
+					<input type="button" value="돌아가기" onclick="history.back()">
 					<button type="submit">수정</button>
+					<!-- msg 파라메타값이 있으면 출력 -->  
+					<%
+						if(request.getParameter("msg") != null){
+					%>
+						<%=request.getParameter("msg") %>
+					<%
+						}
+					%>
 					</td>				
 				</tr>
 			</table>
+			</div>
 			<%
                }
 			%>

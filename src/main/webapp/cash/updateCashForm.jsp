@@ -31,15 +31,63 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>updateCashForm</title>
+	<meta charset="UTF-8">
+	<title>updateCashForm</title>
+	<!-- 부트스트랩과의 약속! -->
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!--스타일 -->
+	<style>
+	
+	.table {
+    
+    height: 200px;
+    table-layout: fixed;
+	 }  
+	 
+	.th {
+	padding: 10px;
+	width: 90px;
+    height:15px;
+	border: 1px solid #666666;
+	font-weight: bolder !important;
+	white-space: nowrap;
+	color : black;
+	th-layout: fixed;
+	text-align : center;
+	}
+	
+	
+	.td {
+	width: 75px;
+	padding: 10px;
+	border: 1px solid #666666;
+	td-layout: fixed;
+	overflow:hidden;
+	white-space : nowrap;
+	color : black;
+	text-overflow: ellipsis;
+	text-align : center;
+	}
+	
+	.background{
+	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
+	   background-repeat: no-repeat;
+	   background-position: right;
+	   background-attachment: fixed;
+	   background-size: cover; 
+	} 
+	</style>
 	</head>
 	<body>
 	<div>
 	<jsp:include page="/inc/menu.jsp"></jsp:include>
     </div>
 		<!-- cash 수정 폼 -->
-		<div align="center"><h1>내역 수정하기</h1></div>
+		<div align="center"><h1>내역 수정페이지</h1></div>
 			<div><a href="<%=request.getContextPath()%>/cashDateList.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>"> 돌아가기 </a></div>
 			<!-- cash 입력 폼 -->
 			<form action="<%=request.getContextPath()%>/cash/updateCashAction.jsp" method="post">

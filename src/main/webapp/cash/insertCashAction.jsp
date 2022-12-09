@@ -8,16 +8,28 @@
 
 <%	
 	// 1.C
+	// request
 	request.setCharacterEncoding("utf-8"); // 한글버전 패치
 	int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
 	String memberId = request.getParameter("memberId");
 	String cashDate = request.getParameter("cashDate");
-  	long cashPrice = Integer.parseInt(request.getParameter("cashPrice"));
-   	String cashMemo = request.getParameter("cashMemo");
    	int year=Integer.parseInt(request.getParameter("year"));
 	int month=Integer.parseInt(request.getParameter("month"));
 	int date=Integer.parseInt(request.getParameter("date"));
+	String cashMemo = request.getParameter("cashMemo");
 	
+	// 가계 금액 입력시 NULL 과 공백값을 처리하기 위한 데이터 타입 변경
+	long cashPrice = 0;
+	String price = request.getParameter("cashPrice");
+	
+	// 입력값체크  ,공백값이 넘어왔을 때
+	if(price == null || price.equals("") || cashMemo.equals("")|| cashMemo == null){
+		String msg = URLEncoder.encode("공백을 입력할 수 없습니다.","utf-8"); // get방식 주소창에 문자열 인코딩
+		response.sendRedirect(request.getContextPath()+"/cashDateList.jsp?msg="+msg+"&year="+year+"&month="+month+"&date="+date);
+		return; 	
+	} else {
+		cashPrice = Integer.parseInt(request.getParameter("cashPrice")); //입력받은 값이 NULL이나 공백값이 아니라면 그대로 저장.
+	}
 	
 	Cash insertCash = new Cash(); // 모델 호출시 매개값(vo.Cash의 클래스를 이용하여 insertCash를 새로 선언)
 	insertCash.setCategoryNo(categoryNo);
@@ -36,8 +48,8 @@
 	if(resultRow == 0) {
 		
 		session.setAttribute("loginMember", insertCash); // session안에 로그인 아이디 & 이름을 저장
-		String msg =URLEncoder.encode("중복된 아이디가 있습니다.","utf-8");
-		response.sendRedirect(request.getContextPath() + "/loginForm.jsp?msg="+msg);
+		String msg =URLEncoder.encode("입력값을 확인해주세요.","utf-8");
+		response.sendRedirect(request.getContextPath() + "/cash/cashDateList.jsp?msg="+msg);
 		
 	}
 	// CashDao에서 넘겨받은 결과 resultRow값이 0이 아니라면 입력성공!
