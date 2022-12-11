@@ -88,8 +88,31 @@
    <!--[if lt IE 9]>
    <script src="js/respond.min.js"></script>
    <![endif]-->
-
-   </head>
+	
+	<style>
+	.btn_type {
+    display: block;
+    width: 80%;
+    font-size: 18px;
+    font-weight: 180;
+    text-align: center;
+    cursor: pointer;
+    }
+    
+   .btn_primary {
+    color: #000000;
+    border: solid 1px rgba(0,0,0,.08);
+    font-weight: bolder !important;
+    background-color: #fff;
+    }
+    
+    .div:hover{
+    color:#fff;
+    background-color:#27E1CE;
+    }
+    
+	</style>
+  	</head>
 	<body>
 	<div id="fh5co-page">
 	<header id="fh5co-header" role="banner">
@@ -186,13 +209,13 @@
 								<br>
 								<div>
 									<!-- 처음 -->
-									<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=1#login">처음</a>
+									<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=1#login" style="text-decoration: none;">처음</a>
 									
 								 	<!-- 이전 -->
 									<%
 										if(currentPage >1){
 									%>
-										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage-1%>#login">이전</a>
+										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage-1%>#login" style="text-decoration: none;">이전</a>
 									<% 
 										}
 									%>
@@ -204,13 +227,13 @@
 									<%
 										if(currentPage < lastPage){
 									%>
-										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage+1%>#login">다음</a>
-									<% 
+										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage+1%>#login" style="text-decoration: none;">다음</a>
+									<%  
 										}
 									%>
 									<!-- 마지막 -->
 									
-										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=lastPage%>#login">마지막</a>
+										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=lastPage%>#login" style="text-decoration: none;">마지막</a>
 								</div>
 							</div>
 						</div>
@@ -221,6 +244,7 @@
 							<div class="desc">
 								<h3>Sign in</h3>
 								<form action="<%=request.getContextPath()%>/loginAction.jsp" method="post">
+									<div>
 									<table>
 										<tr>
 											<th><span>ID &nbsp; </span></th>
@@ -231,12 +255,19 @@
 											<td><input type="password" name="memberPw"></td>
 										</tr>
 									</table>	
+									</div>
 									<br>
-									<button type="submit">login</button> 
+									<div align="left">
+										<div >
+											<div>
+											<button type="submit" class="btn_type btn_primary div">login</button>
+											</div> 
+										</div>
+										<div >
+											<a href="<%=request.getContextPath()%>/insertMemberForm.jsp" class="btn_type btn_primary div" style="text-decoration: none;" >회원가입</a>
+										</div>
+									</div>
 								</form>
-							</div>
-							<div align= right>
-								<a href="<%=request.getContextPath()%>/insertMemberForm.jsp" style="text-decoration: none;">회원가입</a>
 							</div>
 						</div>
 					</div>
@@ -272,7 +303,7 @@
 
 			<div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
 				<h3>Follow Us</h3>
-				<ul class="fh5co-social">
+				<ul class="fh5co-social">	
 					<li><a href="#"><i class="icon-twitter"></i></a></li>
 					<li><a href="#"><i class="icon-facebook"></i></a></li>
 					<li><a href="#"><i class="icon-google-plus"></i></a></li>

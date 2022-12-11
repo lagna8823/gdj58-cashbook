@@ -41,41 +41,56 @@
 	<!--스타일 -->
 	<style>
 	
-	
-		
+	.body {
+	background-color: #FAFAFA;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-attachment: fixed;
+    background-size: cover; 
+    position: absolute;
+	}
+
+	.react1 {
+	width: 600px;
+	height: 600px;
+	border: 0px solid;
+	text-align: center;
+	box-sizing: border-box;
+	position: absolute;
+    top: 200px;
+    left: 450px;
+	}
+
 	.table {
-	width: 40%;
-    height: 80%;
+    
+    height: 200px;
+    border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
     table-layout: fixed;
-    margin : auto; 
-    vertical-align: middle
-	 }   
-	 
-	 .background{
-	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
-	   background-repeat: no-repeat;
-	   background-position: right;
-	   background-attachment: fixed;
-	   background-size: cover; 
-	} 
-	
+	 }  
+ 
 	.th {
-	padding: 10px;
-	width: 250px;
-    height:50px;
-	border: 1px solid #666666;
+	width: 200px;
+    height:15px;
+    border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
 	font-weight: bolder !important;
-	white-space: nowrap;
+	white-space: nowrap; 
 	color : black;
 	th-layout: fixed;
-	text-align : center;
+	text-align : left;
 	}
-	
-	.td {
-	width: 250px;
-	height:50px;
+	td {
+	width: 200px;
 	padding: 10px;
-	border: 1px solid #666666;
+	border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
 	td-layout: fixed;
 	overflow:hidden;
 	white-space : nowrap;
@@ -83,29 +98,50 @@
 	text-overflow: ellipsis;
 	text-align : center;
 	}
-	
-	p.indent{ padding-right: 9em }  
+   	
+   	.int {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 29px;
+    padding-right: 25px;
+    line-height: 29px;
+    border: none;
+    background: #fff;
+    font-size: 15px;
+    box-sizing: border-box;
+    z-index: 10;
+    }
+     
+    .btn_type {
+    display: block;
+    width: 100%;
+    padding: 15px 0 15px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    }
+    
+   .btn_primary {
+    color: #fff;
+    border: solid 1px rgba(0,0,0,.08);
+    background-color: #27E1CE;
+    }
 	  
 	</style>
 	</head>
-	<body class="background">
-	
+	<body class="body">
+	<!-- 메뉴 partial jsp 구성 -->
+		<div>
+			<jsp:include page="/inc/menu.jsp"></jsp:include>
+	    </div>
+	<div class="react1">
 	<!-- 회원정보 수정 상단 제목 및 이전페이지-->
-	<br>
-	<h1 style = "background-color: rgba(242, 242, 242, 0.5);"  align="center" >비밀번호 수정</h1>	
-	<p class="indent" align="right">
-		<input type="button" value="돌아가기" onclick="history.back()">
+	<p class="indent" align="center">
+		<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 비밀번호 수정 </span>
 	</p>
-	
-	<!-- msg 파라메타값이 있으면 출력 -->
-	<%
-		if(request.getParameter("msg") != null){
-	%>
-		<div><%=request.getParameter("msg") %></div>
-	<%
-		}
-	%>
-	
+	<br>
 	<!-- 회원 비밀번호 수정 폼작성 -->
 	<form action="<%=request.getContextPath()%>/updateMemberPwAction.jsp" method="post">
 		<% /* 위 세팅된 arrayList<해쉬맵> list를 MemberDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
@@ -116,14 +152,13 @@
            	   String memberId = (String)(m.get("memberId"));
           %>
 		<input type="hidden" name="memberNo" value="">
-			<table class="table" style= "background-color: rgba(242, 242, 242, 0.3);">
-			
+			<table class="table">
 				<tr>
 					<th class="th">
 						<span>아이디</span>
 					</th>
 					<td class="td">
-						<input type="text" name="memberId" value="<%=memberId%>" readonly="readonly">
+						<input class="int" type="text" name="memberId" value="<%=memberId%>" readonly="readonly">
 					</td>				
 				</tr>
 				<tr>
@@ -131,7 +166,7 @@
 						<span>기존 비밀번호</span>
 					</th>
 					<td class="td">
-						<input type="password" name="memberPw" value="">
+						<input class="int" type="password" name="memberPw" value="">
 					</td>				
 				</tr>
 				<tr>
@@ -139,18 +174,29 @@
 						<span>수정 비밀번호</span>
 					</th>
 					<td class="td">
-						<input type="password" name="memberPw2" value="">
+						<input class="int" type="password" name="memberPw2" value="">
 					</td>				
 				</tr>
 				<tr>
-					<td class="td" colspan="2">
-					<button type="submit">수정</button>
-					</td>				
+					<th><a class="btn_type btn_primary a" 
+							href="<%=request.getContextPath()%>/cash/cashList.jsp">돌아가기</a></th>
+					<td>
+						<button type="submit" class="btn_type btn_primary">수정하기</button>
+					</td>
 				</tr>
 			</table>
-			<%
-	              }
-			%>
+			<!-- msg 파라메타값이 있으면 출력 -->
+		<%
+			if(request.getParameter("msg") != null){
+		%>
+			<div><%=request.getParameter("msg") %></div>
+		<%
+			}
+		%>
+		<%
+              }
+		%>
 		</form>		
+		</div>
 	</body>
 </html>

@@ -15,7 +15,7 @@
    	
 	// 입력값 체크
 	 if(memberId == null || memberName == null || memberPw == null || memberId.equals("") || memberName.equals("")|| memberPw.equals("")) {
-      String msg = URLEncoder.encode("입력된값을 확인하세요","utf-8"); // get방식 주소창에 문자열 인코딩
+      String msg = URLEncoder.encode("필수정보를 입력해주세요","utf-8"); // get방식 주소창에 문자열 인코딩
       response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp?msg="+msg);
       return;
    }
@@ -35,7 +35,7 @@
 	// redirect
 	
 	// redirectUrl값에 필요시 돌아갈 주소값 세팅.
-	String redirectUrl = "/loginForm.jsp";
+	String redirectUrl = "/loginForm.jsp?#login";
 	// Memberdao에서 넘겨받은 결과 resultRow값이 '0'이 아니라면 수행
 	if(resultRow != 0) {
 		session.setAttribute("loginMember", checkMember); // session안에 로그인 아이디 & 이름을 저장

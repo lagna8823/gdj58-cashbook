@@ -46,7 +46,7 @@
 	String redirectUrl = "/cash/cashList.jsp";  // redirectUrl값에 필요시 돌아갈 주소값 세팅.
 	// Memberdao에서 넘겨받은 결과 resultRow값이 '0'이라면 실행되지 않은 상황.
 	if(resultRow == 0) {
-		String msg =URLEncoder.encode("값을 확인하세요","utf-8");
+		String msg =URLEncoder.encode("비밀번호가 일치하지 않습니다.","utf-8");
 		response.sendRedirect(request.getContextPath() + "/updateMemberForm.jsp?msg="+msg);
 		return;
 	}

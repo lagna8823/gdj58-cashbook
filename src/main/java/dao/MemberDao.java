@@ -252,10 +252,9 @@ public class MemberDao {
 			stmt.setString(1, checkMember.getMemberId());
 			rs = stmt.executeQuery();
 			if(rs.next()) {
-				resultRow=1;
-				dbUtil.close(rs, stmt, conn);
+				resultRow=0;
 				return  resultRow;
-			}
+			} else {
 			// 입력
 			String sql2 = "INSERT INTO member(member_id, member_pw, member_name, updatedate, createdate) VALUES(?,PASSWORD(?),?,curdate(),curdate())";
 			stmt = conn.prepareStatement(sql2); // 객체에 쿼리 새로운 쿼리 저장
@@ -264,6 +263,7 @@ public class MemberDao {
 			stmt.setString(2, checkMember.getMemberPw());
 			stmt.setString(3, checkMember.getMemberName());
 			resultRow = stmt.executeUpdate();
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {

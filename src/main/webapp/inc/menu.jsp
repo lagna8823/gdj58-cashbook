@@ -18,33 +18,33 @@
 	<title>menu</title>
 	
 
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-   <link rel="shortcut icon" href="favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+	
+	<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/bootstrap.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/flexslider.css">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.theme.default.min.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/style2.css">
+	
+	<!-- Modernizr JS -->
+	<script src="<%=request.getContextPath()%>/Resources/js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
 
-   <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,700" rel="stylesheet">
-   
-   <!-- Animate.css -->
-   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/animate.css">
-   <!-- Icomoon Icon Fonts-->
-   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/icomoon.css">
-   <!-- Bootstrap  -->
-   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/bootstrap.css">
-   <!-- Flexslider  -->
-   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/flexslider.css">
-   <!-- Owl Carousel  -->
-   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.carousel.min.css">
-   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.theme.default.min.css">
-   <!-- Theme style  -->
-   <link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/style2.css">
-
-   <!-- Modernizr JS -->
-   <script src="<%=request.getContextPath()%>/Resources/js/modernizr-2.6.2.min.js"></script>
-   <!-- FOR IE9 below -->
-   <!--[if lt IE 9]>
-   <script src="js/respond.min.js"></script>
-   <![endif]-->
-
-   </head>
+	</head>
 	<body>
 	<div id="fh5co-page">
 	<header id="fh5co-header" role="banner">

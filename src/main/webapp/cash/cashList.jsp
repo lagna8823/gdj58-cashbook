@@ -142,6 +142,29 @@
 		-webkit-line-clamp:  7;
         -webkit-box-orient: vertical;
     }
+    .a{
+    text-decoration: none; width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.8); color:black;}
+    .a:hover{
+    color:#fff;
+    background-color:#27E1CE;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bolder !important;
+    }
+    
+    .b:hover{
+    font-weight: bolder !important;
+    }
+    
+    .c{
+    text-decoration: none; width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.4); color:black;}
+    .c:hover{
+    color:#fff;
+    background-color:#27E1CE;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bolder !important;
+    }
 	</style>
     </head>
 	<body class="background">
@@ -149,22 +172,27 @@
 		<div>
 			<jsp:include page="/inc/menu.jsp"></jsp:include>
 	    </div>
-	    
 	    <!-- 회원폼  -->
-		<nav role="navigation" align="right">
-			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2); color:yellow;" href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
-			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2); color:yellow;" href="<%=request.getContextPath()%>/updateMemberForm.jsp">Information</a>
-			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2); color:yellow;" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a>
-			<a style="width:70%; height: 100px; border: 1px solid rgba(242, 242, 242, 0.2); border-radius: 2em; background-color: rgba(242, 242, 242, 0.2); color:yellow;" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">Withdrawal</a>
-		</nav>
+	    <div>
+	    <nav role="navigation" align="right">
+				<a class="a" href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
+				<a class="a" href="<%=request.getContextPath()%>/updateMemberForm.jsp">Information</a>
+				<a class="a" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a>
+				<a class="a" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">Withdrawal</a>
+			</nav>
+		</div>	
 		
 		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-		<h1 style = "background-color: rgba(242, 242, 242, 0.5);"  align="center" ><%=loginMember.getMemberName()%>님의 달력</h1> 
+		<div style="background-color: rgba(242, 242, 242, 0.5);" align="center">
+	   	 <span style = "font-size: 2em; font-weight: bolder !important; color: black; align:center;" ><%=loginMember.getMemberName()%>님의 달력</span> 
+		</div>
+		<br>
+		<!-- 달력 상단 -->
 		<div align="center">
-			<a style= "font-weight: bolder !important; color:black;"href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달&nbsp;&nbsp;</a>
-			<span style= "font-size:1.2em; font-weight: bolder !important; color:black;"><%=year%></span><span style= "color:black;">년</span>
-			<span style= "font-size:1.2em; font-weight: bolder !important; color:black;"><%=month+1%></span></span><span style= "color:black;">월</span>
-			<a style= "font-weight: bolder !important; color:black;" href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">&nbsp;&nbsp;다음달&#8702;</a>
+			<a class="c" style= " text-decoration: none; font-weight: bolder !important; color:black;"href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달&nbsp;&nbsp;</a>
+			<span style= " text-decoration: none; font-size:1.2em; font-weight: bolder !important; color:black;"><%=year%></span><span style= "color:black;">년</span>
+			<span style= " text-decoration: none; font-size:1.2em; font-weight: bolder !important; color:black;"><%=month+1%></span></span><span style= "color:black;">월</span>
+			<a class="c" style= "font-weight: bolder !important; color:black;" href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">&nbsp;&nbsp;다음달&#8702;</a>
 		</div>
 		
 		<div class="container" algin="center">
@@ -193,17 +221,17 @@
                        		   if(i%7 == 0){
 						%>
 									<a href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
-										<span class="text-primary"><%=date%></span> </a>
+										<span class="text-primary b"><%=date%></span> </a>
    						<%
 	   							} else if(i%7 == 1){
 						%>
 									<a href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
-										<span class="text-danger"><%=date%></span> </a>
+										<span class="text-danger b"><%=date%></span> </a>
 						<%
    								} else {
  						%>
  								<a href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
-										<span class="text-warning"><%=date%></span> </a>
+										<span class="text-warning b"><%=date%></span> </a>
   						<%
    							}
            				%>

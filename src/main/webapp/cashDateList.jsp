@@ -42,7 +42,6 @@
 	<meta charset="UTF-8">
 	<title>cashDateList</title>
 	
-	
 	<!-- 부트스트랩과의 약속! -->
 	<!-- Latest compiled and minified CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -186,7 +185,7 @@
 		</form>
 		
 		<!-- cash(가계부) 목록 출력 -->
-		<div class="container" style="width:70%; float : right;">
+		<div class="container" style="width:65%; float : right;">
 		<table class="table2">
 			<tr style= "background-color: rgba(242, 242, 242, 0.6);"> 
 				<th class="th2" style="width:10%;">구분</th>
