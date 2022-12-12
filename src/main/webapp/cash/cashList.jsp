@@ -187,6 +187,7 @@
 	   	 <span style = "font-size: 2em; font-weight: bolder !important; color: black; align:center;" ><%=loginMember.getMemberName()%>님의 달력</span> 
 		</div>
 		<br>
+		
 		<!-- 달력 상단 -->
 		<div align="center">
 			<a class="c" style= " text-decoration: none; font-weight: bolder !important; color:black;"href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달&nbsp;&nbsp;</a>

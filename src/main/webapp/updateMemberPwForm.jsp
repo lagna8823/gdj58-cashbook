@@ -143,8 +143,9 @@
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
     </div>
+    
 	<div class="react1">
-	<!-- 회원정보 수정 상단 제목 및 이전페이지-->
+	<!-- 회원정보 수정 상단 제목-->
 	<p class="indent" align="center">
 		<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 비밀번호 수정 </span>
 	</p>

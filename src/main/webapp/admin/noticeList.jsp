@@ -45,17 +45,13 @@
 	<!--스타일 -->
 	<style>
 	
-	.table1 {
+	table{
     
     height: 200px;
     table-layout: fixed;
 	 }  
-	 .table2 {
-    width: 1000px;
-    table-layout: fixed;
-	 }   
 	 
-	.th1 {
+	th {
 	padding: 10px;
 	width: 90px;
     height:15px;
@@ -67,7 +63,7 @@
 	text-align : center;
 	}
 	
-	.th2 {
+	th {
 	padding: 10px;
 	width: 90px;
 	border: 1px solid #666666;
@@ -78,7 +74,7 @@
 	text-align : center;
 	}
 	
-	.td2 {
+	td {
 	width: 75px;
 	padding: 10px;
 	border: 1px solid #666666;
@@ -90,13 +86,13 @@
 	text-align : center;
 	}
 	
-	.background{
+	<%-- .background{
 	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
 	   background-repeat: no-repeat;
 	   background-position: right;
 	   background-attachment: fixed;
 	   background-size: cover; 
-	} 
+	}  --%>
     
     div.indent{ padding-left: 10em }
     p.indent{ padding-right: 13em }
@@ -107,7 +103,8 @@
 	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
-	</div>>
+	</div>
+	
 	    
 	<!-- 공지사항관리 리스트 -->
 	<h1>공지사항 목록(관리자페이지)</h1>

@@ -133,7 +133,7 @@
 			<!-- 가계부입력 부제목 -->
 			<div style="width:25%; float : left;">
 				<div class="indent">
-					<span style="font-size:1.4em;  color: black; background-color:rgba(242, 242, 242, 0.4); font-weight: bolder !important;"> < 가계부 입력 > </span>
+					<span style="font-size:1.4em;  color: black; background-color:rgba(242, 242, 242, 0.6); font-weight: bolder !important;"> < 가계부 입력 > </span>
 				</div>
 			<br>
 			<table class="table1" style= "background-color: rgba(242, 242, 242, 0.3);">

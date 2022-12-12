@@ -39,6 +39,7 @@
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
     </div>
+    <br><br><br><br><br>
 	<div>
 		<!-- memberList contents... -->
 		<h1>멤버목록</h1>

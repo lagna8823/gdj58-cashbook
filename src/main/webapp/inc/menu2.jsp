@@ -15,72 +15,42 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>menu</title>
+	<title>menu2</title>
 	
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
-	
-	<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,700" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/icomoon.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/bootstrap.css">
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/flexslider.css">
-	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.theme.default.min.css">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/style2.css">
 	
 	<!-- Modernizr JS -->
 	<script src="<%=request.getContextPath()%>/Resources/js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-	<style>
-		.body {
-	background-color: #FAFAFA;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-attachment: fixed;
-    background-size: cover; 
-    position: absolute;
-	}
-	</style>
+
 	</head>
-	<body class="body">
-	<div id="fh5co-page">
-	<header id="fh5co-header" role="banner" class="body">
+	<body>
+	<div id="fh5co-page" align="left">
+	<header id="fh5co-header" role="banner">
 		<div class="container">
 			<div class="header-inner">
 				<h1><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Flow</a></h1>
 				<nav role="navigation">
+				
 				<!-- partial jsp 페이지 사용할 코드-->
-					<ul>
-						<li><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Home</a></li>
-						<%
-							if(loginMember.getMemberLevel() > 0) {
-						
-						%>
-							<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">AdminPage</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">Notice</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">Category</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">Member</a></li>
-				   			<li><a href="<%=request.getContextPath()%>/admin/helpListAll.jsp">Comment</a></li>
-						<%
-							}
-						%>
-						<li><a href="<%=request.getContextPath() %>/helpList.jsp">Center</a></li>
-						<li class="cta"><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Get started</a></li>
-					</ul>
-				</nav>
-			
+				<div align="left"><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Home</a></div>
+				<%
+					if(loginMember.getMemberLevel() > 0) {
+				
+				%>
+					<div align="left"><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">AdminPage</a></div>
+					<div align="left"><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">Notice</a></div>
+					<div align="left"><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">Category</a></div>
+					<div align="left"><a href="<%=request.getContextPath()%>/admin/memberList.jsp">Member</a></div>
+		   			<div align="left"><a href="<%=request.getContextPath()%>/admin/helpListAll.jsp">Comment</a></div>
+				<%
+					}
+				%>
+				<div align="left"><a href="<%=request.getContextPath() %>/helpList.jsp">Center</a></div>
+				<div align="left"><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Get started</a></div>
 		</div>
 	</header>
 	</div>	

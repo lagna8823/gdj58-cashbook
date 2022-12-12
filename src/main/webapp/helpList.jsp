@@ -32,6 +32,10 @@
 <meta charset="UTF-8">
 <title>고객센터</title>
 </head>
+<!-- 메뉴 partial jsp 구성 -->
+		<div>
+			<jsp:include page="/inc/menu.jsp"></jsp:include>
+	    </div>
 <body>
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
