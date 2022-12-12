@@ -57,8 +57,8 @@
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
-    top: 200px;
-    left: 450px;
+    top: 250px;
+	left: 550px;
 	}
 
 	.table {
@@ -128,14 +128,21 @@
     border: solid 1px rgba(0,0,0,.08);
     background-color: #27E1CE;
     }
-	  
+	
+	.a:hover {
+	color: #fff;
+	background-color: #27E1CE;
+	text-decoration: none;
+	font-weight: bolder !important;
+	}  
 	</style>
 	</head>
+	
 	<body class="body">
 	<!-- 메뉴 partial jsp 구성 -->
-		<div>
-			<jsp:include page="/inc/menu.jsp"></jsp:include>
-	    </div>
+	<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+    </div>
 	<div class="react1">
 	<!-- 회원정보 수정 상단 제목 및 이전페이지-->
 	<p class="indent" align="center">

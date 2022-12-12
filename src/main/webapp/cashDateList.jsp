@@ -220,8 +220,8 @@
 						<td class="td2"><%=(String)m.get("categoryName")%></td>
 						<td class="td2"><%=(Long)m.get("cashPrice")%></td>
 						<td class="td2"><%=(String)m.get("cashMemo")%></td>
-						<td class="td2"><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">수정</a></td>
-						<td class="td2"><a href="<%=request.getContextPath()%>/cash/deleteCashAction.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">삭제</a></td>
+						<td class="td2"><a style= "text-decoration: none;" href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">수정</a></td>
+						<td class="td2"><a style= "text-decoration: none;" href="<%=request.getContextPath()%>/cash/deleteCashAction.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">삭제</a></td>
 					</tr>
 			<%		
 					}

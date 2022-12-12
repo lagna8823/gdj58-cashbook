@@ -52,7 +52,6 @@ public class MemberDao {
 		return updateMemberList;
 	}
 		
-		
 	// 관리자 : 멤버레벨수정 updateMemberLvAction.jsp 
 	public int updateMemberlv(Member updateMemberlv)  {
 		int resultRow = 0;

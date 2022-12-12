@@ -57,8 +57,8 @@
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
-    top: 200px;
-    left: 450px;
+    top: 250px;
+	left: 550px;
 	}
 
 	.table {
@@ -128,6 +128,13 @@
     border: solid 1px rgba(0,0,0,.08);
     background-color: #27E1CE;
     }
+	
+	.a:hover {
+	color: #fff;
+	background-color: #27E1CE;
+	text-decoration: none;
+	font-weight: bolder !important;
+	}  
 	  
 	</style>	
 	

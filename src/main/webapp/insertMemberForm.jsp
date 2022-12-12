@@ -62,8 +62,8 @@
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
-    top: 50px;
-    left: 450px;
+    top: 100px;
+    left: 550px;
 	}
 
 	.table {
