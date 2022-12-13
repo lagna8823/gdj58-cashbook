@@ -8,42 +8,19 @@
 	Member loginMember = (Member)session.getAttribute("loginMember");
 %>
 	<!DOCTYPE html>
-	<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-	<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-	<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-	<!--[if gt IE 8]><!--> 
-	<html class="no-js"> <!--<![endif]-->
+	<html> 
 	<head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>menu</title>
 	
-
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
 	
 	<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,700" rel="stylesheet">
 	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/icomoon.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/bootstrap2.css">
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/flexslider.css">
-	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/owl.theme.default.min.css">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/style2.css">
 	
-	<!-- Modernizr JS -->
-	<script src="<%=request.getContextPath()%>/Resources/js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
 	<style>
 	
 	.body {
@@ -58,7 +35,7 @@
 	</head>
 	<body class="body">
 	<div id="fh5co-page">
-	<header id="fh5co-header" role="banner" class="body">
+	<header id="fh5co-header" role="banner" style="background-color: #F5F5F5;">
 		<div class="container" align="right" >
 			<div class="header-inner" >
 				<h1><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Flow</a></h1>
@@ -82,25 +59,8 @@
 						<li class="cta"><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Get started</a></li>
 					</ul>
 				</nav>
-			
 		</div>
 	</header>
 	</div>	
-		<!-- jQuery -->
-		<script src="<%=request.getContextPath()%>/Resources/js/jquery.min.js"></script>
-		<!-- jQuery Easing -->
-		<script src="<%=request.getContextPath()%>/Resources/js/jquery.easing.1.3.js"></script>
-		<!-- Bootstrap -->
-		<script src="<%=request.getContextPath()%>/Resources/js/bootstrap.min.js"></script>
-		<!-- Waypoints -->
-		<script src="<%=request.getContextPath()%>/Resources/js/jquery.waypoints.min.js"></script>
-		<!-- Owl Carousel -->
-		<script src="<%=request.getContextPath()%>/Resources/js/owl.carousel.min.js"></script>
-		<!-- Flexslider -->
-		<script src="<%=request.getContextPath()%>/Resources/js/jquery.flexslider-min.js"></script>
-		
-		<!-- MAIN JS -->
-		<script src="<%=request.getContextPath()%>/Resources/js/main.js"></script>
-		
 	</body>
 </html>

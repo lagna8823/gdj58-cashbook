@@ -77,12 +77,13 @@
 	<!--스타일 -->
 	<style>
 	
-	.react1 {
-	width: 1730px;
-	box-sizing: border-box;
-	position: absolute;
-   	top: 80px;
-	left: 0px;
+	body {
+	background-color: #FAFAFA;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-attachment: fixed;
+    background-size: cover; 
+    position: absolute;
 	}
 	
 	.table {
@@ -117,13 +118,6 @@
 
 	}
 	
-	
-	font {
-	   font-size : 20pt;
-	   line-height : 30px;
-	   text-algin: center;
-	   color : black;
-	}
 	.background{
 	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
 	   background-repeat: no-repeat;
@@ -186,7 +180,7 @@
     
 	</style>
     </head>
-	<body>
+	<body class="background">
 		<!-- 메뉴 partial jsp 구성 -->
 		<div>
 			<jsp:include page="/inc/menu.jsp"></jsp:include>

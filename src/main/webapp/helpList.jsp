@@ -37,9 +37,6 @@
 			<jsp:include page="/inc/menu.jsp"></jsp:include>
 	    </div>
 <body>
-	<div>
-		<jsp:include page="/inc/menu.jsp"></jsp:include>
-	    </div>
 	<h1>고객센터</h1>
 	<div>
 		<a href="<%=request.getContextPath()%>/insertHelpForm.jsp">문의추가</a>
