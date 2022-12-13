@@ -77,7 +77,7 @@
 	<!--스타일 -->
 	<style>
 	
-	body {
+	.body {
 	background-color: #FAFAFA;
     background-repeat: no-repeat;
     background-position: right;
@@ -119,6 +119,7 @@
 	}
 	
 	.background{
+	   width: 1520px;
 	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
 	   background-repeat: no-repeat;
 	   background-position: right;
@@ -177,15 +178,17 @@
     
     .d{
 	text-decoration: none;
-    
 	</style>
     </head>
-	<body class="background">
+	<body>
 		<!-- 메뉴 partial jsp 구성 -->
-		<div>
-			<jsp:include page="/inc/menu.jsp"></jsp:include>
-	    </div>
-	    <div class="react1 background">
+		<header>
+			<div>
+				<jsp:include page="/inc/menu.jsp"></jsp:include>
+		    </div>
+	    </header>
+	    <article class="background">
+	    <div>
 	    <!-- 회원폼  -->
 	    <div>
 		    <nav role="navigation" align="right">
@@ -304,5 +307,6 @@
 			</nav>
 		</div>
 	</div>
+	</article>
 	</body>
 </html>

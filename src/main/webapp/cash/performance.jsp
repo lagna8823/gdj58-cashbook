@@ -113,11 +113,10 @@
 	text-align : center;
 	}
 	
-    div.indent{ padding-left: 10em }
-    p.indent{ padding-right: 13em }
-    
+}
 	</style>
 	</head>
+	<body>
 	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
