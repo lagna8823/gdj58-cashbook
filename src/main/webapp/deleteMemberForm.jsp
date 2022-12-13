@@ -41,7 +41,7 @@
 	<!--스타일 -->
 	<style>
 	
-	.body {
+	body {
 	background-color: #FAFAFA;
     background-repeat: no-repeat;
     background-position: right;
@@ -139,7 +139,7 @@
 	</style>	
 	
 	</head>
-	<body class="body">
+	<body>
 	<!-- 메뉴 partial jsp 구성 -->
 		<div>
 			<jsp:include page="/inc/menu.jsp"></jsp:include>

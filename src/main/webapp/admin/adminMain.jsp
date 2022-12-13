@@ -27,8 +27,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>adminMain</title>
+	<meta charset="UTF-8">
+	<title>adminMain</title>
+	
 	<!-- 부트스트랩과의 약속! -->
 	<!-- Latest compiled and minified CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +39,7 @@
 	<!--스타일 -->
 	<style>
 	
-	.body {
+	body {
 	background-color: #FAFAFA;
     background-repeat: no-repeat;
     background-position: right;
@@ -48,8 +49,7 @@
 	}
 
 	.react1 {
-	width: 1000px;
-	height: 1000px;
+	width: 1400px;
 	border: 0px solid;
 	text-align: center;
 	box-sizing: border-box;
@@ -125,11 +125,11 @@
 	
 	</style>
 	</head>
-	<body class="body">
-		<!-- 메뉴 partial jsp 구성 -->
-		<div>
-			<jsp:include page="/inc/menu.jsp"></jsp:include>
-	    </div>
+	<body>
+	<!-- 메뉴 partial jsp 구성 -->
+	<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+    </div>
 	    <div class="react1">
 			<!-- 최근공지 5개 출력 -->
 			<div style="width:40%; float : left;">

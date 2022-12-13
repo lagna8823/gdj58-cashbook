@@ -41,14 +41,6 @@ arrayList 형태로 저장되있는 MemberDao.select~~Month 메서드로 (loginM
 	
 	<!--스타일 -->
 	<style>
-	.body {
-		background-color: #FAFAFA;
-		background-repeat: no-repeat;
-		background-position: right;
-		background-attachment: fixed;
-		background-size: cover;
-		position: absolute;
-	}
 	
 	.react1 {
 		width: 600px;
@@ -138,7 +130,7 @@ arrayList 형태로 저장되있는 MemberDao.select~~Month 메서드로 (loginM
 	</style>
 	</head>
 	
-	<body class="body">
+	<body>
 		<!-- 메뉴 partial jsp 구성 -->
 		<div>
 			<jsp:include page="/inc/menu.jsp"></jsp:include>

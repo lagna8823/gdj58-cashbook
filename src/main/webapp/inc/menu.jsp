@@ -11,7 +11,8 @@
 	<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 	<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 	<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-	<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<!--[if gt IE 8]><!--> 
+	<html class="no-js"> <!--<![endif]-->
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,7 +29,7 @@
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/bootstrap.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/bootstrap2.css">
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/Resources/css/flexslider.css">
 	<!-- Owl Carousel  -->
@@ -44,8 +45,9 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 	<style>
-		.body {
-	background-color: #FAFAFA;
+	
+	.body {
+	background-color: #F5F5F5;
     background-repeat: no-repeat;
     background-position: right;
     background-attachment: fixed;
@@ -57,17 +59,17 @@
 	<body class="body">
 	<div id="fh5co-page">
 	<header id="fh5co-header" role="banner" class="body">
-		<div class="container">
-			<div class="header-inner">
+		<div class="container" align="right" >
+			<div class="header-inner" >
 				<h1><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Flow</a></h1>
-				<nav role="navigation">
+				<nav role="navigation" >
 				<!-- partial jsp 페이지 사용할 코드-->
 					<ul>
-						<li><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Home</a></li>
+						<li><a href="<%=request.getContextPath()%>/cash/cashList.jsp">Home</a></li>
+						<li><a href="<%=request.getContextPath()%>/cash/performance.jsp">Performance</a></li>
 						<%
 							if(loginMember.getMemberLevel() > 0) {
-						
-						%>
+						%>	
 							<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">AdminPage</a></li>
 							<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">Notice</a></li>
 							<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">Category</a></li>

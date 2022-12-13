@@ -40,15 +40,6 @@
 	
 	<!--스타일 -->
 	<style>
-	
-	.body {
-	background-color: #FAFAFA;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-attachment: fixed;
-    background-size: cover; 
-    position: absolute;
-	}
 
 	.react1 {
 	width: 600px;
@@ -138,73 +129,73 @@
 	</style>
 	</head>
 	
-	<body class="body">
-	<!-- 메뉴 partial jsp 구성 -->
-	<div>
-		<jsp:include page="/inc/menu.jsp"></jsp:include>
-    </div>
+	<body>
+		<!-- 메뉴 partial jsp 구성 -->
+		<div>
+			<jsp:include page="/inc/menu.jsp"></jsp:include>
+	    </div>
     
-	<div class="react1">
-	<!-- 회원정보 수정 상단 제목-->
-	<p class="indent" align="center">
-		<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 비밀번호 수정 </span>
-	</p>
-	<br>
-	<!-- 회원 비밀번호 수정 폼작성 -->
-	<form action="<%=request.getContextPath()%>/updateMemberPwAction.jsp" method="post">
-		<% /* 위 세팅된 arrayList<해쉬맵> list를 MemberDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
-                          		ex)  for(HashMap<String, Object> m : list) {
-                          				String memberId = (String)(m.get("memberId")); 
-                          		}        (ps. m.get 앞에 String은 형변환을 해줌.)  */
-              for(HashMap<String, Object> m : updateMemberList) {
-           	   String memberId = (String)(m.get("memberId"));
-          %>
-		<input type="hidden" name="memberNo" value="">
-			<table class="table">
-				<tr>
-					<th class="th">
-						<span>아이디</span>
-					</th>
-					<td class="td">
-						<input class="int" type="text" name="memberId" value="<%=memberId%>" readonly="readonly">
-					</td>				
-				</tr>
-				<tr>
-					<th class="th">
-						<span>기존 비밀번호</span>
-					</th>
-					<td class="td">
-						<input class="int" type="password" name="memberPw" value="">
-					</td>				
-				</tr>
-				<tr>
-					<th class="th">
-						<span>수정 비밀번호</span>
-					</th>
-					<td class="td">
-						<input class="int" type="password" name="memberPw2" value="">
-					</td>				
-				</tr>
-				<tr>
-					<th><a class="btn_type btn_primary a" 
-							href="<%=request.getContextPath()%>/cash/cashList.jsp">돌아가기</a></th>
-					<td>
-						<button type="submit" class="btn_type btn_primary">수정하기</button>
-					</td>
-				</tr>
-			</table>
-			<!-- msg 파라메타값이 있으면 출력 -->
-		<%
-			if(request.getParameter("msg") != null){
-		%>
-			<div><%=request.getParameter("msg") %></div>
-		<%
-			}
-		%>
-		<%
-              }
-		%>
-		</form>		
+		<div class="react1">
+			<!-- 회원정보 수정 상단 제목-->
+			<p class="indent" align="center">
+				<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 비밀번호 수정 </span>
+			</p>
+			<br>
+			<!-- 회원 비밀번호 수정 폼작성 -->
+			<form action="<%=request.getContextPath()%>/updateMemberPwAction.jsp" method="post">
+				<% /* 위 세팅된 arrayList<해쉬맵> list를 MemberDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
+		                          		ex)  for(HashMap<String, Object> m : list) {
+		                          				String memberId = (String)(m.get("memberId")); 
+		                          		}        (ps. m.get 앞에 String은 형변환을 해줌.)  */
+		              for(HashMap<String, Object> m : updateMemberList) {
+		           	   String memberId = (String)(m.get("memberId"));
+		         %>
+				<input type="hidden" name="memberNo" value="">
+				<table class="table">
+					<tr>
+						<th class="th">
+							<span>아이디</span>
+						</th>
+						<td class="td">
+							<input class="int" type="text" name="memberId" value="<%=memberId%>" readonly="readonly">
+						</td>				
+					</tr>
+					<tr>
+						<th class="th">
+							<span>기존 비밀번호</span>
+						</th>
+						<td class="td">
+							<input class="int" type="password" name="memberPw" value="">
+						</td>				
+					</tr>
+					<tr>
+						<th class="th">
+							<span>수정 비밀번호</span>
+						</th>
+						<td class="td">
+							<input class="int" type="password" name="memberPw2" value="">
+						</td>				
+					</tr>
+					<tr>
+						<th><a class="btn_type btn_primary a" 
+								href="<%=request.getContextPath()%>/cash/cashList.jsp">돌아가기</a></th>
+						<td>
+							<button type="submit" class="btn_type btn_primary">수정하기</button>
+						</td>
+					</tr>
+				</table>
+				<!-- msg 파라메타값이 있으면 출력 -->
+			<%
+				if(request.getParameter("msg") != null){
+			%>
+				<div><%=request.getParameter("msg") %></div>
+			<%
+				}
+			%>
+			<%
+	              }
+			%>
+			</form>		
 		</div>
 	</body>
 </html>

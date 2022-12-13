@@ -45,6 +45,15 @@
 	<!--스타일 -->
 	<style>
 	
+	body {
+	background-color: #FAFAFA;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-attachment: fixed;
+    background-size: cover; 
+    position: absolute;
+	}
+	
 	table{
     
     height: 200px;
@@ -99,7 +108,7 @@
     
 	</style>
 	</head>
-	<body class="background">
+	<body>
 	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
