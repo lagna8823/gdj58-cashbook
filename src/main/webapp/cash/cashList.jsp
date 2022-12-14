@@ -91,17 +91,12 @@
 	
 	}
 	.react2 {
-	width: 1730px;
-	height: 1000px;
 	border: 0px solid;
 	box-sizing: border-box;
 	position: absolute;
     top: 90px;
-	left: 1600px;
 	}
 	.react3 {
-	width: 1730px;
-	height: 1000px;
 	border: 0px solid;
 	box-sizing: border-box;
 	position: absolute;
@@ -124,7 +119,6 @@
 	color : black;
 	th-layout: fixed;
 	text-align : center;
-	
 	}
 	
 	td {
@@ -137,15 +131,14 @@
 	white-space : nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
-
 	}
 	
-	.background{
-	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
-	   background-repeat: no-repeat;
-	   background-position: right;
-	   background-attachment: fixed;
-	   background-size: cover; 
+	.img{
+	width: 145%;
+	height:120%;
+	background-repeat: no-repeat;
+	background-position: right;
+	background-attachment: fixed;
 	} 
 	
 	.word {
@@ -206,7 +199,7 @@
 	
 	</style>
     </head>
-	<body class="background">
+	<body>
 		<!-- 메뉴 partial jsp 구성 -->
 		<header>
 			<div>
@@ -216,6 +209,7 @@
 	    
 	    <article>
 		    <div class="react1">
+		    	<img class="img" src="<%=request.getContextPath()%>/Resources/images/mainm.jpg">
 			    <!-- 회원폼  -->
 			    <div class="react2">
 				    <nav role="navigation">

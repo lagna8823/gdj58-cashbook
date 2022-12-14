@@ -48,7 +48,31 @@
     position: absolute;
 	}
 
-
+	.react1 {
+	box-sizing: border-box;
+	
+	}
+	.react2 {
+	width: 1000px;
+	height: 1000px;
+	border: 0px solid;
+	text-align: center;
+	box-sizing: border-box;
+	position: absolute;
+    top: 250px;
+	left: 200px;
+	}
+	.react3 {
+	width: 1000px;
+	height: 1000px;
+	border: 0px solid;
+	text-align: center;
+	box-sizing: border-box;
+	position: absolute;
+    top: 200px;
+	left: 900px;
+	}
+	
 	.table {
     
     height: 200px;
@@ -122,9 +146,9 @@
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
     </div>
-	    <div>
+	    <div class="react1">
 			<!-- 최근공지 5개 출력 -->
-			<div style="width:45%; float : left;">
+			<div class="react2" style="width:45%; float : left;">
 				<p class="indent" align="center">
 					<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 최근 공지사항 </span>
 				</p>
@@ -150,7 +174,7 @@
 			</div>
 			
 			<!-- 최근멤버 5명 출력 -->
-			<div style="width:40%; float : right;">
+			<div class="react3" style="width:40%; float : right;">
 				<p class="indent" align="center">
 					<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 최근 가입멤버 </span>
 				</p>

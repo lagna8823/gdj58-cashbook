@@ -51,6 +51,39 @@
 	<!--스타일 -->
 	<style>
 	
+	.body {
+	background-color: #FAFAFA;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-attachment: fixed;
+    background-size: cover; 
+    position: absolute;
+	}
+	
+	.react1 {
+	box-sizing: border-box;
+	
+	}
+	.react2 {
+	width: 1000px;
+	height: 1000px;
+	border: 0px solid;
+	text-align: center;
+	box-sizing: border-box;
+	position: absolute;
+    top: 250px;
+	left: 200px;
+	}
+	.react3 {
+	width: 1000px;
+	height: 1000px;
+	border: 0px solid;
+	text-align: center;
+	box-sizing: border-box;
+	position: absolute;
+    top: 200px;
+	left: 900px;
+	}
 	.table1 {
     
     height: 200px;
@@ -110,7 +143,7 @@
 	</style>
 		
 	</head>
-	<body class="background">
+	<body>
 		<!-- 메뉴 partial jsp 구성 -->
 		<div>
 			<jsp:include page="/inc/menu.jsp"></jsp:include>
