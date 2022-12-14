@@ -157,7 +157,7 @@
 			}
 		%>
 	<!-- notice 수정폼 작성 -->	
-	<form action="<%=request.getContextPath()%>/admin/updateNoticeAction.jsp">
+	<form id="signinForm" action="<%=request.getContextPath()%>/admin/updateNoticeAction.jsp">
 		<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
 				<table> 
 					<tr>
@@ -170,7 +170,7 @@
 							for(Notice n : list){
 						%>
 							<td><input type="number" name="noticeNo" value="<%=n.getNoticeNo()%>" readonly="readonly"></td>
-							<td><textarea rows="3" cols="50" name="noticeMemo" value="<%=n.getNoticeMemo()%>"></textarea></td>
+							<td><textarea id="noticeMemo" rows="3" cols="50" name="noticeMemo" value="<%=n.getNoticeMemo()%>"></textarea></td>
 							<td><input type="text" name="createdate" value="<%=n.getCreatedate()%>" readonly="readonly"></td>
 						<%
 							}
@@ -180,11 +180,30 @@
 						<th><a class="btn_type btn_primary a" 
 								href="<%=request.getContextPath()%>/cash/cashList.jsp">돌아가기</a></th>
 						<td>
-							<button type="submit" class="btn_type btn_primary">수정하기</button>
+							<button type="button" id="signinBtn" class="btn_type btn_primary">수정하기</button>
 						</td>
 					</tr>
 				</table> 
 			</form>
 		</div>
+	<script>
+		let signinBtn = document.querySelector('#signinBtn');
+	
+		signinBtn.addEventListener('click', function() {
+			// 디버깅
+			console.log('signinBtn click!');
+			
+			//공지사항 폼 유효성 검사
+			let noticeMemo = document.querySelector('#noticeMemo');
+			if(noticeMemo.value == ''){
+				alert('공지사항을 확인하세요.');
+				noticeMemo.focus();
+				return;
+			}
+			
+			let signinForm =document.querySelector('#signinForm');
+			signinForm.submit(); //action=/updateNoticeAction.jsp
+		});
+	</script>		
 	</body>
 </html>

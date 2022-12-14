@@ -22,18 +22,10 @@
 		<title>insertCommentForm</title>
 	</head>
 	<body>
-		<!-- msg 파라메타값이 있으면 출력 -->
-			<%
-				if(request.getParameter("msg") != null){
-			%>
-				<div><%=request.getParameter("msg") %></div>
-			<%
-				}
-			%>
 		<div>
 		<!-- comment 답변 폼 작성-->
 		<h1>답변 작성 페이지</h1>
-		<form action="<%=request.getContextPath()%>/admin/insertCommentAction.jsp" method="post">
+		<form id="signinForm" action="<%=request.getContextPath()%>/admin/insertCommentAction.jsp">
 		<input type="hidden" name="helpNo" value="<%=helpNo%>">
 		<input type="hidden" name="memberId" value="<%=memberId%>">
 		<table border="1">
@@ -58,11 +50,38 @@
 			%>
 				<tr>
 				<th>답변내용</th>
-				<td><textarea rows="6" cols="80" name="commentMemo"></textarea></td>
+				<td><textarea id="commentMemo" rows="6" cols="80" name="commentMemo"></textarea></td>
 				</tr>
 		</table>
-		<button type="submit">답변 작성</button>
+		<button type="button" id="signinBtn">답변 추가</button>
+		<!-- msg 파라메타값이 있으면 출력 -->
+			<%
+				if(request.getParameter("msg") != null){
+			%>
+				<div><%=request.getParameter("msg") %></div>
+			<%
+				}
+			%>
 		</form>
 		</div>
+	<script>
+		let signinBtn = document.querySelector('#signinBtn');
+	
+		signinBtn.addEventListener('click', function() {
+			// 디버깅
+			console.log('signinBtn click!');
+			
+			//공지사항 폼 유효성 검사
+			let commentMemo = document.querySelector('#commentMemo');
+			if(commentMemo.value == ''){
+				alert('문의내용을 확인하세요.');
+				commentMemo.focus();
+				return;
+			}
+			
+			let signinForm =document.querySelector('#signinForm');
+			signinForm.submit(); //action=/insertCommentAction.jsp
+		});
+	</script>
 	</body>
 </html>

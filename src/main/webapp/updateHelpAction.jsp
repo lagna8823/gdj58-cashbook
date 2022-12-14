@@ -13,9 +13,15 @@
 	}
 	
 	// 
-	request.setCharacterEncoding("utf-8"); // 한글버전 패치 (값이 넘어오니까 인코딩)
-	int helpNo = Integer.parseInt(request.getParameter("helpNo"));
-	String helpMemo = request.getParameter("helpMemo");
+		request.setCharacterEncoding("utf-8"); // 한글버전 패치 (값이 넘어오니까 인코딩)
+		int helpNo = Integer.parseInt(request.getParameter("helpNo"));
+		String helpMemo = request.getParameter("helpMemo");
+		
+	// 입력값 체크
+		if(request.getParameter("helpMemo") == null || request.getParameter("helpMemo").equals("")){
+			response.sendRedirect(request.getContextPath()+"/updateHelpForm.jsp?helpNo="+helpNo); 
+			return;
+		}
 	
 	Help updateHelp = new Help(); // 모델 호출시 매개값(vo.Help 클래스를 이용하여 updateHelp 새로 선언)
 	updateHelp.setHelpNo(helpNo);
@@ -30,7 +36,7 @@
 	String redirectUrl = "/helpList.jsp";  // redirectUrl값에 필요시 돌아갈 주소값 세팅.
 	// Memberdao에서 넘겨받은 결과 resultRow값이 '0'이라면 실행되지 않은 상황.
 	if(resultRow == 0) {
-		String msg =URLEncoder.encode("수정되지 않았습니다.","utf-8");
+		String msg = URLEncoder.encode("수정되지 않았습니다.","utf-8");
 		response.sendRedirect(request.getContextPath() + "/updateHelpForm.jsp?msg="+msg);
 		return;
 	}

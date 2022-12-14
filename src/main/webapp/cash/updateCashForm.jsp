@@ -17,6 +17,12 @@
 	int date = Integer.parseInt(request.getParameter("date"));
 	int cashNo = Integer.parseInt(request.getParameter("cashNo"));
 	
+	// 입력값 체크
+	if(request.getParameter("year") == null || request.getParameter("year").equals("") || request.getParameter("month") == null || request.getParameter("month").equals("")|| request.getParameter("date") == null || request.getParameter("date").equals("")){
+		response.sendRedirect(request.getContextPath()+"/cashDateList.jsp?year="+year+"&month="+month+"&date="+date); 
+		return;
+	}
+	
 	// Model 호출 : 일별 cash 목록
 	CashDao cashDao = new CashDao(); 
 	ArrayList<HashMap<String, Object>> list 
@@ -89,8 +95,9 @@
 		<!-- cash 수정 폼 -->
 		<div align="center"><h1>내역 수정페이지</h1></div>
 			<div><a href="<%=request.getContextPath()%>/cashDateList.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>"> 돌아가기 </a></div>
+			
 			<!-- cash 입력 폼 -->
-			<form action="<%=request.getContextPath()%>/cash/updateCashAction.jsp" method="post">
+			<form id="signinForm" action="<%=request.getContextPath()%>/cash/updateCashAction.jsp">
 				<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
 				<input type="hidden" name="cashNo" value="<%=cashNo%>">
 				<input type="hidden" name="year" value="<%=year%>">
@@ -122,18 +129,45 @@
 					<tr>
 						<td>금액</td>
 						<td>
-							<input tpye="number" name="cashPrice" value="">
+							<input type="text" id="cashPrice" name="cashPrice" value="">
 						</td>
 					</tr>
 					<tr>
 						<td>메모</td>
 						<td>
-							<textarea rows="3" cols="50" name="cashMemo" value=""></textarea>
+							<textarea id="cashMemo" rows="3" cols="50" name="cashMemo" value=""></textarea>
 						</td>
 					</tr>
 				</table>
-				<button type="submit">입력</button>
+				<button tpye="button" id="signinBtn">수정하기</button>
 			</form>
+	<script>
+		let signinBtn = document.querySelector('#signinBtn');
+	
+		signinBtn.addEventListener('click', function() {
+			// 디버깅
+			console.log('signinBtn click!');
+			
+			// 금액 유효성 검사.
+			let cashPrice = document.querySelector('#cashPrice');
+			if(cashPrice.value == '' || cashPrice.value == 0){
+				alert('금액을 확인하세요.');
+				cashPrice.focus();
+				return;
+			}
+			
+			// 내역 유효성 검사
+			let cashMemo = document.querySelector('#cashMemo');
+			if(cashMemo.value == '' || cashPrice.value == 0){
+				alert('내역을 확인하세요.');
+				cashMemo.focus();
+				return;
+			}
+			
+			let signinForm =document.querySelector('#signinForm');
+			signinForm.submit(); //action=/updateCashAction.jsp
+		});
+	</script>
 	</body>
 </html>
 

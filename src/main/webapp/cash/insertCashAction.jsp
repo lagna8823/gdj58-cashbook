@@ -22,7 +22,7 @@
 	long cashPrice = 0;
 	String price = request.getParameter("cashPrice");
 	
-	// 입력값체크  ,공백값이 넘어왔을 때
+	// 입력값 체크, 공백값이 넘어왔을 때
 	if(price == null || price.equals("") || cashMemo.equals("")|| cashMemo == null){
 		String msg = URLEncoder.encode("공백을 입력할 수 없습니다.","utf-8"); // get방식 주소창에 문자열 인코딩
 		response.sendRedirect(request.getContextPath()+"/cashDateList.jsp?msg="+msg+"&year="+year+"&month="+month+"&date="+date);

@@ -186,13 +186,13 @@
 						<div class="services">
 							<i class="icon-server"></i>
 							<div class="desc">
-								<h3>Recent Announcements</h3>
+								<h3>최근 공지사항</h3>
 								<!-- 공지 (5개) 목록 페이징 -->
 								<div align= left>
 									<table>
 										<tr>
-											<th>Announcements contents</th>
-											<th>Date</th>
+											<th>공지사항 목록</th>
+											<th>날짜</th>
 										</tr>
 										<%
 											for(Notice n : list) {
@@ -242,7 +242,7 @@
 						<div class="services">
 							<i class="icon-laptop"></i>
 							<div class="desc">
-								<h3>Sign in</h3>
+								<h3>Login</h3>
 								<form action="<%=request.getContextPath()%>/loginAction.jsp" method="post">
 									<div>
 									<table>
@@ -264,7 +264,7 @@
 											</div> 
 										</div>
 										<div >
-											<a href="<%=request.getContextPath()%>/insertMemberForm.jsp" class="btn_type btn_primary div" style="text-decoration: none;" >회원가입</a>
+											<a href="<%=request.getContextPath()%>/insertMemberForm.jsp" class="btn_type btn_primary div" style="text-decoration: none;" >Sign up</a>
 										</div>
 									</div>
 								</form>

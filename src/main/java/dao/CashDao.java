@@ -347,18 +347,16 @@ public class CashDao {
 			PreparedStatement stmt = null;
 			
 			// 쿼리문
-			String sql = "UPDATE cash SET category_no=?, cash_date=?, cash_price=?, cash_memo=?, updatedate=now() WHERE cash_no=? ";
+			String sql = "UPDATE cash SET cash_price=?, cash_memo=?, updatedate=now() WHERE cash_no=? ";
 			
 			try {
 				dbUtil = new DBUtil(); // 드라이버 로딩 및 연결
 				conn = dbUtil.getConnection();
 				stmt = conn.prepareStatement(sql); // 쿼리 객체 생성
 				// 쿼리 값 세팅, 결과 값 저장
-				stmt.setInt(1, updateCash.getCategoryNo());
-				stmt.setString(2, updateCash.getCashDate());
-				stmt.setLong(3, updateCash.getCashPrice());
-				stmt.setString(4, updateCash.getCashMemo());
-				stmt.setInt(5, updateCash.getCashNo());
+				stmt.setLong(1, updateCash.getCashPrice());
+				stmt.setString(2, updateCash.getCashMemo());
+				stmt.setInt(3, updateCash.getCashNo());
 				resultRow = stmt.executeUpdate();
 			} catch(Exception e) {
 				e.printStackTrace();

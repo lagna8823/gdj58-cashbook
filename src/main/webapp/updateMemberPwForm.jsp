@@ -40,7 +40,16 @@
 	
 	<!--스타일 -->
 	<style>
-
+	
+	.body {
+	background-color: #FAFAFA;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-attachment: fixed;
+    background-size: cover; 
+    position: absolute;
+	}
+	
 	.react1 {
 	width: 600px;
 	height: 600px;
@@ -142,7 +151,7 @@
 			</p>
 			<br>
 			<!-- 회원 비밀번호 수정 폼작성 -->
-			<form action="<%=request.getContextPath()%>/updateMemberPwAction.jsp" method="post">
+			<form id="signinForm" action="<%=request.getContextPath()%>/updateMemberPwAction.jsp">
 				<% /* 위 세팅된 arrayList<해쉬맵> list를 MemberDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
 		                          		ex)  for(HashMap<String, Object> m : list) {
 		                          				String memberId = (String)(m.get("memberId")); 
@@ -157,7 +166,7 @@
 							<span>아이디</span>
 						</th>
 						<td class="td">
-							<input class="int" type="text" name="memberId" value="<%=memberId%>" readonly="readonly">
+							<input class="int" type="text" id="memberId" name="memberId" value="<%=memberId%>" readonly="readonly">
 						</td>				
 					</tr>
 					<tr>
@@ -165,7 +174,7 @@
 							<span>기존 비밀번호</span>
 						</th>
 						<td class="td">
-							<input class="int" type="password" name="memberPw" value="">
+							<input class="int" type="password" id="memberPw" name="memberPw" value="">
 						</td>				
 					</tr>
 					<tr>
@@ -173,14 +182,14 @@
 							<span>수정 비밀번호</span>
 						</th>
 						<td class="td">
-							<input class="int" type="password" name="memberPw2" value="">
+							<input class="int" type="password" id="memberPw2" name="memberPw2" value="">
 						</td>				
 					</tr>
 					<tr>
 						<th><a class="btn_type btn_primary a" 
 								href="<%=request.getContextPath()%>/cash/cashList.jsp">돌아가기</a></th>
 						<td>
-							<button type="submit" class="btn_type btn_primary">수정하기</button>
+							<button type="button" id="signinBtn" class="btn_type btn_primary">수정하기</button>
 						</td>
 					</tr>
 				</table>
@@ -197,5 +206,25 @@
 			%>
 			</form>		
 		</div>
+	<script>
+		let signinBtn = document.querySelector('#signinBtn');
+	
+		signinBtn.addEventListener('click', function() {
+			// 디버깅
+			console.log('signinBtn click!');
+			
+			//PW 폼 유효성 검사
+			let memberPw = document.querySelector('#memberPw');
+			let memberPw2 = document.querySelector('#memberPw2');
+			if(memberPw.value == '' || memberPw.value != memberPw2.value){
+				alert('비밀번호를 확인하세요.');
+				memberPw.focus();
+				return;
+			}
+			
+			let signinForm =document.querySelector('#signinForm');
+			signinForm.submit(); //action=/updateMemberPwAction.jsp
+		});
+	</script>	
 	</body>
 </html>

@@ -39,7 +39,7 @@
 	<!--스타일 -->
 	<style>
 	
-	body {
+	.body {
 	background-color: #FAFAFA;
     background-repeat: no-repeat;
     background-position: right;
@@ -48,20 +48,12 @@
     position: absolute;
 	}
 
-	.react1 {
-	width: 1400px;
-	border: 0px solid;
-	text-align: center;
-	box-sizing: border-box;
-	position: absolute;
-    top: 200px;
-	left: 250px;
-	}
 
 	.table {
     
     height: 200px;
     table-layout: fixed;
+    align:center;
     text-align : center;
 	 }  
  
@@ -130,9 +122,9 @@
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
     </div>
-	    <div class="react1">
+	    <div>
 			<!-- 최근공지 5개 출력 -->
-			<div style="width:40%; float : left;">
+			<div style="width:45%; float : left;">
 				<p class="indent" align="center">
 					<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 최근 공지사항 </span>
 				</p>

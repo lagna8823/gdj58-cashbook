@@ -63,7 +63,7 @@
 	// View : 달력출력 + 일별 cash 목록 출력
 %>
 	<!DOCTYPE html>
-	
+	<html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -86,6 +86,28 @@
     position: absolute;
 	}
 	
+ 	.react1 {
+	box-sizing: border-box;
+	
+	}
+	.react2 {
+	width: 1730px;
+	height: 1000px;
+	border: 0px solid;
+	box-sizing: border-box;
+	position: absolute;
+    top: 90px;
+	left: 1600px;
+	}
+	.react3 {
+	width: 1730px;
+	height: 1000px;
+	border: 0px solid;
+	box-sizing: border-box;
+	position: absolute;
+    top: 200px;
+	left: 0px;
+	} 
 	.table {
     width: 300px;
     height: 400px;
@@ -119,7 +141,6 @@
 	}
 	
 	.background{
-	   width: 1520px;
 	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
 	   background-repeat: no-repeat;
 	   background-position: right;
@@ -147,18 +168,22 @@
         -webkit-box-orient: vertical;
     }
     .a{
-    text-decoration: none; width:70%; 
-    height: 100px; 
-    border: 1px solid rgba(242, 242, 242, 0.2); 
-    border-radius: 2em;
-	background-color: rgba(242, 242, 242, 0.8); color:black;
+    display: block;
+    width: 100px;
+    height: 25px;
+    color:black;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.1); 
+    border-radius: 1em;
+	background-color: rgba(242, 242, 242, 0.1);
+	font-weight: bolder !important
 	}
 	
     .a:hover{
     color:#fff;
     background-color:#27E1CE;
     text-decoration: none;
-    font-size: 16px;
     font-weight: bolder !important;
     }
     
@@ -178,135 +203,140 @@
     
     .d{
 	text-decoration: none;
+	
 	</style>
     </head>
-	<body>
+	<body class="background">
 		<!-- 메뉴 partial jsp 구성 -->
 		<header>
 			<div>
 				<jsp:include page="/inc/menu.jsp"></jsp:include>
 		    </div>
 	    </header>
-	    <article class="background">
-	    <div>
-	    <!-- 회원폼  -->
-	    <div>
-		    <nav role="navigation" align="right">
-	    		<ul>
-			    	<li><a class="a" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">Edit password</a></li>
-					<li><a class="a" href="<%=request.getContextPath()%>/updateMemberForm.jsp">Information</a></li>
-					<li><a class="a" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">Withdrawal</a></li>
-					<li><a class="a" href="<%=request.getContextPath()%>/logout.jsp">Logout</a></li>
-				</ul>
-			</nav>
+	    
+	    <article>
+		    <div class="react1">
+			    <!-- 회원폼  -->
+			    <div class="react2">
+				    <nav role="navigation">
+			    		<ul>
+					    	<a class="a" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">password</a>
+							<a class="a" href="<%=request.getContextPath()%>/updateMemberForm.jsp">Information</a>
+							<a class="a" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">Withdrawal</a>
+							<a class="a" href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
+						</ul>
+					</nav>
+				</div>
+				
+				<div class="react3">
+					<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
+				   	 <div align="center">
+				   	 	<span style="font-size:2em;  color: black; font-weight: bolder !important;"><%=loginMember.getMemberName()%>'s Calendar</span>
+				   	 </div>
+					<!-- 달력 상단 -->
+					<div align="center">
+						<a class="c" style= " text-decoration: none; font-weight: bolder !important; color:black;"href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;Previous&nbsp;&nbsp;</a>
+						<span style= " text-decoration: none; font-size:1.4em; font-weight: bolder !important; color:black;"><%=month+1%></span></span><span style= "color:black;"></span>
+						<span style= "color:black;">,</span>
+						<span style= " text-decoration: none; font-size:1.4em; font-weight: bolder !important; color:black;"><%=year%></span><span style= "color:black;"></span>
+						<a class="c" style= "font-weight: bolder !important; color:black;" href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">&nbsp;&nbsp;Next&#8702;</a>
+					</div>
+					
+					<div class="container" algin="center">
+				      <!-- 달력 --> 
+				      <table class="table"> <!--border="1" width="90%"  -->
+				         <tr style= "background-color: rgba(242, 242, 242, 0.3);">
+				            <th  class="th" style="color:red;">Sun</th>
+				            <th  class="th" style="color:black;">Mon</th>
+				            <th  class="th" style="color:black;">Tue</th>
+				            <th  class="th" style="color:black;">Wen</th>
+				            <th  class="th" style="color:black;">Thr</th>
+				            <th  class="th" style="color:black;">Fri</th>
+				            <th  class="th" style="color:blue;">Sat</th>
+				         </tr>
+				         <tr>
+				            <%
+				               for(int i=1; i<=totalTd; i++) {
+				            %>
+				                  <td>
+				            	<%
+				                     int date = i-beginBlank;
+				                     if(date > 0 && date <= lastDate) {
+				           		%>
+				                        <div>
+									<%
+			                       		   if(i%7 == 0){
+									%>
+												<a class="d" href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
+													<span class="text-primary b"><%=date%></span> </a>
+			   						<%
+				   							} else if(i%7 == 1){
+									%>
+												<a class="d" href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
+													<span class="text-danger b"><%=date%></span> </a>
+									<%
+			   								} else {
+			 						%>
+			 								<a class="d" href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
+													<span class="text-warning b"><%=date%></span> </a>
+			  						<%
+			   							}
+			           				%>
+			         					</div>
+				                        <div class="word">
+				                           <% /* 위 세팅된 arrayList<해쉬맵> list를 CashDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
+				                           		ex)  for(HashMap<String, Object> m : list) {
+				                           				String cashDate = (String)(m.get("cashDate")); 
+				                           		}        (ps. m.get 앞에 String은 형변환을 해줌.)  */
+				                              for(HashMap<String, Object> m : list) {
+				                                 String cashDate = (String)(m.get("cashDate"));
+				                                 if(Integer.parseInt(cashDate.substring(8)) == date) {
+				                           %>
+				                                    <%
+				                                    	if(m.get("categoryKind").equals("수입")){
+				                                    %>
+				                                    	💸
+				                                    <%		
+				                                    	} else {
+				                                    %>
+				                                    	&#128204;
+				                                    <%
+				                                    	}
+				                                    %>
+				                                    <%=(String)(m.get("categoryName"))%>
+				                                    &nbsp;
+				                                    <span style ="font-family: gulim;"><%=(Long)(m.get("cashPrice"))%>원</span>
+				                                    <br>
+				                           <%
+				                                 }
+				                              }
+				                           %>
+				                        </div>
+				            <%            
+				                     }
+				            %>
+			               		</td>
+				            <%
+				                  
+				                  if(i%7 == 0 && i != totalTd) {
+				            %>
+				                     </tr><tr> <!-- td7개 만들고 테이블 줄바꿈 -->
+				            <%         
+				                  }
+				               }
+				            %>
+				         </tr>
+				      </table>
+					</div>
+					<div id="fh5co-header" role="banner" class="container">
+						<nav role="navigation">
+							<ul>
+								<li class="cta"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month%>">TopPage</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
 		</div>
-		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-	   	 <div align="center">
-	   	 	<span style="font-size:2em;  color: black; font-weight: bolder !important;"><%=loginMember.getMemberName()%>'s Calendar</span>
-	   	 </div>
-		<!-- 달력 상단 -->
-		<div align="center">
-			<a class="c" style= " text-decoration: none; font-weight: bolder !important; color:black;"href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;Previous&nbsp;&nbsp;</a>
-			<span style= " text-decoration: none; font-size:1.4em; font-weight: bolder !important; color:black;"><%=month+1%></span></span><span style= "color:black;"></span>
-			<span style= "color:black;">,</span>
-			<span style= " text-decoration: none; font-size:1.4em; font-weight: bolder !important; color:black;"><%=year%></span><span style= "color:black;"></span>
-			<a class="c" style= "font-weight: bolder !important; color:black;" href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">&nbsp;&nbsp;Next&#8702;</a>
-		</div>
-		
-		<div class="container" algin="center">
-	      <!-- 달력 --> 
-	      <table class="table"> <!--border="1" width="90%"  -->
-	         <tr style= "background-color: rgba(242, 242, 242, 0.3);">
-	            <th  class="th" style="color:red;">Sun</th>
-	            <th  class="th" style="color:black;">Mon</th>
-	            <th  class="th" style="color:black;">Tue</th>
-	            <th  class="th" style="color:black;">Wen</th>
-	            <th  class="th" style="color:black;">Thr</th>
-	            <th  class="th" style="color:black;">Fri</th>
-	            <th  class="th" style="color:blue;">Sat</th>
-	         </tr>
-	         <tr>
-	            <%
-	               for(int i=1; i<=totalTd; i++) {
-	            %>
-	                  <td>
-	            	<%
-	                     int date = i-beginBlank;
-	                     if(date > 0 && date <= lastDate) {
-	           		%>
-	                        <div>
-						<%
-                       		   if(i%7 == 0){
-						%>
-									<a class="d" href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
-										<span class="text-primary b"><%=date%></span> </a>
-   						<%
-	   							} else if(i%7 == 1){
-						%>
-									<a class="d" href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
-										<span class="text-danger b"><%=date%></span> </a>
-						<%
-   								} else {
- 						%>
- 								<a class="d" href="<%=request.getContextPath()%>/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
-										<span class="text-warning b"><%=date%></span> </a>
-  						<%
-   							}
-           				%>
-         					</div>
-	                        <div class="word">
-	                           <% /* 위 세팅된 arrayList<해쉬맵> list를 CashDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
-	                           		ex)  for(HashMap<String, Object> m : list) {
-	                           				String cashDate = (String)(m.get("cashDate")); 
-	                           		}        (ps. m.get 앞에 String은 형변환을 해줌.)  */
-	                              for(HashMap<String, Object> m : list) {
-	                                 String cashDate = (String)(m.get("cashDate"));
-	                                 if(Integer.parseInt(cashDate.substring(8)) == date) {
-	                           %>
-	                                    <%
-	                                    	if(m.get("categoryKind").equals("수입")){
-	                                    %>
-	                                    	💸
-	                                    <%		
-	                                    	} else {
-	                                    %>
-	                                    	&#128204;
-	                                    <%
-	                                    	}
-	                                    %>
-	                                    <%=(String)(m.get("categoryName"))%>
-	                                    &nbsp;
-	                                    <span style ="font-family: gulim;"><%=(Long)(m.get("cashPrice"))%>원</span>
-	                                    <br>
-	                           <%
-	                                 }
-	                              }
-	                           %>
-	                        </div>
-	            <%            
-	                     }
-	            %>
-               		</td>
-	            <%
-	                  
-	                  if(i%7 == 0 && i != totalTd) {
-	            %>
-	                     </tr><tr> <!-- td7개 만들고 테이블 줄바꿈 -->
-	            <%         
-	                  }
-	               }
-	            %>
-	         </tr>
-	      </table>
-		</div>
-		<div id="fh5co-header" role="banner" class="container">
-			<nav role="navigation">
-				<ul>
-					<li class="cta"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month%>">TopPage</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
 	</article>
 	</body>
 </html>

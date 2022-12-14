@@ -44,7 +44,7 @@
 			<%
 				}
 			%>
-			<form action="<%=request.getContextPath()%>/admin/updateCategoryAction.jsp" method="post">
+			<form id="signinForm" action="<%=request.getContextPath()%>/admin/updateCategoryAction.jsp" method="post">
 			<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
 			<input type="hidden" name="categoryNo" value="<%=categoryNo%>">
 			<table>
@@ -53,12 +53,39 @@
 					<th>이름</th>
 				</tr>
 					<tr>
-						<td><input tpye="text" name="categoryKind" value="<%=categoryList.getCategoryKind()%>"></td>
-						<td><input tpye="text" name="categoryName" value="<%=categoryList.getCategoryName()%>"></td>
+						<td><input tpye="text" id="categoryKind" name="categoryKind" value="<%=categoryList.getCategoryKind()%>"></td>
+						<td><input tpye="text" id="categoryName" name="categoryName" value="<%=categoryList.getCategoryName()%>"></td>
 					</tr>
 			</table>
-			<button type="submit">수정하기</button>
+			<button type="button" id="signinBtn">수정하기</button>
 			</form>
 		</div>
+	<script>
+		let signinBtn = document.querySelector('#signinBtn');
+	
+		signinBtn.addEventListener('click', function() {
+			// 디버깅
+			console.log('signinBtn click!');
+			
+			// 수입지출 폼 유효성 검사
+			let categoryKind = document.querySelector('#categoryKind');
+			if(categoryKind.value == ''){
+				alert('수입/지출을 확인하세요.');
+				categoryKind.focus();
+				return;
+			}
+			
+			// 내역 폼 유효성 검사
+			let categoryName = document.querySelector('#categoryName');
+			if(categoryName.value == ''){
+				alert('내역을 확인하세요.');
+				categoryName.focus();
+				return;
+			}
+			
+			let signinForm =document.querySelector('#signinForm');
+			signinForm.submit(); //action=/updateCategoryAction.jsp
+		});
+	</script>
 	</body>
 </html>

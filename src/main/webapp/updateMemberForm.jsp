@@ -139,14 +139,11 @@ arrayList 형태로 저장되있는 MemberDao.select~~Month 메서드로 (loginM
 	
 			<!-- 회원정보 수정 상단 제목 및 이전페이지-->
 			<p align="center">
-				<span
-					style="font-size: 2em; color: black; font-weight: bolder !important;">
-					회원정보 수정 </span>
+				<span style="font-size: 2em; color: black; font-weight: bolder !important;"> 회원정보 수정 </span>
 			</p>
 			<br>
 			<!-- 회원정보수정 폼작성 -->
-			<form action="<%=request.getContextPath()%>/updateMemberAction.jsp"
-				method="post">
+			<form id="signinForm" action="<%=request.getContextPath()%>/updateMemberAction.jsp">
 				<%
 				/* 위 세팅된 arrayList<해쉬맵> list를 MemberDao 클래스에서 HashMap<String,Object> m으로 생성했기에, for each문이 다음과 같이 쓰임. 
 				               		ex)  for(HashMap<String, Object> m : list) {
@@ -165,20 +162,18 @@ arrayList 형태로 저장되있는 MemberDao.select~~Month 메서드로 (loginM
 								value="<%=memberId%>" readonly="readonly"></td>
 						</tr>
 						<tr>
-							<th class="th"><span>기존 비밀번호</span></th>
-							<td class="td"><input class="int" type="password"
-								name="memberPw" value=""></td>
+							<th class="th"><span>비밀번호</span></th>
+							<td class="td"><input class="int" type="password" id="memberPw" name="memberPw" value=""></td>
 						</tr>
 						<tr>
 							<th class="th"><span>이름</span></th>
-							<td class="td"><input class="int" type="text"
-								name="memberName" value="<%=memberName%>"></td>
+							<td class="td"><input class="int" type="text" id="memberName" name="memberName" value="<%=memberName%>"></td>
 						</tr>
 						<tr>
 							<th><a class="btn_type btn_primary a" 
 								href="<%=request.getContextPath()%>/cash/cashList.jsp">돌아가기</a></th>
 							<td>
-								<button type="submit" class="btn_type btn_primary a">수정하기</button>
+								<button type="button" id="signinBtn" class="btn_type btn_primary a">수정하기</button>
 							</td>
 						</tr>
 					</table>
@@ -196,5 +191,31 @@ arrayList 형태로 저장되있는 MemberDao.select~~Month 메서드로 (loginM
 				%>
 			</form>
 		</div>
+	<script>
+		let signBtn = document.querySelector('#signinBtn');
+		
+		signinBtn.addEventListener('click', function() {
+			// 디버깅
+			console.log('signingBtn click!');
+			
+			//PW 폼 유효성 검사
+			let memberPw = document.querySelector('#memberPw');
+			if(memberPw.value == ''){
+				alert('비밀번호를 확인하세요.');
+				memberPw.focus();
+				return;
+			}
+			
+			//Name 폼 유효성 검사
+			let memberName = document.querySelector('#memberName');
+			if(memberName.value == ''){
+				alert('이름을 확인하세요.');
+				memberName.focus();
+				return;
+			}
+			let signinForm =document.querySelector('#signinForm');
+			signinForm.submit(); //action=/updateMemberAction.jsp
+		});
+	</script>	
 	</body>
 </html>

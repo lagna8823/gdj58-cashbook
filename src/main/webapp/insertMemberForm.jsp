@@ -147,7 +147,7 @@
 		<header id="fh5co-header" role="banner" >
 			<div class="container">
 				<div class="header-inner">
-				<h1><a href=<%=request.getContextPath()%>/loginForm.jsp>
+				<h1><a href="<%=request.getContextPath()%>/loginForm.jsp">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Flow</a></h1>
 				</div>
@@ -161,8 +161,8 @@
 		<%
 			}
 		%>
-		<!-- 폼작성 -->
-		<form action="<%=request.getContextPath()%>/insertMemberAction.jsp" method="post">
+		<!-- 폼작성 -->	
+		<form id="signinForm" action="<%=request.getContextPath()%>/insertMemberAction.jsp">
 			<div>
 			<table class="table">
 				<tr>
@@ -172,7 +172,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="text" class="int" name="memberId" value="">
+						<input type="text" id="memberId" class="int" name="memberId" value="">
 					</td>				
 				</tr>
 				<tr>
@@ -182,7 +182,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="password" class="int" name="memberPw" value="">
+						<input type="password" id="memberPw" class="int" name="memberPw" value="">
 					</td>				
 				</tr>
 				
@@ -193,23 +193,64 @@
 				</tr>
 				<tr>
 					<td>
-					<input type="text" class="int" name="memberName" value="">
+					<input type="text" id="memberName" class="int" name="memberName" value="">
 					</td>				
 				</tr>
 				<tr>
-					<th class="th">
-						&nbsp;
-					</th>
-				</tr>
-				<tr>
 					<th>
-						<span>Flow 이용약관, 개인정보 수집 및 이용에 모두 동의합니다.</span>
+						<p>개인정보의 수집 및 이용에 대한 동의 <span style="color:red;">(필수)</span></p>
+						<p>-Flow에서 이용자 회원가입 시 직접 개인정보를 입력 및 수정하여 개인정보를 수집합니다.</p>
+						<div><input type="checkbox" class="ck" name="ck">동의합니다</div>
 					</th>
 				</tr>
 			</table>
-			<button type="submit"  class="btn_type btn_primary"><span>가입하기</span></button>
+			<button type="button" id="signinBtn" class="btn_type btn_primary"><span>가입하기</span></button>
 			</div>
-		</form>		
+		</form>	
+	<script>
+		let signinBtn = document.querySelector('#signinBtn');
+		
+		signinBtn.addEventListener('click', function(){
+			// 디버깅
+			console.log('signinBtn click');
+			
+			// ID 유효성검사
+			let memberId = document.querySelector('#memberId');
+			if(memberId.value == ''){
+				alert('ID를 입력하세요.');
+				memberId.focus(); // 브라우저의 커스를 id태그로 이동
+				return;
+			}
+			
+			// PW 유효성검사
+			let memberPw = document.querySelector('#memberPw');
+			if(memberPw.value == ''){
+				alert('비밀번호를 입력하세요.');
+				memberPw.focus(); // 브라우저의 커스를 pw태그로 이동
+				return;
+			}
+			
+			// NAME 유효성검사
+			let memberName = document.querySelector('#memberName');
+			if(memberName.value == ''){
+				alert('이름을 입력하세요.');
+				memberName.focus(); // 브라우저의 커스를 pw태그로 이동
+				return;
+			}
+			
+			// 약관동의
+			let ck = document.querySelectorAll('.ck:checked');
+			console.log(ck.length); // 1
+			if(ck.length != 1){
+				alert('약관에 동의하세요');
+				ck.focus();
+				return;
+			}
+			
+			let signinForm = document.querySelector('#signinForm');
+			signinForm.submit(); 
+		});
+	</script>	
 	</body>
 	</div>
 </html>

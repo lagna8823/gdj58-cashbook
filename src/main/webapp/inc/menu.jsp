@@ -26,7 +26,7 @@
 	.body {
 	background-color: #F5F5F5;
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: left;
     background-attachment: fixed;
     background-size: cover; 
     position: absolute;
@@ -36,10 +36,10 @@
 	<body class="body">
 	<div id="fh5co-page">
 	<header id="fh5co-header" role="banner" style="background-color: #F5F5F5;">
-		<div class="container" align="right" >
+		<div class="container" >
 			<div class="header-inner" >
 				<h1><a href=<%=request.getContextPath()%>/cash/cashList.jsp>Flow</a></h1>
-				<nav role="navigation" >
+				<nav role="navigation">
 				<!-- partial jsp 페이지 사용할 코드-->
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/cash/cashList.jsp">Home</a></li>

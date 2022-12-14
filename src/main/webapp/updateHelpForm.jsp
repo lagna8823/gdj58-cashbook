@@ -19,6 +19,7 @@
 	
 	Help updateHelp = new Help(); // 모델 호출시 매개값(vo.Help 클래스를 이용하여 updateHelp 새로 선언)
 	updateHelp.setHelpNo(helpNo);
+	
 	// 분리된M(모델)을 호출
 	HelpDao helpDao = new HelpDao();  // HelpDao 메서드를 이용해 selectHelpNo 새로 선언.
 	ArrayList<HashMap<String, Object>> list = helpDao.selectHelpNo(helpNo);
@@ -31,26 +32,49 @@
 	</head>
 	<body>
 	<h1>문의수정</h1>
-	<form action="<%=request.getContextPath()%>/updateHelpAction.jsp" method="post">
+	<form id="signinForm" action="<%=request.getContextPath()%>/updateHelpAction.jsp">
 		<input type="hidden" name="helpNo" value="<%=helpNo%>">
 		<div>
 		<table border="1">
 			<tr>
-				<th>문의내용</th>
+				<th>번호</th>
 				<th>문의날짜</th>
+				<th>문의내용</th>
 			</tr>
 			<tr>
 				<%
 					for(HashMap<String, Object> h :  list){
 				%>
-				<td><textarea rows="8" cols="80" name="helpMemo"><%=h.get("helpMemo")%></textarea></td>
+				<td><%=h.get("helpNo")%></td>
+				<td><%=h.get("createdate")%></td>
+				<td><textarea id="helpMemo" rows="8" cols="80" name="helpMemo"><%=h.get("helpMemo")%></textarea></td>
 				<%
 					}
 				%>
 			</tr>
 		</table>
-		<button tpye="submit">수정</button>
+		<a href="<%=request.getContextPath()%>/helpList.jsp">돌아가기</a>
+		<button tpye="button" id="signinBtn">수정하기</button>
 		</div>
 	</form>
+	<script>
+		let signinBtn = document.querySelector('#signinBtn');
+	
+		signinBtn.addEventListener('click', function() {
+			// 디버깅
+			console.log('signinBtn click!');
+			
+			//공지사항 폼 유효성 검사
+			let helpMemo = document.querySelector('#helpMemo');
+			if(helpMemo.value == ''){
+				alert('문의내용을 확인하세요.');
+				helpMemo.focus();
+				return;
+			}
+			
+			let signinForm =document.querySelector('#signinForm');
+			signinForm.submit(); //action=/insertCashAction.jsp
+		});
+	</script>
 	</body>
 </html>

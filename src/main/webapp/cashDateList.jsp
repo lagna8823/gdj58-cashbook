@@ -124,7 +124,7 @@
 		</p>
 		
 		<!-- cash(가계부) 입력 폼 -->
-		<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
+		<form id="signinForm" action="<%=request.getContextPath()%>/cash/insertCashAction.jsp">
 			<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
 			<input type="hidden" name="year" value="<%=year%>">
 			<input type="hidden" name="month" value="<%=month%>">
@@ -162,17 +162,17 @@
 				<tr>
 					<th class="th1">금액</th>
 					<td>
-						<input tpye="number" name="cashPrice">
+						<input tpye="number" id="cashPrice" name="cashPrice">
 					</td>
 				</tr>
 				<tr>
-					<th class="th1">메모</th>
+					<th class="th1">내역</th>
 					<td>
-						<textarea rows="3" cols="40" name="cashMemo"></textarea>
+						<textarea id="cashMemo" rows="3" cols="40" name="cashMemo"></textarea>
 					</td>
 				</tr>
 			</table>
-			<button type="submit">추가하기</button> 
+			<button type="button" id="signinBtn">추가하기</button> 
 			<!-- msg 파라메타값이 있으면 출력 -->
 		<%
 			if(request.getParameter("msg") != null){
@@ -230,6 +230,33 @@
 			%>
 		</table>
 		</div>
+	<script>
+		let signinBtn = document.querySelector('#signinBtn');
+	
+		signinBtn.addEventListener('click', function() {
+			// 디버깅
+			console.log('signinBtn click!');
+			
+			// 금액 유효성 검사.
+			let cashPrice = document.querySelector('#cashPrice');
+			if(cashPrice.value == '' || cashPrice.value == 0){
+				alert('금액을 확인하세요.');
+				cashPrice.focus();
+				return;
+			}
+			
+			// 내역 유효성 검사
+			let cashMemo = document.querySelector('#cashMemo');
+			if(cashMemo.value == '' || cashPrice.value == 0){
+				alert('내역을 확인하세요.');
+				cashMemo.focus();
+				return;
+			}
+			
+			let signinForm =document.querySelector('#signinForm');
+			signinForm.submit(); //action=/insertCashAction.jsp
+		});
+	</script>
 	</body>
 </html>
 
