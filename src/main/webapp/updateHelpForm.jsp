@@ -145,40 +145,39 @@
 			</p>
 			<br>
 			<!-- 문의 수정 폼작성 -->
-			<div>
-				<form id="signinForm" action="<%=request.getContextPath()%>/updateHelpAction.jsp">
-					<input type="hidden" name="helpNo" value="<%=helpNo%>">
-					
-					<table>
-							<%
-								for(HashMap<String, Object> h :  list){
-							%>
-						<tr>
-							<th class="th">번호</th>
-							<td class="td font"><%=h.get("helpNo")%></td>
-						</tr>
-						<tr>
-							<th class="th">문의날짜</th>
-							<td class="td font"><%=h.get("createdate")%></td>
-						</tr>
-						<tr>	
-							<th class="th">문의내용</th>
-							
-							<td class="td"><textarea id="helpMemo" rows="8" cols="80" name="helpMemo"><%=h.get("helpMemo")%></textarea></td>
-							<%
-								}
-							%>
-						</tr>
-						<tr>
-							<th class="th"><a class="btn_type btn_primary a" 
-									href="<%=request.getContextPath()%>/helpList.jsp">돌아가기</a></th>
-							<td class="td">
-								<button type="button" id="signinBtn" class="btn_type btn_primary">수정하기</button>
-							</td>
-						</tr>
-					</table>
-				</form>
+			<form id="signinForm" action="<%=request.getContextPath()%>/updateHelpAction.jsp">
+				<input type="hidden" name="helpNo" value="<%=helpNo%>">
+				<div>
+				<table>
+						<%
+							for(HashMap<String, Object> h :  list){
+						%>
+					<tr>
+						<th class="th">번호</th>
+						<td class="td font"><%=h.get("helpNo")%></td>
+					</tr>
+					<tr>
+						<th class="th">문의날짜</th>
+						<td class="td font"><%=h.get("createdate")%></td>
+					</tr>
+					<tr>	
+						<th class="th">문의내용</th>
+						
+						<td class="td"><textarea id="helpMemo" rows="8" cols="80" name="helpMemo"><%=h.get("helpMemo")%></textarea></td>
+						<%
+							}
+						%>
+					</tr>
+					<tr>
+						<th class="th"><a class="btn_type btn_primary a" 
+								href="<%=request.getContextPath()%>/helpList.jsp">돌아가기</a></th>
+						<td class="td">
+							<button type="button" id="signinBtn" class="btn_type btn_primary">수정하기</button>
+						</td>
+					</tr>
+				</table>
 			</div>
+		</form>
 	<script>
 		let signinBtn = document.querySelector('#signinBtn');
 	
