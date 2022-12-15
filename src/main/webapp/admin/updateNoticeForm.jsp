@@ -40,24 +40,19 @@
 	<!--스타일 -->
 	<style>
 	
-	.body {
-	background-color: #FAFAFA;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-attachment: fixed;
-    background-size: cover; 
-    position: absolute;
+	.font {
+	font-family: gulim;
 	}
-
+	
 	.react1 {
 	width: 600px;
-	height: 600px;
-	border: 0px solid;
+	height: 340px;
+	border: 0px solid 
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
-    top: 250px;
-	left: 550px;
+    top: 150px;
+	left: 430px;
 	}
 
 	.table {
@@ -83,7 +78,8 @@
 	th-layout: fixed;
 	text-align : left;
 	}
-	td {
+	
+	.td {
 	width: 200px;
 	padding: 10px;
 	border-right:hidden;
@@ -134,21 +130,58 @@
 	text-decoration: none;
 	font-weight: bolder !important;
 	}  
-	</style>	
-	</head>
-	<body class="body">
-	<!-- 메뉴 partial jsp 구성 -->
-	<div>
-		<jsp:include page="/inc/menu.jsp"></jsp:include>
-    </div>
-	<div class="react1">
 	
-	<!-- 공지사항 수정 상단 제목-->
-	<p class="indent" align="center">
-		<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 공지사항 수정 </span>
-	</p>
-	<br>
-	<!-- msg 파라메타값이 있으면 출력 -->
+	p.indent{ padding-left: 18em }
+	
+	</style>
+	</head>
+	<body>
+		<!-- 메뉴 partial jsp 구성 -->
+		<div>
+			<jsp:include page="/inc/menu.jsp"></jsp:include>
+	    </div>
+		<div class="react1">
+	
+			<!-- 공지사항 수정 상단 제목-->
+			<p class="indent" align="center">
+				<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 공지사항 수정 </span>
+			</p>
+			
+			<!-- notice 수정 폼 작성 -->	
+			<form id="signinForm" action="<%=request.getContextPath()%>/admin/updateNoticeAction.jsp">
+				<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
+			<div>
+			<table> 
+					<%
+						for(Notice n : list){
+					%>
+						<tr>
+							<th class="th">공지번호</th>
+							<td class="td font"><input type="number" name="noticeNo" value="<%=n.getNoticeNo()%>" readonly="readonly" style="width:430px;"></td>
+						</tr>
+						<tr>
+							<th class="th">생성날짜</th>
+							<td class="td font"><input type="text" name="createdate" value="<%=n.getCreatedate()%>" readonly="readonly" style="width:430px;"></td>
+						</tr>
+						<tr>
+							<th class="th">공지내용</th>
+							<td class="td"><textarea id="noticeMemo" rows="3" cols="50" name="noticeMemo" value="<%=n.getNoticeMemo()%>"></textarea></td>
+						</tr>
+					<%
+						}
+					%>
+						<tr>
+							<th class="th"><a class="btn_type btn_primary a" 
+									href="<%=request.getContextPath()%>/cash/cashList.jsp">돌아가기</a></th>
+							<td class="td">
+								<button type="button" id="signinBtn" class="btn_type btn_primary">수정하기</button>
+							</td>
+						</tr>
+			</table>
+			</div> 
+			</form>
+		</div>
+		<!-- msg 파라메타값이 있으면 출력 -->
 		<%
 			if(request.getParameter("msg") != null){
 		%>
@@ -156,36 +189,6 @@
 		<%
 			}
 		%>
-	<!-- notice 수정폼 작성 -->	
-	<form id="signinForm" action="<%=request.getContextPath()%>/admin/updateNoticeAction.jsp">
-		<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
-				<table> 
-					<tr>
-						<th>공지번호</th>
-						<th>공지내용</th>
-						<th>생성날짜</th>
-					</tr>
-					<tr>
-						<%
-							for(Notice n : list){
-						%>
-							<td><input type="number" name="noticeNo" value="<%=n.getNoticeNo()%>" readonly="readonly"></td>
-							<td><textarea id="noticeMemo" rows="3" cols="50" name="noticeMemo" value="<%=n.getNoticeMemo()%>"></textarea></td>
-							<td><input type="text" name="createdate" value="<%=n.getCreatedate()%>" readonly="readonly"></td>
-						<%
-							}
-						%>
-					</tr>
-					<tr>
-						<th><a class="btn_type btn_primary a" 
-								href="<%=request.getContextPath()%>/cash/cashList.jsp">돌아가기</a></th>
-						<td>
-							<button type="button" id="signinBtn" class="btn_type btn_primary">수정하기</button>
-						</td>
-					</tr>
-				</table> 
-			</form>
-		</div>
 	<script>
 		let signinBtn = document.querySelector('#signinBtn');
 	
@@ -196,7 +199,7 @@
 			//공지사항 폼 유효성 검사
 			let noticeMemo = document.querySelector('#noticeMemo');
 			if(noticeMemo.value == ''){
-				alert('공지사항을 확인하세요.');
+				alert('공지내용을 확인하세요.');
 				noticeMemo.focus();
 				return;
 			}

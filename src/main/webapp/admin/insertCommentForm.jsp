@@ -139,7 +139,7 @@
 				<input type="hidden" name="helpNo" value="<%=helpNo%>">
 				<input type="hidden" name="memberId" value="<%=memberId%>">
 				<div>
-				<table border="1">
+				<table>
 					<%
 						for(HashMap<String, Object> h : list ){
 					%>

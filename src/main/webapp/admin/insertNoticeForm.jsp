@@ -132,24 +132,23 @@
 		<p class="indent" align="center">
 			<span style="font-size:2em;  color: black; font-weight: bolder !important;">공지사항 추가 </span>
 		</p>
-		<br>
 		
 		<!-- notice 입력폼 작성 -->	
 		<form id="signinForm" action="<%=request.getContextPath()%>/admin/insertNoticeAction.jsp">
 			<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
-			<table border="1"> 
+			<div>
+			<table> 
 				<tr>
-					<th colspan='2'>공지내용</th>
-				</tr>
-				<tr>
+					<th class="th">공지내용</th>
 					<td colspan='2'><textarea id="noticeMemo" rows="3" cols="50" name="noticeMemo"></textarea></td>
 				</tr>
 				<tr>
 					<td><a class="btn_type btn_primary a" 
 							href="<%=request.getContextPath()%>/admin/noticeList.jsp">돌아가기</a></td>
-					<td cols="50"><button type="button" id="signinBtn" class="btn_type btn_primary">추가하기</button></td>
+					<td class="td"><button type="button" id="signinBtn" class="btn_type btn_primary">추가하기</button></td>
 				</tr>
 			</table> 
+			</div>
 		</form>
 		</div>
 	<script>

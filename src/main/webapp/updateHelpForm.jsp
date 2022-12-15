@@ -40,6 +40,7 @@
 	
 	.font {
 	font-family: gulim;
+	font-weight: bolder !important;
 	}
 	
 	.react1 {
