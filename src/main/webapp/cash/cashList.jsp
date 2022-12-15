@@ -77,15 +77,10 @@
 	<!--스타일 -->
 	<style>
 	
-	.body {
-	background-color: #FAFAFA;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-attachment: fixed;
-    background-size: cover; 
-    position: absolute;
-	}
-	
+	.img{
+	width: 1730px;
+ 	}
+ 	
  	.react1 {
 	box-sizing: border-box;
 	}
@@ -103,8 +98,8 @@
 	.react4 {
 	box-sizing: border-box;
 	position: absolute;
-    top: 150px;
-	left: 300px;
+    top: 120px;
+	left: 280px;
 	} 
 	.table {
     width: 300px;
@@ -135,16 +130,7 @@
 	text-overflow: ellipsis;
 	overflow: hidden;
 	}
-	
-	.img{
-	width: 1730px;
- 	object-fit: cover;
-	/* background-repeat: no-repeat;
-	background-position: right;
-	background-attachment: fixed;
-	left: 50px; */
-	} 
-	
+ 	
 	.word {
         margin:0.2px;
         /* outline: 1px solid black; */
@@ -232,15 +218,16 @@
 				<div class="react4">
 					<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
 				   	 <div align="center">
-				   	 	<span style="font-size:2em;  color: black; font-weight: bolder !important;"><%=loginMember.getMemberName()%>'s Calendar</span>
+				   	 	<span style="font-size:2em;  color: black; font-weight: bolder !important;"><%=loginMember.getMemberName()%>'s Calendar</span>🗓️
 				   	 </div>
+				   	 <br>
 					<!-- 달력 상단 -->
 					<div align="center">
-						<a class="c" style= " text-decoration: none; font-weight: bolder !important; color:black;"href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;Previous&nbsp;&nbsp;</a>
-						<span style= " text-decoration: none; font-size:1.4em; font-weight: bolder !important; color:black;"><%=month+1%></span></span><span style= "color:black;"></span>
+						<a class="c" style= " text-decoration: none; font-weight: bolder !important; color:black;"href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전&nbsp;&nbsp;</a>
+						<span style= " text-decoration: none; font-size:1.4em; font-weight: bolder !important; color:black;"><%=year%></span></span><span style= "color:black;"></span>
 						<span style= "color:black;">,</span>
-						<span style= " text-decoration: none; font-size:1.4em; font-weight: bolder !important; color:black;"><%=year%></span><span style= "color:black;"></span>
-						<a class="c" style= "font-weight: bolder !important; color:black;" href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">&nbsp;&nbsp;Next&#8702;</a>
+						<span style= " text-decoration: none; font-size:1.4em; font-weight: bolder !important; color:black;"><%=month+1%></span><span style= "color:black;"></span>
+						<a class="c" style= "font-weight: bolder !important; color:black;" href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">&nbsp;&nbsp;다음&#8702;</a>
 					</div>
 					
 					<div class="container" algin="center">

@@ -52,7 +52,7 @@
 
 	.react1 {
 	width: 600px;
-	height: 600px;
+	height: 300px;
 	border: 0px solid;
 	text-align: center;
 	box-sizing: border-box;

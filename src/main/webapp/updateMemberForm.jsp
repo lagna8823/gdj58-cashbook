@@ -44,7 +44,7 @@ arrayList 형태로 저장되있는 MemberDao.select~~Month 메서드로 (loginM
 	
 	.react1 {
 		width: 600px;
-		height: 600px;
+		height: 340px;
 		border: 0px solid;
 		text-align: center;
 		box-sizing: border-box;

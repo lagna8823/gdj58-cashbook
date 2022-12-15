@@ -61,7 +61,6 @@
 	
 	.react1 {
 	box-sizing: border-box;
-	
 	}
 	.react2 {
 	width: 1000px;
@@ -88,6 +87,7 @@
     
     height: 200px;
     table-layout: fixed;
+    border: 1px solid #666666;
 	 }  
 	 
 	.th {
@@ -122,14 +122,17 @@
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
 	
-	<!-- 사용기록 리스트 -->
-	<h1>사용자 기록</h1>
 	<div class="react1">
+	<br>
+	<!-- 상단 제목 및 이전 페이지-->
+ 	<p class="indent" align="center">
+		<span style="font-size:2em;  color: black; font-weight: bolder !important; padding-left: 11em"> 가계부 통계 </span>
+	</p>
 		<div class="react2">
 		<!-- 년도별 통계 -->
-		<p class="indent" align="center" style = "color: black;">연도별통계</p>
-			<table class="table1" style= "background-color: rgba(242, 242, 242, 0.3);">
-				<tr style="text-align : center;">
+		<div align="center" style = "color: black;">연도별통계</div>
+			<table>
+				<tr>
 					<th>년</th>
 					<th>수입일수</th>
 					<th>수입합계</th>
@@ -160,8 +163,8 @@
 		<!-- 월별 통계-->
 		<p class="indent" align="center" style = "color: black;">월별통계</p>
 		<p stlye color="black"><<%=year%>년></p>
-			<table class="table1" style= "background-color: rgba(242, 242, 242, 0.3);">
-				<tr style="text-align : center;">
+			<table>
+				<tr>
 					<th>월</th>
 					<th>수입일수</th>
 					<th>수입합계</th>

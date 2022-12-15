@@ -52,8 +52,8 @@
 	
 	.react1 {
 	width: 600px;
-	height: 600px;
-	border: 0px solid;
+	height: 340px;
+	border: 0px solid 
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
@@ -193,6 +193,7 @@
 						</td>
 					</tr>
 				</table>
+				
 				<!-- msg 파라메타값이 있으면 출력 -->
 			<%
 				if(request.getParameter("msg") != null){
