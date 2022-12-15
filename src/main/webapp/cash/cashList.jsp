@@ -88,20 +88,23 @@
 	
  	.react1 {
 	box-sizing: border-box;
-	
 	}
 	.react2 {
-	border: 0px solid;
 	box-sizing: border-box;
 	position: absolute;
-    top: 90px;
+ 
 	}
 	.react3 {
-	border: 0px solid;
 	box-sizing: border-box;
 	position: absolute;
-    top: 200px;
-	left: 0px;
+  	top: 80px;
+  	left: 1600px;
+	}
+	.react4 {
+	box-sizing: border-box;
+	position: absolute;
+    top: 150px;
+	left: 300px;
 	} 
 	.table {
     width: 300px;
@@ -134,11 +137,12 @@
 	}
 	
 	.img{
-	width: 145%;
-	height:120%;
-	background-repeat: no-repeat;
+	width: 1730px;
+ 	object-fit: cover;
+	/* background-repeat: no-repeat;
 	background-position: right;
 	background-attachment: fixed;
+	left: 50px; */
 	} 
 	
 	.word {
@@ -209,9 +213,12 @@
 	    
 	    <article>
 		    <div class="react1">
-		    	<img class="img" src="<%=request.getContextPath()%>/Resources/images/mainm.jpg">
+		    	<!--배경이미지 -->
+		    	<div  class="react2">
+		    		<img class="img" src="<%=request.getContextPath()%>/Resources/images/mainm.jpg">
+		    	</div>
 			    <!-- 회원폼  -->
-			    <div class="react2">
+			    <div class="react3">
 				    <nav role="navigation">
 			    		<ul>
 					    	<a class="a" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">password</a>
@@ -222,7 +229,7 @@
 					</nav>
 				</div>
 				
-				<div class="react3">
+				<div class="react4">
 					<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
 				   	 <div align="center">
 				   	 	<span style="font-size:2em;  color: black; font-weight: bolder !important;"><%=loginMember.getMemberName()%>'s Calendar</span>
