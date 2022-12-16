@@ -38,7 +38,7 @@
 	box-sizing: border-box;
 	position: absolute;
     top: 150px;
-	left: 430px;
+	left: 650px;
 	}
 
 	.table {
@@ -116,7 +116,7 @@
 	font-weight: bolder !important;
 	}  
 	
-	p.indent{ padding-left: 18em }
+	p.indent{ padding-left: 6em }
 	
 	</style>
 	</head>
@@ -128,7 +128,7 @@
 	    </div>
     	<div class="react1">
 			<!-- 카테고리 추가 상단 제목-->
-			<p class="indent" align="center">
+			<p class="indent" align="left">
 				<span style="font-size:2em;  color: black; font-weight: bolder !important;">카테고리 추가</span>
 			</p>
 		

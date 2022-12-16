@@ -52,7 +52,7 @@
 	box-sizing: border-box;
 	position: absolute;
     top: 150px;
-	left: 430px;
+	left: 580px;
 	}
 
 	.table {
@@ -131,7 +131,7 @@
 	font-weight: bolder !important;
 	}  
 	
-	p.indent{ padding-left: 18em }
+	p.indent{ padding-left: 6em }
 	
 	</style>
 	</head>

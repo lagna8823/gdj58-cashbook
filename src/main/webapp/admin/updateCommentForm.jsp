@@ -43,7 +43,7 @@
 	box-sizing: border-box;
 	position: absolute;
     top: 150px;
-	left: 430px;
+	left: 480px;
 	}
 
 	.table {

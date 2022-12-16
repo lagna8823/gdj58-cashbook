@@ -84,34 +84,48 @@
 	}
 	
 	table{
-    
+    border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
+	border: 0px solid #666666;
     height: 200px;
     table-layout: fixed;
-    border: 1px solid #666666;
 	 }  
 	 
-	.th {
+	th {
+	border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
 	padding: 10px;
 	width: 90px;
-	border: 1px solid #666666;
+	border: 0px solid #666666;
 	font-weight: bolder !important;
 	white-space: nowrap;
 	color : black;
 	th2-layout: fixed;
 	text-align : center;
+	font-family: gulim;
 	}
 	
 	td {
+	border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
 	width: 75px;
 	padding: 10px;
-	border: 1px solid #666666;
+	border: 0px solid #666666;
 	td-layout: fixed;
 	overflow:hidden;
 	white-space : nowrap;
 	color : black;
 	text-overflow: ellipsis;
 	text-align : center;
+	font-family: gulim;
 	}
+	p.indent{ padding-left: 8em }
 	
 }
 	</style>
@@ -130,8 +144,8 @@
 	</p>
 		<div class="react2">
 		<!-- 년도별 통계 -->
-		<div align="center" style = "color: black;">연도별통계</div>
-			<table>
+		<div align="center" style = "color: black; padding-right:5em;"><연도별 통계내역></div>
+			<table class="hover">
 				<tr>
 					<th>년</th>
 					<th>수입일수</th>
@@ -161,8 +175,7 @@
 		
 		<div class="react3">
 		<!-- 월별 통계-->
-		<p class="indent" align="center" style = "color: black;">월별통계</p>
-		<p stlye color="black"><<%=year%>년></p>
+		<div  align="center" style = "color: black; padding-right:6em;" ><<%=year%>년 &nbsp; 월별통계></div>
 			<table>
 				<tr>
 					<th>월</th>

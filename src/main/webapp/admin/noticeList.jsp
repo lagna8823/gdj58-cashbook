@@ -94,14 +94,6 @@
 	text-overflow: ellipsis;
 	text-align : center;
 	}
-	
-	<%-- .background{
-	   background-image: url(<%=request.getContextPath()%>/Resources/images/mainm.jpg);
-	   background-repeat: no-repeat;
-	   background-position: right;
-	   background-attachment: fixed;
-	   background-size: cover; 
-	}  --%>
     
     div.indent{ padding-left: 10em }
     p.indent{ padding-right: 13em }

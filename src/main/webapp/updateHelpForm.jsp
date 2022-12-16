@@ -129,7 +129,7 @@
 	font-weight: bolder !important;
 	}  
 	
-	p.indent{ padding-left: 11em }
+	p.indent{ padding-left: 13em }
 	
 	</style>
 	</head>
@@ -142,7 +142,7 @@
     	<div class="react1">
 			<!-- 문의수정 상단 제목-->
 			<p class="indent" align="center">
-				<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 문의수정 </span>
+				<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 문의 수정 </span>
 			</p>
 			<br>
 			<!-- 문의 수정 폼작성 -->

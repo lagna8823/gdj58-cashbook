@@ -132,23 +132,23 @@
 	}
  	
 	.word {
-        margin:0.2px;
-        /* outline: 1px solid black; */
-        display: block;
-        color: black;
-        width: 150px;
-        font-size: 15px;
-        font-weight: bolder !important;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: normal;
-        line-height: 1.2;
-        height: 8.4em;
-        text-align: left;
-        word-wrap: break-word;
-        display: -webkit-box;
-		-webkit-line-clamp:  7;
-        -webkit-box-orient: vertical;
+    margin:0.2px;
+    /* outline: 1px solid black; */
+    display: block;
+    color: black;
+    width: 150px;
+    font-size: 15px;
+    font-weight: bolder !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.2;
+    height: 8.4em;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+	-webkit-line-clamp:  7;
+    -webkit-box-orient: vertical;
     }
     .a{
     display: block;

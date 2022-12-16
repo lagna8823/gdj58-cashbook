@@ -39,14 +39,6 @@
 	<!--스타일 -->
 	<style>
 	
-	.body {
-	background-color: #FAFAFA;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-attachment: fixed;
-    background-size: cover; 
-    position: absolute;
-	}
 
 	.react1 {
 	box-sizing: border-box;
@@ -59,7 +51,7 @@
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
-    top: 250px;
+    top: 200px;
 	left: 200px;
 	}
 	.react3 {
@@ -138,6 +130,8 @@
 	text-decoration: none;
 	font-weight: bolder !important;
 	}  
+	
+	p.indent{ padding-left: 8em }
 	
 	</style>
 	</head>
