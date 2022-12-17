@@ -45,14 +45,24 @@
 	<!--스타일 -->
 	<style>
 	
-	body {
-	background-color: #FAFAFA;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-attachment: fixed;
-    background-size: cover; 
-    position: absolute;
+	.img{
+	width: 1730px;
+ 	}
+	.react1 {
+	box-sizing: border-box;
 	}
+	.react2 {
+	box-sizing: border-box;
+	position: absolute;
+ 
+	}
+	.react3 {
+	box-sizing: border-box;
+	position: absolute;
+  	top: 160px;
+	left: 520px;
+	}
+	
 	
 	table{
     
@@ -96,70 +106,87 @@
 	}
     
     div.indent{ padding-left: 10em }
-    p.indent{ padding-right: 13em }
+    p.indent{ padding-left: 5em }1
     
 	</style>
 	</head>
 	<body>
-	<!-- 메뉴 partial jsp 구성 -->
-	<div>
-		<jsp:include page="/inc/menu.jsp"></jsp:include>
-	</div>
-	
-	    
-	<!-- 공지사항관리 리스트 -->
-	<h1>공지사항 목록(관리자페이지)</h1>
-	<div><a href="<%=request.getContextPath()%>/admin/insertNoticeForm.jsp">공지사항 추가</a></div>
-	<div>
-		<table class="table1" style= "background-color: rgba(242, 242, 242, 0.3);">
-			<tr>
-				<th>번호</th>
-				<th>공지내용</th>
-				<th>생성날짜</th>
-				<th>수정</th>
-				<th>삭제</th>
-			</tr>
-			<%
-				for(Notice n : list){
-			%>
-			<tr>
-				<td><%=n.getNoticeNo() %></td>
-				<td><%=n.getNoticeMemo() %></td>
-				<td><%=n.getCreatedate()%></td>
-				<td><a style= "text-decoration: none;" href="<%=request.getContextPath()%>/admin/updateNoticeForm.jsp?noticeNo=<%=n.getNoticeNo()%>&noticeMemo=<%=n.getNoticeMemo()%>">수정</a></td>
-				<td><a style= "text-decoration: none;" href="<%=request.getContextPath()%>/admin/deleteNoticeAction.jsp?noticeNo=<%=n.getNoticeNo()%>">삭제</a></td>
-			<%
-				}				
-			%>
-			</tr>
-		</table>
+		<!-- 메뉴 partial jsp 구성 -->
+		<header>
+			<div>
+				<jsp:include page="/inc/menu.jsp"></jsp:include>
+		    </div>
+	    </header>
 		
-		<!-- 페이징 -->
-		
-		<!-- 첫 페이지 -->
-		<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=1">처음</a>
-		
-		<!-- 이전 페이지 -->
-		<%
-			if(currentPage>1){
-		%>
-			<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage-1%>">이전</a>
-		<%
-			}
-		%>
-		
-		<!-- 현재 페이지 -->
-		<%=currentPage%>
-		
-		<!-- 다음 페이지 -->
-		<%
-			if(currentPage<lastPage){
-		%>	
-			<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage+1%>">다음</a>
-		<%
-			}
-		%>	
-		<!-- 마지막 페이지 -->
-		<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=lastPage%>">마지막</a> 
+		<article>
+		    <div class="react1">
+		    
+			    <!--배경이미지 -->
+		 	    <div class="react2">
+		    		<img class="img" src="<%=request.getContextPath()%>/Resources/images/mainm.jpg">
+		    	</div>
+		    	
+				<div  class="react3">
+				<!-- notice(공지사항) 상단 -->
+		 	 	<p class="indent" align="center">
+					<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 공지사항 목록</span>
+				</p>
+		 	 	
+				<!-- 공지사항관리 리스트 -->
+				<div>
+					<a href="<%=request.getContextPath()%>/admin/insertNoticeForm.jsp">공지사항 추가</a>
+				</div>
+				<div>
+				<table class="table1" style= "background-color: rgba(242, 242, 242, 0.3);">
+					<tr>
+						<th>번호</th>
+						<th>공지내용</th>
+						<th>생성날짜</th>
+						<th>수정</th>
+						<th>삭제</th>
+					</tr>
+					<%
+						for(Notice n : list){
+					%>
+					<tr>
+						<td><%=n.getNoticeNo() %></td>
+						<td><%=n.getNoticeMemo() %></td>
+						<td><%=n.getCreatedate()%></td>
+						<td><a style= "text-decoration: none;" href="<%=request.getContextPath()%>/admin/updateNoticeForm.jsp?noticeNo=<%=n.getNoticeNo()%>&noticeMemo=<%=n.getNoticeMemo()%>">수정</a></td>
+						<td><a style= "text-decoration: none;" href="<%=request.getContextPath()%>/admin/deleteNoticeAction.jsp?noticeNo=<%=n.getNoticeNo()%>">삭제</a></td>
+					<%
+						}				
+					%>
+					</tr>
+				</table>
+				</div>
+				<!-- 페이징 -->
+				
+				<!-- 첫 페이지 -->
+				<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=1">처음</a>
+				
+				<!-- 이전 페이지 -->
+				<%
+					if(currentPage>1){
+				%>
+					<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage-1%>">이전</a>
+				<%
+					}
+				%>
+				
+				<!-- 현재 페이지 -->
+				<%=currentPage%>
+				
+				<!-- 다음 페이지 -->
+				<%
+					if(currentPage<lastPage){
+				%>	
+					<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage+1%>">다음</a>
+				<%
+					}
+				%>	
+				<!-- 마지막 페이지 -->
+				<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=lastPage%>">마지막</a> 
+			</div>
 	</body>
 </html>

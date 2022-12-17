@@ -33,104 +33,206 @@
 	<head>
 	<meta charset="UTF-8">
 	<title>helpListAll.jsp</title>
+	
+	<!-- 부트스트랩과의 약속! -->
+	<!-- Latest compiled and minified CSS -->
+	<linkhref="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Latest compiled JavaScript -->
+	<scriptsrc="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!--스타일 -->
+	<style>
+	
+	.img{
+	width: 1730px;
+ 	}
+ 	
+	.react1 {
+	box-sizing: border-box;
+	}
+	
+	.react2 {
+	box-sizing: border-box;
+	position: absolute;
+	}
+	
+	.react3 {
+	box-sizing: border-box;
+	position: absolute;
+	}
+	
+	.react4 {
+	width: 1000px;
+	height: 1000px;
+	border: 0px solid;
+	text-align: center;
+	box-sizing: border-box;
+	position: absolute;
+    top: 220px;
+	left: 520px;
+	}
+	
+	
+	table{
+    border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
+	border: 0px solid #666666;
+    height: 200px;
+    table-layout: fixed;
+	 }  
+	 
+	th {
+	border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
+	padding: 10px;
+	width: 90px;
+	border: 0px solid #666666;
+	font-weight: bolder !important;
+	white-space: nowrap;
+	color : black;
+	th2-layout: fixed;
+	text-align : center;
+	font-family: gulim;
+	}
+	
+	td {
+	border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
+	width: 75px;
+	padding: 10px;
+	border: 0px solid #666666;
+	td-layout: fixed;
+	overflow:hidden;
+	white-space : nowrap;
+	color : black;
+	text-overflow: ellipsis;
+	text-align : center;
+	font-family: gulim;
+	}
+	p.indent{ 
+	padding-left: 50em;
+	}
+	</style>
 	</head>
-	<body>
+	<!-- 메뉴 partial jsp 구성 -->
 		<div>
 			<jsp:include page="/inc/menu.jsp"></jsp:include>
-	    </div>
+		</div>
 		
+		<div class="react1">
+		 <!--배경이미지 -->
+ 	    <div class="react2">
+    		<img class="img" src="<%=request.getContextPath()%>/Resources/images/mainm.jpg">
+    	</div>
+		<br>
+		<div class="react3">
+		<!-- 상단 제목 및 이전 페이지-->
+			<p class="indent">
+				<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 문의 답변 목록 </span>
+			</p>
+		<div class="react4">
 		<!-- 고객센터 문의 목록 -->
-		<table>
-			<tr>
-				<th>문의번호</th>
-				<th>문의내용</th>
-				<th>회원ID</th>
-				<th>문의날짜</th>
-				<th>답변내용</th>
-				<th>답변날짜</th>
-				<th>답변추가 / 수정 / 삭제</th>
-			</tr>
-			<%
-				for(HashMap<String, Object> m : list) {
-			%>
-					<tr>
-						<td><%=m.get("helpNo")%></td>
-						<td><%=m.get("helpMemo")%></td>
-						<td><%=m.get("memberId")%></td>
-						<td><%=m.get("helpCreatedate")%></td>
-						<td>
-							<%
-								if(m.get("commentMemo") == null) {
-							%>
-								<span> 답변대기</span>
-							<%
-								} else {
-							%>
-								<%=m.get("commentMemo")%>
-							<%		
-								}
-							%>
-						</td>
-						<td>
-							<%
-								if(m.get("commentCreatedate") == null) {
-							%>
-								<span>날짜미정</span>
-							<%
-								} else {
-							%>
-								<%=m.get("commentCreatedate") %>
-							<%		
-								}
-							%>
-						</td>
-						<td>
-							<%
-								if(m.get("commentMemo") == null) {
-							%>
-									<a href="<%=request.getContextPath()%>/admin/insertCommentForm.jsp?helpNo=<%=m.get("helpNo")%>">
-										답변입력
-									</a>
-							<%		
-								} else {
-							%>
-									<a href="<%=request.getContextPath()%>/admin/updateCommentForm.jsp?commentNo=<%=m.get("commentNo")%>">답변수정</a>
-									<a href="<%=request.getContextPath()%>/admin/deleteCommentAction.jsp?commentNo=<%=m.get("commentNo")%>">답변삭제</a>
-							<%		
-								}
-							%>
-						</td>
-					</tr>
-			<%		
-				}
-			%>
-		</table>
-		<!-- 페이징 -->
-			
-			<!-- 첫 페이지 -->
-			<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=1">처음</a>
-			
-			<!-- 이전 페이지 -->
-			<%
-				if(currentPage>1){
-			%>
-			<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage-1%>">이전</a>
-			<%
-				}
-			%>
-			
-			<!-- 현재 페이지 -->
-			<%=currentPage%>
-			
-			<!-- 다음 페이지 -->
-			<%
-				if(currentPage<lastPage){
-			%>
-				<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage+1%>">다음</a>
-			<%
-				}
-			%>	
-			<!-- 마지막 페이지 -->
-			<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>">마지막</a> 
+			<div>
+			<table>
+				<tr>
+					<th>문의번호</th>
+					<th>문의내용</th>
+					<th>회원ID</th>
+					<th>문의날짜</th>
+					<th>답변내용</th>
+					<th>답변날짜</th>
+					<th>답변추가 / 수정 / 삭제</th>
+				</tr>
+				<%
+					for(HashMap<String, Object> m : list) {
+				%>
+						<tr>
+							<td><%=m.get("helpNo")%></td>
+							<td><%=m.get("helpMemo")%></td>
+							<td><%=m.get("memberId")%></td>
+							<td><%=m.get("helpCreatedate")%></td>
+							<td>
+								<%
+									if(m.get("commentMemo") == null) {
+								%>
+									<span> 답변대기</span>
+								<%
+									} else {
+								%>
+									<%=m.get("commentMemo")%>
+								<%		
+									}
+								%>
+							</td>
+							<td>
+								<%
+									if(m.get("commentCreatedate") == null) {
+								%>
+									<span>날짜미정</span>
+								<%
+									} else {
+								%>
+									<%=m.get("commentCreatedate") %>
+								<%		
+									}
+								%>
+							</td>
+							<td>
+								<%
+									if(m.get("commentMemo") == null) {
+								%>
+										<a href="<%=request.getContextPath()%>/admin/insertCommentForm.jsp?helpNo=<%=m.get("helpNo")%>">
+											답변입력
+										</a>
+								<%		
+									} else {
+								%>
+										<a href="<%=request.getContextPath()%>/admin/updateCommentForm.jsp?commentNo=<%=m.get("commentNo")%>">답변수정</a>
+										<a href="<%=request.getContextPath()%>/admin/deleteCommentAction.jsp?commentNo=<%=m.get("commentNo")%>">답변삭제</a>
+								<%		
+									}
+								%>
+							</td>
+						</tr>
+				<%		
+					}
+				%>
+			</table>
+			</div>
+			<!-- 페이징 -->
+				
+				<!-- 첫 페이지 -->
+				<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=1">처음</a>
+				
+				<!-- 이전 페이지 -->
+				<%
+					if(currentPage>1){
+				%>
+				<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage-1%>">이전</a>
+				<%
+					}
+				%>
+				
+				<!-- 현재 페이지 -->
+				<%=currentPage%>
+				
+				<!-- 다음 페이지 -->
+				<%
+					if(currentPage<lastPage){
+				%>
+					<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage+1%>">다음</a>
+				<%
+					}
+				%>	
+				<!-- 마지막 페이지 -->
+				<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>">마지막</a> 
+			</div>
+		</div>
 	</body>
 </html>

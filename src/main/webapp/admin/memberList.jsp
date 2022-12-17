@@ -31,51 +31,147 @@
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>memberList</title>
-</head>
-<body>
-	<div>
-		<jsp:include page="/inc/menu.jsp"></jsp:include>
-    </div>
-    <br><br><br><br><br>
-	<div>
-		<!-- memberList contents... -->
-		<h1>멤버목록</h1>
+	<head>
+	<meta charset="UTF-8">
+	<title>noticeManin</title>
+	
+	<!-- 부트스트랩과의 약속! -->
+	<!-- Latest compiled and minified CSS -->
+	<linkhref="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Latest compiled JavaScript -->
+	<scriptsrc="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!--스타일 -->
+	<style>
+	
+	.img{
+	width: 1730px;
+ 	}
+ 	
+	.react1 {
+	box-sizing: border-box;
+	}
+	
+	.react2 {
+	box-sizing: border-box;
+	position: absolute;
+	}
+	
+	.react3 {
+	box-sizing: border-box;
+	position: absolute;
+	}
+	
+	.react4 {
+	width: 1000px;
+	height: 1000px;
+	border: 0px solid;
+	text-align: center;
+	box-sizing: border-box;
+	position: absolute;
+    top: 220px;
+	left: 520px;
+	}
+	
+	
+	table{
+    border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
+	border: 0px solid #666666;
+    height: 200px;
+    table-layout: fixed;
+	 }  
+	 
+	th {
+	border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
+	padding: 10px;
+	width: 90px;
+	border: 0px solid #666666;
+	font-weight: bolder !important;
+	white-space: nowrap;
+	color : black;
+	th2-layout: fixed;
+	text-align : center;
+	font-family: gulim;
+	}
+	
+	td {
+	border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
+	width: 75px;
+	padding: 10px;
+	border: 0px solid #666666;
+	td-layout: fixed;
+	overflow:hidden;
+	white-space : nowrap;
+	color : black;
+	text-overflow: ellipsis;
+	text-align : center;
+	font-family: gulim;
+	}
+	p.indent{ 
+	padding-left: 50em;
+	}
+	</style>
+	</head>
+	<body>
+		<!-- 메뉴 partial jsp 구성 -->
+		<div>
+			<jsp:include page="/inc/menu.jsp"></jsp:include>
+		</div>
 		
-		<table border="1">
-			<tr>
-				<th>멤버번호</th>
-				<th>아이디</th>
-				<th>레벨</th>
-				<th>이름</th>
-				<th>마지막수정일자</th>
-				<th>생성일자</th>
-				<th>레벨수정</th>
-				<th>멤버강퇴</th>
-			</tr>
-			<%
-				for(Member m : list) {
-			%>
-			<tr>
-			
-				<td><%=m.getMemberNo()%></td>
-				<td><%=m.getMemberId()%></td>
-				<td><%=m.getMemberLevel()%></td>
-				<td><%=m.getMemberName()%></td>
-				<td><%=m.getUpdatedate()%></td>
-				<td><%=m.getCreatedate()%></td>
-				<td><a href="<%=request.getContextPath()%>/admin/updateMemberLvForm.jsp?memberNo=<%=m.getMemberNo()%>">레벨수정</a></td>
-				<td><a href="<%=request.getContextPath()%>/admin/deleteMemberLvAction.jsp?memberNo=<%=m.getMemberNo()%>">멤버강퇴</a></td>
-			</tr>
-			<%
-				}
-			%>
-		</table>
-	</div>
-	<!-- 페이징 -->
-			
+		<div class="react1">
+			 <!--배경이미지 -->
+	 	    <div class="react2">
+	    		<img class="img" src="<%=request.getContextPath()%>/Resources/images/mainm.jpg">
+	    	</div>
+			<div class="react3">
+			<!-- 상단 제목 및 이전 페이지-->
+			 	<p class="indent">
+					<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 멤버 목록 </span>
+				</p>
+			</div>
+			<div class="react4">
+			<!-- memberList contents... -->
+			<div>
+			<table border="1">
+				<tr>
+					<th>멤버번호</th>
+					<th>아이디</th>
+					<th>레벨</th>
+					<th>이름</th>
+					<th>마지막수정일자</th>
+					<th>생성일자</th>
+					<th>레벨수정</th>
+					<th>멤버강퇴</th>
+				</tr>
+				<%
+					for(Member m : list) {
+				%>
+				<tr>
+				
+					<td><%=m.getMemberNo()%></td>
+					<td><%=m.getMemberId()%></td>
+					<td><%=m.getMemberLevel()%></td>
+					<td><%=m.getMemberName()%></td>
+					<td><%=m.getUpdatedate()%></td>
+					<td><%=m.getCreatedate()%></td>
+					<td><a href="<%=request.getContextPath()%>/admin/updateMemberLvForm.jsp?memberNo=<%=m.getMemberNo()%>">레벨수정</a></td>
+					<td><a href="<%=request.getContextPath()%>/admin/deleteMemberLvAction.jsp?memberNo=<%=m.getMemberNo()%>">멤버강퇴</a></td>
+				</tr>
+				<%
+					}
+				%>
+			</table>
+			</div>
+			<!-- 페이징 -->
 			<!-- 첫 페이지 -->
 			<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1">처음</a>
 			
@@ -101,5 +197,7 @@
 			%>	
 			<!-- 마지막 페이지 -->
 			<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>">마지막</a> 
-</body>
+			</div>
+		</div>		
+	</body>
 </html>

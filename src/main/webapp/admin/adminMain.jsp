@@ -39,25 +39,25 @@
 	<!--스타일 -->
 	<style>
 	
+	.img{
+	width: 1730px;
+ 	}
 
 	.react1 {
 	box-sizing: border-box;
-	
 	}
 	.react2 {
-	width: 1000px;
-	height: 1000px;
-	border: 0px solid;
+	box-sizing: border-box;
+	position: absolute;
+	}
+	.react3 {
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
     top: 200px;
 	left: 200px;
 	}
-	.react3 {
-	width: 1000px;
-	height: 1000px;
-	border: 0px solid;
+	.react4 {
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
@@ -65,15 +65,13 @@
 	left: 900px;
 	}
 	
-	.table {
-    
-    height: 200px;
+	table {
     table-layout: fixed;
-    align:center;
     text-align : center;
 	 }  
  
 	.th {
+	padding: 10px;
 	width: 200px;
     height:15px;
 	font-weight: bolder !important;
@@ -141,13 +139,17 @@
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
     </div>
 	    <div class="react1">
+			<!--배경이미지 -->
+	    	<div  class="react2">
+	    		<img class="img" src="<%=request.getContextPath()%>/Resources/images/mainm.jpg">
+	    	</div>
 			<!-- 최근공지 5개 출력 -->
-			<div class="react2" style="width:45%; float : left;">
+			<div class="react3" style="width:45%; float : left;">
 				<p class="indent" align="center">
 					<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 최근 공지사항 </span>
 				</p>
 				<!-- adminMain Notice contents -->
-				<table class="table"> 
+				<table> 
 					<tr>
 						<th class="th">번호</th>
 						<th class="th">공지내용</th>
@@ -168,7 +170,7 @@
 			</div>
 			
 			<!-- 최근멤버 5명 출력 -->
-			<div class="react3" style="width:40%; float : right;">
+			<div class="react4" style="width:40%; float : right;">
 				<p class="indent" align="center">
 					<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 최근 가입멤버 </span>
 				</p>

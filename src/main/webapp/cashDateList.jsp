@@ -179,9 +179,8 @@
 		 	    <div class="react2">
 		    		<img class="img" src="<%=request.getContextPath()%>/Resources/images/mainm.jpg">
 		    	</div>
-				
 		 	 	
-				<div  class="react3">
+				<div class="react3">
 				<!-- cash(가계부) 상단 제목 및 이전 페이지-->
 		 	 	<p class="indent" align="center">
 					<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 📖가계부 상세내역 </span>

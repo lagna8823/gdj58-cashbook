@@ -50,29 +50,34 @@
 	<!--스타일 -->
 	<style>
 	
-	.body {
-	background-color: #FAFAFA;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-attachment: fixed;
-    background-size: cover; 
-    position: absolute;
-	}
-	
+	.img{
+	width: 1730px;
+ 	}
+ 	
 	.react1 {
 	box-sizing: border-box;
 	}
+	
 	.react2 {
+	box-sizing: border-box;
+	position: absolute;
+	}
+	
+	.react3 {
+	box-sizing: border-box;
+	position: absolute;
+	}
+	
+	.react4 {
 	width: 1000px;
 	height: 1000px;
-	border: 0px solid;
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
     top: 250px;
 	left: 200px;
 	}
-	.react3 {
+	.react5 {
 	width: 1000px;
 	height: 1000px;
 	border: 0px solid;
@@ -84,40 +89,24 @@
 	}
 	
 	table{
-    border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
-	border: 0px solid #666666;
-    height: 200px;
     table-layout: fixed;
+    text-align : center;
 	 }  
-	 
-	th {
-	border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
+	
+	.th {
 	padding: 10px;
 	width: 90px;
-	border: 0px solid #666666;
+	border: 1px solid #666666;
 	font-weight: bolder !important;
 	white-space: nowrap;
 	color : black;
-	th2-layout: fixed;
 	text-align : center;
-	font-family: gulim;
 	}
 	
 	td {
-	border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
 	width: 75px;
 	padding: 10px;
-	border: 0px solid #666666;
-	td-layout: fixed;
+	border: 1px solid #666666;
 	overflow:hidden;
 	white-space : nowrap;
 	color : black;
@@ -125,9 +114,10 @@
 	text-align : center;
 	font-family: gulim;
 	}
-	p.indent{ padding-left: 8em }
+	p.indent{ 
+	padding-left: 50em;
+	}
 	
-}
 	</style>
 	</head>
 	<body>
@@ -137,28 +127,37 @@
 	</div>
 	
 	<div class="react1">
-	<br>
-	<!-- 상단 제목 및 이전 페이지-->
- 	<p class="indent" align="center">
-		<span style="font-size:2em;  color: black; font-weight: bolder !important; padding-left: 11em"> 가계부 통계 </span>
-	</p>
-		<div class="react2">
+		 <!--배경이미지 -->
+ 	    <div class="react2">
+    		<img class="img" src="<%=request.getContextPath()%>/Resources/images/mainm.jpg">
+    	</div>
+		<br>
+		<div class="react3">
+		<!-- 상단 제목 및 이전 페이지-->
+		 	<p class="indent">
+				<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 가계부 통계 </span>
+			</p>
+		</div>
+		
+		<div class="react4">
 		<!-- 년도별 통계 -->
-		<div align="center" style = "color: black; padding-right:5em;"><연도별 통계내역></div>
-			<table class="hover">
-				<tr>
-					<th>년</th>
-					<th>수입일수</th>
-					<th>수입합계</th>
-					<th>수입평균</th>
-					<th>지출일수</th>
-					<th>지출합계</th>
-					<th>지출평균</th>
+		<div class="container" align="center" style = "color: black; padding-right:5em;">
+			<연도별 통계내역>
+		</div>
+			<table>
+				<tr style= "background-color: rgba(242, 242, 242, 0.6);"> 
+					<th class="th">년</th>
+					<th class="th">수입일수</th>
+					<th class="th">수입합계</th>
+					<th class="th">수입평균</th>
+					<th class="th">지출일수</th>
+					<th class="th">지출합계</th>
+					<th class="th">지출평균</th>
 				</tr>
 				<%
 					for(HashMap<String, Object> m : yearList) {
 				%>
-				<tr>
+				<tr style= "background-color: rgba(242, 242, 242, 1); height:20px;">
 					<td><%=m.get("year")%></td>
 					<td><%=m.get("importCnt")%></td>
 					<td><%=m.get("importSum")%></td>
@@ -172,24 +171,24 @@
 				</tr>
 			</table>
 		</div>
-		
-		<div class="react3">
+			
+		<div class="react5">
 		<!-- 월별 통계-->
 		<div  align="center" style = "color: black; padding-right:6em;" ><<%=year%>년 &nbsp; 월별통계></div>
 			<table>
-				<tr>
-					<th>월</th>
-					<th>수입일수</th>
-					<th>수입합계</th>
-					<th>수입평균</th>
-					<th>지출일수</th>
-					<th>지출합계</th>
-					<th>지출평균</th>
+				<tr style= "background-color: rgba(242, 242, 242, 0.6);" > 
+					<th class="th">월</th>
+					<th class="th">수입일수</th>
+					<th class="th">수입합계</th>
+					<th class="th">수입평균</th>
+					<th class="th">지출일수</th>
+					<th class="th">지출합계</th>
+					<th class="th">지출평균</th>
 				</tr>
 				<%
 					for(HashMap<String, Object> m : monthList) {
 				%>
-				<tr>
+				<tr style= "background-color: rgba(242, 242, 242, 1); height:20px;">
 					<td><%=m.get("month")%></td>
 					<td><%=m.get("importCnt")%></td>
 					<td><%=m.get("importSum")%></td>
