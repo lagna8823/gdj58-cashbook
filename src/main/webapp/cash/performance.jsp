@@ -84,7 +84,7 @@
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
-    top: 200px;
+    top: 250px;
 	left: 900px;
 	}
 	
@@ -141,7 +141,7 @@
 		
 		<div class="react4">
 		<!-- 년도별 통계 -->
-		<div class="container" align="center" style = "color: black; padding-right:5em;">
+		<div class="container" align="center" style = "color: black; padding-right:5em; font-weight: bolder !important;">
 			<연도별 통계내역>
 		</div>
 			<table>
@@ -174,7 +174,7 @@
 			
 		<div class="react5">
 		<!-- 월별 통계-->
-		<div  align="center" style = "color: black; padding-right:6em;" ><<%=year%>년 &nbsp; 월별통계></div>
+		<div  align="center" style = "color: black; padding-left:6em; font-weight: bolder !important;" ><<%=year%>년 &nbsp; 월별통계></div>
 			<table>
 				<tr style= "background-color: rgba(242, 242, 242, 0.6);" > 
 					<th class="th">월</th>
