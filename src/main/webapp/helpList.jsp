@@ -66,45 +66,30 @@
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
-    top: 220px;
-	left: 520px;
+    top: 250px;
+	left: 480px;
 	}
 	
 	
 	table{
-    border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
-	border: 0px solid #666666;
-    height: 200px;
     table-layout: fixed;
 	 }  
 	 
-	th {
-	border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
+	.th {
 	padding: 10px;
 	width: 90px;
-	border: 0px solid #666666;
+	border: 1px solid #666666;
 	font-weight: bolder !important;
 	white-space: nowrap;
 	color : black;
-	th2-layout: fixed;
 	text-align : center;
 	font-family: gulim;
 	}
 	
 	td {
-	border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
 	width: 75px;
 	padding: 10px;
-	border: 0px solid #666666;
+	border: 1px solid #666666;
 	td-layout: fixed;
 	overflow:hidden;
 	white-space : nowrap;
@@ -115,6 +100,9 @@
 	}
 	p.indent{ 
 	padding-left: 50em;
+	}
+	div.indent{ 
+	padding-right: 15em;
 	}
 	</style>
 	</head>
@@ -131,6 +119,7 @@
 	    	</div>
 	    	<div class="react3">
 			<!-- 상단 제목 및 이전 페이지-->
+				<br><br>
 			 	<p class="indent">
 					<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 고객센터 </span>
 				</p>
@@ -141,19 +130,19 @@
 			<div class="react4">
 				<!-- helpList contents... -->
 				<div>
-				<table border="1">
-					<tr>
-						<th>문의내용</th>
-						<th>문의날짜</th>
-						<th>답변내용</th>
-						<th>답변날짜</th>
-						<th>수정</th>
-						<th>삭제</th>
+				<table>
+					<tr style= "background-color: rgba(242, 242, 242, 0.6);"> 
+						<th class="th">문의내용</th>
+						<th class="th">문의날짜</th>
+						<th class="th">답변내용</th>
+						<th class="th">답변날짜</th>
+						<th class="th">수정</th>
+						<th class="th">삭제</th>
 					</tr>
 					<%
 						for(HashMap<String, Object> m : list) {
 					%>
-							<tr>
+							<tr style= "background-color: rgba(242, 242, 242, 1); height:20px;">
 								<td><%=m.get("helpMemo")%></td>
 								<td><%=m.get("helpCreatedate")%></td>
 								<td>
@@ -214,6 +203,8 @@
 					%>
 				</table>
 				</div>
+				<br>
+				<div align="center" class="indent">
 				<!-- 페이징 -->
 				
 				<!-- 첫 페이지 -->
@@ -241,6 +232,7 @@
 				%>	
 				<!-- 마지막 페이지 -->
 				<a href="<%=request.getContextPath()%>/helpList.jsp?currentPage=<%=lastPage%>">마지막</a> 
+				</div>
 			</div>
 		</div>
 	</body>

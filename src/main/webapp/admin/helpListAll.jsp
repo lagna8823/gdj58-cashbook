@@ -64,33 +64,23 @@
 	.react4 {
 	width: 1000px;
 	height: 1000px;
-	border: 0px solid;
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
-    top: 220px;
-	left: 520px;
+    top: 200px;
+	left: 420px;
 	}
 	
 	
 	table{
-    border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
-	border: 0px solid #666666;
-    height: 200px;
+    text-align : center;
     table-layout: fixed;
 	 }  
 	 
-	th {
-	border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
+	.th {
 	padding: 10px;
 	width: 90px;
-	border: 0px solid #666666;
+	border: 1px solid #666666;
 	font-weight: bolder !important;
 	white-space: nowrap;
 	color : black;
@@ -100,13 +90,8 @@
 	}
 	
 	td {
-	border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
-	width: 75px;
 	padding: 10px;
-	border: 0px solid #666666;
+	border: 1px solid #666666;
 	td-layout: fixed;
 	overflow:hidden;
 	white-space : nowrap;
@@ -116,7 +101,10 @@
 	font-family: gulim;
 	}
 	p.indent{ 
-	padding-left: 50em;
+	padding-left: 48em;
+	}
+	div.indent{ 
+	padding-right: 6em;
 	}
 	</style>
 	</head>
@@ -133,6 +121,7 @@
 		<br>
 		<div class="react3">
 		<!-- 상단 제목 및 이전 페이지-->
+			<br>
 			<p class="indent">
 				<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 문의 답변 목록 </span>
 			</p>
@@ -140,19 +129,19 @@
 		<!-- 고객센터 문의 목록 -->
 			<div>
 			<table>
-				<tr>
-					<th>문의번호</th>
-					<th>문의내용</th>
-					<th>회원ID</th>
-					<th>문의날짜</th>
-					<th>답변내용</th>
-					<th>답변날짜</th>
-					<th>답변추가 / 수정 / 삭제</th>
+				<tr style= "background-color: rgba(242, 242, 242, 0.6);"> 
+					<th class="th">문의번호</th>
+					<th class="th">문의내용</th>
+					<th class="th">회원ID</th>
+					<th class="th">문의날짜</th>
+					<th class="th">답변내용</th>
+					<th class="th">답변날짜</th>
+					<th class="th">답변추가 / 수정 / 삭제</th>
 				</tr>
 				<%
 					for(HashMap<String, Object> m : list) {
 				%>
-						<tr>
+						<tr style= "background-color: rgba(242, 242, 242, 1); height:20px;">
 							<td><%=m.get("helpNo")%></td>
 							<td><%=m.get("helpMemo")%></td>
 							<td><%=m.get("memberId")%></td>
@@ -205,6 +194,8 @@
 				%>
 			</table>
 			</div>
+			<br>
+			<div class="indent"> 
 			<!-- 페이징 -->
 				
 				<!-- 첫 페이지 -->
@@ -232,6 +223,7 @@
 				%>	
 				<!-- 마지막 페이지 -->
 				<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>">마지막</a> 
+				</div>		
 			</div>
 		</div>
 	</body>

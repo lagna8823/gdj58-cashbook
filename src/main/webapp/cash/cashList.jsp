@@ -218,7 +218,7 @@
 				<div class="react4">
 					<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
 				   	 <div align="center">
-				   	 	<span style="font-size:2em;  color: black; font-weight: bolder !important;"><%=loginMember.getMemberName()%>'s Calendar</span>🗓️
+				   	 	<span style="font-size:2em;  color: black; font-weight: bolder !important;"><%=loginMember.getMemberName()%>'s Calendar🗓️</span>
 				   	 </div>
 				   	 <br>
 					<!-- 달력 상단 -->

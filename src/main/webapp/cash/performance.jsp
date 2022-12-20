@@ -134,14 +134,15 @@
 		<br>
 		<div class="react3">
 		<!-- 상단 제목 및 이전 페이지-->
+			<br>
 		 	<p class="indent">
-				<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 가계부 통계 </span>
+				<span style="font-size:2em;  color: black; font-weight: bolder !important;"> <가계부 통계> </span>
 			</p>
 		</div>
 		
 		<div class="react4">
 		<!-- 년도별 통계 -->
-		<div class="container" align="center" style = "color: black; padding-right:5em; font-weight: bolder !important;">
+		<div class="container" align="center" style = "color: black; padding-right:4em; font-weight: bolder !important;">
 			<연도별 통계내역>
 		</div>
 			<table>

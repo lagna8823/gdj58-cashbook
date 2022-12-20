@@ -69,29 +69,21 @@
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
-    top: 220px;
-	left: 520px;
+    top: 250px;
+	left: 480px;
 	}
 	
 	
 	table{
-    border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
-	border: 0px solid #666666;
+	border: 1px solid #666666;
     height: 200px;
     table-layout: fixed;
 	 }  
 	 
-	th {
-	border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
+	.th {
 	padding: 10px;
 	width: 90px;
-	border: 0px solid #666666;
+	border: 1px solid #666666;
 	font-weight: bolder !important;
 	white-space: nowrap;
 	color : black;
@@ -101,13 +93,9 @@
 	}
 	
 	td {
-	border-right:hidden;
-	border-left:hidden;
-	border-top:hidden;
-	border-bottom:hidden;
 	width: 75px;
 	padding: 10px;
-	border: 0px solid #666666;
+	border: 1px solid #666666;
 	td-layout: fixed;
 	overflow:hidden;
 	white-space : nowrap;
@@ -118,6 +106,9 @@
 	}
 	p.indent{ 
 	padding-left: 50em;
+	}
+	div.indent{ 
+	padding-right: 15em;
 	}
 	</style>
 	</head>
@@ -134,6 +125,7 @@
 	    	</div>
 			<div class="react3">
 			<!-- 상단 제목 및 이전 페이지-->
+				<br><br>
 			 	<p class="indent">
 					<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 멤버 목록 </span>
 				</p>
@@ -141,22 +133,21 @@
 			<div class="react4">
 			<!-- memberList contents... -->
 			<div>
-			<table border="1">
-				<tr>
-					<th>멤버번호</th>
-					<th>아이디</th>
-					<th>레벨</th>
-					<th>이름</th>
-					<th>마지막수정일자</th>
-					<th>생성일자</th>
-					<th>레벨수정</th>
-					<th>멤버강퇴</th>
+			<table>
+				<tr style= "background-color: rgba(242, 242, 242, 0.6);"> 
+					<th class="th">멤버번호</th>
+					<th class="th">아이디</th>
+					<th class="th">레벨</th>
+					<th class="th">이름</th>
+					<th class="th">마지막수정일자</th>
+					<th class="th">생성일자</th>
+					<th class="th">레벨수정</th>
+					<th class="th">멤버강퇴</th>
 				</tr>
 				<%
 					for(Member m : list) {
 				%>
-				<tr>
-				
+				<tr style= "background-color: rgba(242, 242, 242, 1); height:20px;">
 					<td><%=m.getMemberNo()%></td>
 					<td><%=m.getMemberId()%></td>
 					<td><%=m.getMemberLevel()%></td>
@@ -171,6 +162,8 @@
 				%>
 			</table>
 			</div>
+			<br>
+			<div class="indent" align="center";>
 			<!-- 페이징 -->
 			<!-- 첫 페이지 -->
 			<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1">처음</a>
@@ -197,6 +190,7 @@
 			%>	
 			<!-- 마지막 페이지 -->
 			<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>">마지막</a> 
+			</div>
 			</div>
 		</div>		
 	</body>

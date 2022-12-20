@@ -59,8 +59,8 @@
 	.react3 {
 	box-sizing: border-box;
 	position: absolute;
-  	top: 160px;
-	left: 520px;
+  	top: 130px;
+	left: 450px;
 	}
 	
 	
@@ -70,7 +70,7 @@
     table-layout: fixed;
 	 }  
 	 
-	th {
+	.th {
 	padding: 10px;
 	width: 90px;
     height:15px;
@@ -82,19 +82,8 @@
 	text-align : center;
 	}
 	
-	th {
-	padding: 10px;
-	width: 90px;
-	border: 1px solid #666666;
-	font-weight: bolder !important;
-	white-space: nowrap;
-	color : black;
-	th2-layout: fixed;
-	text-align : center;
-	}
-	
-	td {
-	width: 75px;
+	.td {
+	height:15px;
 	padding: 10px;
 	border: 1px solid #666666;
 	td-layout: fixed;
@@ -105,8 +94,8 @@
 	text-align : center;
 	}
     
-    div.indent{ padding-left: 10em }
-    p.indent{ padding-left: 5em }1
+    div.indent{ padding-left: 0em }
+    p.indent{ padding-left: 1em }
     
 	</style>
 	</head>
@@ -137,29 +126,30 @@
 					<a href="<%=request.getContextPath()%>/admin/insertNoticeForm.jsp">공지사항 추가</a>
 				</div>
 				<div>
-				<table class="table1" style= "background-color: rgba(242, 242, 242, 0.3);">
-					<tr>
-						<th>번호</th>
-						<th>공지내용</th>
-						<th>생성날짜</th>
-						<th>수정</th>
-						<th>삭제</th>
+				<table class="table1">
+					<tr style= "background-color: rgba(242, 242, 242, 0.6);"> 
+						<th class="th">번호</th>
+						<th class="th">공지내용</th>
+						<th class="th">생성날짜</th>
+						<th class="th">수정</th>
+						<th class="th">삭제</th>
 					</tr>
 					<%
 						for(Notice n : list){
 					%>
-					<tr>
-						<td><%=n.getNoticeNo() %></td>
-						<td><%=n.getNoticeMemo() %></td>
-						<td><%=n.getCreatedate()%></td>
-						<td><a style= "text-decoration: none;" href="<%=request.getContextPath()%>/admin/updateNoticeForm.jsp?noticeNo=<%=n.getNoticeNo()%>&noticeMemo=<%=n.getNoticeMemo()%>">수정</a></td>
-						<td><a style= "text-decoration: none;" href="<%=request.getContextPath()%>/admin/deleteNoticeAction.jsp?noticeNo=<%=n.getNoticeNo()%>">삭제</a></td>
+					<tr style= "background-color: rgba(242, 242, 242, 1);">
+						<th class="td"><%=n.getNoticeNo() %></td>
+						<th class="td"><%=n.getNoticeMemo() %></td>
+						<th class="td"><%=n.getCreatedate()%></td>
+						<th class="td"><a style= "text-decoration: none;" href="<%=request.getContextPath()%>/admin/updateNoticeForm.jsp?noticeNo=<%=n.getNoticeNo()%>&noticeMemo=<%=n.getNoticeMemo()%>">수정</a></td>
+						<th class="td"><a style= "text-decoration: none;" href="<%=request.getContextPath()%>/admin/deleteNoticeAction.jsp?noticeNo=<%=n.getNoticeNo()%>">삭제</a></td>
 					<%
 						}				
 					%>
 					</tr>
 				</table>
 				</div>
+				<div align="center"; class="indent"> 
 				<!-- 페이징 -->
 				
 				<!-- 첫 페이지 -->
@@ -187,6 +177,7 @@
 				%>	
 				<!-- 마지막 페이지 -->
 				<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=lastPage%>">마지막</a> 
+				</div>
 			</div>
 	</body>
 </html>

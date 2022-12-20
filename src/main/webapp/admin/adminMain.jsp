@@ -73,18 +73,18 @@
 	.th {
 	padding: 10px;
 	width: 200px;
-    height:15px;
+    border: 1px solid #666666;
 	font-weight: bolder !important;
 	white-space: nowrap; 
 	color : black;
-	th-layout: fixed;
 	text-align : center;
 	}
 	
 	td {
 	width: 200px;
+	height: 25px;
 	padding: 10px;
-	td-layout: fixed;
+	border: 1px solid #666666;
 	overflow:hidden;
 	white-space : nowrap;
 	color : black;
@@ -150,7 +150,7 @@
 				</p>
 				<!-- adminMain Notice contents -->
 				<table> 
-					<tr>
+					<tr style= "background-color: rgba(242, 242, 242, 0.6);"> 
 						<th class="th">번호</th>
 						<th class="th">공지내용</th>
 						<th class="th">생성날짜</th>
@@ -158,7 +158,7 @@
 					<%
 						for(Notice n : list){
 					%>
-					<tr>
+					<tr style= "background-color: rgba(242, 242, 242, 1); height:20px;">
 						<td><%=n.getNoticeNo() %></td>
 						<td><%=n.getNoticeMemo() %></td>
 						<td><%=n.getCreatedate()%></td>
@@ -172,11 +172,11 @@
 			<!-- 최근멤버 5명 출력 -->
 			<div class="react4" style="width:40%; float : right;">
 				<p class="indent" align="center">
-					<span style="font-size:2em;  color: black; font-weight: bolder !important;"> 최근 가입멤버 </span>
+					<span style="font-size:2em;  color: black; font-weight: bolder !important; "> 최근 가입멤버 </span>
 				</p>
 				<!-- adminMain contents -->
 				<table class="table"> 
-					<tr>
+					<tr  style= "background-color: rgba(242, 242, 242, 0.6); "> 
 						<th class="th">번호</th>
 						<th class="th">멤버이름</th>
 						<th class="th">가입날짜</th>
@@ -184,7 +184,7 @@
 					<%
 						for(Member m : list2) {
 					%>
-					<tr>
+					<tr style= "background-color: rgba(242, 242, 242, 1); height:20px;">
 						<td><%=m.getMemberNo()%></td>
 						<td><%=m.getMemberName()%></td>
 						<td><%=m.getCreatedate()%></td>
