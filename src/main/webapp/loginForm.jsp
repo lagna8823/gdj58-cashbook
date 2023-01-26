@@ -248,11 +248,11 @@
 									<table>
 										<tr>
 											<th><span>ID &nbsp; </span></th>
-											<td><input type="text" name="memberId"></td>
+											<td><input type="text" name="memberId" value="test"></td>
 										</tr>
 										<tr>
 											<th><span>PW &nbsp;</span></th>
-											<td><input type="password" name="memberPw"></td>
+											<td><input type="password" name="memberPw" value="1234"></td>
 										</tr>
 									</table>	
 									</div>
