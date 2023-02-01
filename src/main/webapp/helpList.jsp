@@ -42,7 +42,7 @@
 	<style>
 	
 	.img{
-	width: 1730px;
+	width: 300%;
  	}
  	
 	.react1 {
@@ -67,7 +67,7 @@
 	box-sizing: border-box;
 	position: absolute;
     top: 250px;
-	left: 480px;
+	left: 600px;
 	}
 	
 	
@@ -102,7 +102,7 @@
 	padding-left: 50em;
 	}
 	div.indent{ 
-	padding-right: 15em;
+	padding-right: 30em;
 	}
 	</style>
 	</head>

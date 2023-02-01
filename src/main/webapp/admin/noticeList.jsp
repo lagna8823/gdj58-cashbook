@@ -46,7 +46,7 @@
 	<style>
 	
 	.img{
-	width: 1730px;
+	width: 300%;
  	}
 	.react1 {
 	box-sizing: border-box;

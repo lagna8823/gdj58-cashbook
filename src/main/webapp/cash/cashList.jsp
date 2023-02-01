@@ -78,7 +78,7 @@
 	<style>
 	
 	.img{
-	width: 1730px;
+	width: 300%;
  	}
  	
  	.react1 {
@@ -93,7 +93,7 @@
 	box-sizing: border-box;
 	position: absolute;
   	top: 80px;
-  	left: 1600px;
+  	left: 1780px;
 	}
 	.react4 {
 	box-sizing: border-box;
@@ -198,10 +198,10 @@
 	    </header>
 	    
 	    <article>
-		    <div class="react1">
+		    <div class="react1" align="center">
 		    	<!--배경이미지 -->
-		    	<div  class="react2">
-		    		<img class="img" src="<%=request.getContextPath()%>/Resources/images/mainm.jpg">
+		    	<div  class="react2" align="center">
+		    		<img class="img" src="<%=request.getContextPath()%>/Resources/images/mainm.jpg" align="center">
 		    	</div>
 			    <!-- 회원폼  -->
 			    <div class="react3">
