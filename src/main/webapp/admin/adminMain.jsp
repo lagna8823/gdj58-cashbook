@@ -55,14 +55,14 @@
 	box-sizing: border-box;
 	position: absolute;
     top: 200px;
-	left: 200px;
+	left: 250px;
 	}
 	.react4 {
 	text-align: center;
 	box-sizing: border-box;
 	position: absolute;
     top: 200px;
-	left: 900px;
+	left: 1000px;
 	}
 	
 	table {

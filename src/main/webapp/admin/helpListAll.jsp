@@ -68,7 +68,7 @@
 	box-sizing: border-box;
 	position: absolute;
     top: 200px;
-	left: 420px;
+	left: 400px;
 	}
 	
 	
@@ -101,10 +101,10 @@
 	font-family: gulim;
 	}
 	p.indent{ 
-	padding-left: 48em;
+	padding-left: 52em;
 	}
 	div.indent{ 
-	padding-right: 6em;
+	padding-left: 5em;
 	}
 	</style>
 	</head>

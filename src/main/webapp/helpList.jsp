@@ -99,10 +99,10 @@
 	font-family: gulim;
 	}
 	p.indent{ 
-	padding-left: 50em;
+	padding-left: 52em;
 	}
 	div.indent{ 
-	padding-right: 30em;
+	padding-right: 25em;
 	}
 	</style>
 	</head>

@@ -75,7 +75,7 @@
 	box-sizing: border-box;
 	position: absolute;
     top: 250px;
-	left: 200px;
+	left: 250px;
 	}
 	.react5 {
 	width: 1000px;
@@ -85,7 +85,7 @@
 	box-sizing: border-box;
 	position: absolute;
     top: 250px;
-	left: 900px;
+	left: 1000px;
 	}
 	
 	table{
@@ -115,7 +115,7 @@
 	font-family: gulim;
 	}
 	p.indent{ 
-	padding-left: 50em;
+	padding-left: 55em;
 	}
 	
 	</style>

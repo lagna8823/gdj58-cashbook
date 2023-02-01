@@ -60,7 +60,7 @@
 	box-sizing: border-box;
 	position: absolute;
   	top: 130px;
-	left: 450px;
+	left: 650px;
 	}
 	
 	
