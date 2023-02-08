@@ -385,12 +385,12 @@
 			</div>
 		</div>
 	</div>
-	
-	
 	<br id="price">
-	<br>
-	<div id="fh5co-pricing-section">
-		<div class="container" >
+	
+	
+	
+		<div id="fh5co-pricing-section">
+		<div  class="container" >
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
 					<h2>Pricing</h2>
