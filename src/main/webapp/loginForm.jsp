@@ -121,10 +121,10 @@
 				<h1><a href="loginForm.jsp">Flow</a></h1>
 				<nav role="navigation">
 					<ul>
-						<li><a href="work.html">Work</a></li>
-						<li><a href="services.html">Services</a></li>
-						<li><a href="pricing.html">Pricing</a></li>
-						<li><a href="about.html">About</a></li>
+						<li><a href="#login">Work</a></li>
+						<li><a href="#service">Services</a></li>
+						<li><a href="#price">Pricing</a></li>
+						<li><a href="#login">About</a></li>
 						<li><a href="<%=request.getContextPath()%>/helpList.jsp">Center</a></li>
 						<li class="cta"><a href="#login">Login</a></li>
 					</ul>
@@ -269,6 +269,166 @@
 									</div>
 								</form>
 							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<br id="service">
+	<div id="fh5co-work-section" class="fh5co-light-grey-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 animate-box">
+					<a href="#" class="item-grid text-center">
+						<div class="image" style="background-image: url(images/image_1.png)"></div>
+						<div class="v-align">
+							<div class="v-align-middle">
+								<h3 class="title">CashDateList</h3>
+								<h5 class="category">메인 페이지, 회원정보 기능</h5>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 animate-box">
+					<a href="#" class="item-grid text-center">
+						<div class="image" style="background-image: url(images/image_2.png)"></div>
+						<div class="v-align">
+							<div class="v-align-middle">
+								<h3 class="title">CashOne </h3>
+								<h5 class="category">상세내역 및 가계부 추가</h5>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 animate-box">
+					<a href="#" class="item-grid text-center">
+						<div class="image" style="background-image: url(images/image_3.png)"></div>
+						<div class="v-align">
+							<div class="v-align-middle">
+								<h3 class="title">Performance</h3>
+								<h5 class="category">년도별, 월별 지출내역</h5>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 animate-box">
+					<a href="#" class="item-grid text-center">
+						<div class="image" style="background-image: url(images/image_4.png)"></div>
+						<div class="v-align">
+							<div class="v-align-middle">
+								<h3 class="title">AdminPage</h3>
+								<h5 class="category">최근 공지, 최근 가입멤버</h5>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 animate-box">
+					<a href="#" class="item-grid text-center">
+						<div class="image" style="background-image: url(images/image_5.png)"></div>
+						<div class="v-align">
+							<div class="v-align-middle">
+								<h3 class="title">Noteice</h3>
+								<h5 class="category">공지사항 관리</h5>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 animate-box">
+					<a href="#" class="item-grid text-center">
+						<div class="image" style="background-image: url(images/image_6.png)"></div>
+						<div class="v-align">
+							<div class="v-align-middle">
+								<h3 class="title">Category</h3>
+								<h5 class="category">카테고리 관리</h5>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 animate-box">
+					<a href="#" class="item-grid text-center">
+						<div class="image" style="background-image: url(images/image_7.png)"></div>
+						<div class="v-align">
+							<div class="v-align-middle">
+								<h3 class="title">Member</h3>
+								<h5 class="category">멤버 관리, 멤버 레벨</h5>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 animate-box">
+					<a href="#" class="item-grid text-center">
+						<div class="image" style="background-image: url(images/image_8.png)"></div>
+						<div class="v-align">
+							<div class="v-align-middle">
+								<h3 class="title">Comment</h3>
+								<h5 class="category">답변 관리</h5>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 animate-box">
+					<a href="#" class="item-grid text-center">
+						<div class="image" style="background-image: url(images/image_9.png)"></div>
+						<div class="v-align">
+							<div class="v-align-middle">
+								<h3 class="title">Center</h3>
+								<h5 class="category">고객센터</h5>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<br id="price">
+	<br>
+	<div id="fh5co-pricing-section">
+		<div class="container" >
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
+					<h2>Pricing</h2>
+					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="pricing">
+					<div class="col-md-3 animate-box">
+						<div class="price-box">
+							<h2 class="pricing-plan">Starter</h2>
+							<div class="price"><sup class="currency">$</sup>9<small>/month</small></div>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+							<a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+						</div>
+					</div>
+
+					<div class="col-md-3 animate-box">
+						<div class="price-box">
+							<h2 class="pricing-plan">Basic</h2>
+							<div class="price"><sup class="currency">$</sup>27<small>/month</small></div>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+							<a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+						</div>
+					</div>
+
+					<div class="col-md-3 animate-box">
+						<div class="price-box popular">
+							<h2 class="pricing-plan pricing-plan-offer">Pro <span>Best Offer</span></h2>
+							<div class="price"><sup class="currency">$</sup>74<small>/month</small></div>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+							<a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+						</div>
+					</div>
+
+					<div class="col-md-3 animate-box">
+						<div class="price-box">
+							<h2 class="pricing-plan">Unlimited</h2>
+							<div class="price"><sup class="currency">$</sup>140<small>/month</small></div>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+							<a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
 						</div>
 					</div>
 				</div>
